@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="vn">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css"/>
+    <link rel="stylesheet" href="./assets/css/style.css">
+    <title>Login/Logout</title>
+  </head>
+  <body>
+    <h2>Sign in/up Form</h2>
+    <div class="container" id="container">
+        <div class="form-container sign-up-container">
+            <form action="#">
+                <h1>TẠO TÀI KHOẢN</h1>
+                <div class="social-container">
+                    <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
+                    <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+                <span>hoặc sử dụng gmail của bạn để đăng ký</span>
+                <div style="display: inline-flex; align-items: center;"><i class="fa-solid fa-address-card" style="font-size: 20px; margin-right: 15px;"></i><input type="text" placeholder="Họ và tên" style="border-left: 1px solid #000;"/></div>
+                <div style="display: inline-flex; align-items: center;"><i class="fa-solid fa-envelope" style="font-size: 20px; margin-right: 17px;"></i><input type="email" placeholder="Nhập email đăng ký của bạn" style="border-left: 1px solid #000;"/></div>
+                <div style="display: inline-flex; align-items: center;"><i class="fa-solid fa-key" style="font-size: 20px; margin-right: 17px;"></i><input type="password" placeholder="Nhập mật khẩu đăng ký" style="border-left: 1px solid #000;"/></div>
+                <div style="display: inline-flex; align-items: center;"><i class="fa-solid fa-phone" style="font-size: 20px; margin-right: 17px;"></i><input type="tel" placeholder="Nhập số điện thoại đăng ký" style="border-left: 1px solid #000;"/></div>
+                <div style="display: inline-flex; align-items: center;"><i class="fa-solid fa-location-dot" style="font-size: 20px; margin-right: 20px;"></i><input type="text" placeholder="Nhập địa chỉ của bạn" style="border-left: 1px solid #000;"/></div>
+                <button class="sign-out">Đăng Ký</button>
+            </form>
+        </div>
+        <div class="form-container sign-in-container">
+            <form action="#">
+                <h1>ĐĂNG NHẬP</h1>
+                <div class="social-container">
+                    <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
+                    <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+                <span>hoặc sử dụng tài khoản đã có!</span>
+                <div style="display: inline-flex; align-items: center;"><i class="fa-solid fa-user" style="font-size: 20px; margin-right: 20px;"></i><input type="email" placeholder="Địa chỉ email" style="border-left: 1px solid #000;"/></div>
+                <div style="display: inline-flex; align-items: center;"><i class="fa-solid fa-key" style="font-size: 20px; margin-right: 17.5px;"></i><input type="password" placeholder="Mật khẩu" style="border-left: 1px solid #000;"/></div>
+                <a href="forgot.html">Quên mật khẩu?</a>
+                <button class="sign-in">Đăng Nhập</button>
+            </form>
+        </div>
+        <div class="overlay-container">
+            <div class="overlay">
+                <div class="overlay-panel overlay-left">
+                    <h1>QUAY TRỞ LẠI !</h1>
+                    <p>Đăng nhập bằng thông tin của bạn vừa tạo !!</p>
+                    <button class="ghost" id="signIn">Đăng Nhập</button>
+                </div>
+                <div class="overlay-panel overlay-right">
+                    <h1>CHÀO QUÝ KHÁCH HÀNG</h1>
+                    <p>Nhấn vào đăng ký để tham gia cùng chúng tôi !!</p>
+                    <button class="ghost" id="signUp">Đăng Ký</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="./assets/css/img/js/script.js"></script>
+  </body>
+</html>
