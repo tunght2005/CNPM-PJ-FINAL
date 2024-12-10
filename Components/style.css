@@ -363,6 +363,7 @@
   display: inline-flex;
   flex-direction: row;
   line-height: 1.5;
+  gap: 20px;
 }
 /* End Thương Hiệu */
 
