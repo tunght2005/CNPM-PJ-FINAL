@@ -6,6 +6,7 @@
   --color-strong: #050404;
   --color-search: rgb(68, 68, 68);
   --color-price: #b08608;
+  --color-sell: #003868;
 }
 * {
   text-decoration: none;
@@ -132,6 +133,7 @@
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   column-gap: 20px;
+  z-index: 999;
 }
 .nav-menu ul li .sub-menu-1.active {
   transition: 1s ease;
@@ -191,6 +193,7 @@
   grid-template-columns: repeat(5, 1fr);
   column-gap: 20px;
   left: -129px;
+  z-index: 999;
 }
 .nav-menu ul li .sub-menu-2.active {
   transition: 1s ease;
@@ -251,6 +254,7 @@
   grid-template-columns: repeat(5, 1fr);
   column-gap: 20px;
   left: -296px;
+  z-index: 999;
 }
 .nav-menu ul li .sub-menu-3.active {
   transition: 1s ease;
@@ -306,6 +310,7 @@
   grid-template-columns: repeat(5, 1fr);
   column-gap: 20px;
   left: -420px;
+  z-index: 999;
 }
 .nav-menu ul li .sub-menu-4.active {
   transition: 1s ease;
@@ -356,6 +361,7 @@
   grid-template-columns: repeat(5, 1fr);
   column-gap: 20px;
   left: -543px;
+  z-index: 999;
 }
 .nav-menu ul li .sub-menu-5.active {
   transition: 1s ease;
@@ -380,11 +386,12 @@
   background: rgb(0, 0, 0, 0.6);
   width: 100%;
   height: 100%;
-  position: absolute;
+  position: fixed;
   top: 0;
   display: flex;
   justify-content: center;
   align-items: center;
+  z-index: 999;
 }
 .search.active {
   display: block;
@@ -610,7 +617,6 @@
 }
 /* End Seach */
 /* Menu */
-
 /* End Menu */
 
 /* End Header */
