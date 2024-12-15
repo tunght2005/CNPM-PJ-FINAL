@@ -192,78 +192,71 @@ jewelryPageButton.addEventListener('click', (e) => {
   window.location.href = 'webding.html'; // Đảm bảo rằng đây là đường dẫn chính xác
 });
 
-// Dữ liệu sản phẩm
 var arrTSC = [
-  { TenSP: 'Nhẫn vàng 18k D&C 1010CGHSK298', hinh: 'image/images.jpg', loaiTS: 'Nhẫn', MT: 'Hẹn Hò', KC: 'Không Đính Kim Cương', CL: 'Vàng 18K', GT: '17,999,000đ' },
-  { TenSP: 'Vòng tay vàng 18k BTK901', hinh: 'image/images(4).jpg', loaiTS: 'Vòng Tay', MT: 'Kỷ Niệm', KC: 'Đính Kim Cương', CL: 'Vàng 18K', GT: '25,499,000đ' },
-  { TenSP: 'Dây chuyền vàng 24k DC102', hinh: 'image/images(10).jpg', loaiTS: 'Dây Chuyền', MT: 'Kết Hôn', KC: 'Không Đính Kim Cương', CL: 'Vàng 24K', GT: '30,999,000đ' },
-  { TenSP: 'Bông tai vàng 18k BT105', hinh: 'image/image(7).jpg', loaiTS: 'Bông Tai', MT: 'Hẹn Hò', KC: 'Đính Đá Màu', CL: 'Vàng 18K', GT: '12,999,000đ' },
-  { TenSP: 'Kiềng vàng 24k KG204', hinh: 'image/image(13).jpg', loaiTS: 'Kiềng', MT: 'Cầu Hôn', KC: 'Không Đính Kim Cương', CL: 'Vàng 24K', GT: '45,999,000đ' },
-  { TenSP: 'Nhẫn cưới vàng 18k NC101', hinh: 'image/images(2).jpg', loaiTS: 'Nhẫn', MT: 'Kết Hôn', KC: 'Đính Kim Cương', CL: 'Vàng 18K', GT: '22,999,000đ' },
-  { TenSP: 'Vòng tay bạc BTK902', hinh: 'image/image(5).jpg', loaiTS: 'Vòng Tay', MT: 'Hẹn Hò', KC: 'Đính Đá Màu', CL: 'Vàng 18K', GT: '15,499,000đ' },
-  { TenSP: 'Dây chuyền vàng 18k DC103', hinh: 'image/images(11).jpg', loaiTS: 'Dây Chuyền', MT: 'Kỷ Niệm', KC: 'Đính Kim Cương', CL: 'Vàng 18K', GT: '35,999,000đ' },
-  { TenSP: 'Bông tai vàng 24k BT106', hinh: 'image/image(8).jpg', loaiTS: 'Bông Tai', MT: 'Cầu Hôn', KC: 'Không Đính Kim Cương', CL: 'Vàng 24K', GT: '18,999,000đ' },
-  { TenSP: 'Kiềng vàng 18k KG205', hinh: 'image/image(14).jpg', loaiTS: 'Kiềng', MT: 'Hẹn Hò', KC: 'Đính Kim Cương', CL: 'Vàng 18K', GT: '50,999,000đ' },
-  { TenSP: 'Nhẫn bạc D&C 1010', hinh: 'image/images(3).jpg', loaiTS: 'Nhẫn', MT: 'Kỷ Niệm', KC: 'Không Đính Kim Cương', CL: 'Vàng 18K', GT: '9,999,000đ' },
-  { TenSP: 'Vòng tay vàng 18k BTK903', hinh: 'image/th1.jpg', loaiTS: 'Vòng Tay', MT: 'Cầu Hôn', KC: 'Đính Kim Cương', CL: 'Vàng 18K', GT: '28,499,000đ' },
-  { TenSP: 'Dây chuyền vàng 18k DC104', hinh: 'image/image(12).jpg', loaiTS: 'Dây Chuyền', MT: 'Kết Hôn', KC: 'Đính Đá Màu', CL: 'Vàng 18K', GT: '20,999,000đ' },
-  { TenSP: 'Bông tai vàng 24k BT107', hinh: 'image/image(9).jpg', loaiTS: 'Bông Tai', MT: 'Kỷ Niệm', KC: 'Đính Kim Cương', CL: 'Vàng 24K', GT: '25,999,000đ' },
-  { TenSP: 'Kiềng vàng 18k KG206', hinh: 'image/image(15).jpg', loaiTS: 'Kiềng', MT: 'Kỷ Niệm', KC: 'Không Đính Kim Cương', CL: 'Vàng 18K', GT: '40,999,000đ' }
+  { loaiTS: 'Nhẫn', hinh: 'image/images.jpg', TenSP: 'Nhẫn vàng 18k D&C 1010CGHSK298', GT: 'Sang trọng và quý phái', MT: 'Hẹn Hò', KC: 'Không Đính Kim Cương', CL: 'Vàng 18K', GT: '17,999,000đ' },
+  { loaiTS: 'Vòng Tay', hinh: 'image/images(4).jpg', TenSP: 'Vòng tay vàng 18k BTK901', GT: 'Kỷ Niệm', MT: 'Kỷ Niệm', KC: 'Đính Kim Cương', CL: 'Vàng 18K', GT: '25,499,000đ' },
+  { loaiTS: 'Dây Chuyền', hinh: 'image/images(10).jpg', TenSP: 'Dây chuyền vàng 24k DC102', GT: 'Kết Hôn', MT: 'Kết Hôn', KC: 'Không Đính Kim Cương', CL: 'Vàng 24K', GT: '30,999,000đ' },
+  { loaiTS: 'Bông Tai', hinh: 'image/image(7).jpg', TenSP: 'Bông tai vàng 18k BT105', GT: 'Phong cách hiện đại', MT: 'Hẹn Hò', KC: 'Đính Đá Màu', CL: 'Vàng 18K', GT: '12,999,000đ' },
+  { loaiTS: 'Kiềng', hinh: 'image/image(13).jpg', TenSP: 'Kiềng vàng 24k KG204', GT: 'Cầu Hôn', MT: 'Cầu Hôn', KC: 'Không Đính Kim Cương', CL: 'Vàng 24K', GT: '45,999,000đ' },
+  { loaiTS: 'Nhẫn', hinh: 'image/images(2).jpg', TenSP: 'Nhẫn cưới vàng 18k NC101', GT: 'Tinh tế và đẳng cấp', MT: 'Kết Hôn', KC: 'Đính Kim Cương', CL: 'Vàng 18K', GT: '22,999,000đ' },
+  { loaiTS: 'Vòng Tay', hinh: 'image/image(5).jpg', TenSP: 'Vòng tay bạc BTK902', GT: 'Đơn giản và thanh thoát', MT: 'Hẹn Hò', KC: 'Đính Đá Màu', CL: 'Vàng 18K', GT: '15,499,000đ' },
+  { loaiTS: 'Dây Chuyền', hinh: 'image/images(11).jpg', TenSP: 'Dây chuyền vàng 18k DC103', GT: 'Kỷ Niệm', MT: 'Kỷ Niệm', KC: 'Đính Kim Cương', CL: 'Vàng 18K', GT: '35,999,000đ' },
+  { loaiTS: 'Bông Tai', hinh: 'image/image(8).jpg', TenSP: 'Bông tai vàng 24k BT106', GT: 'Cầu Hôn', MT: 'Cầu Hôn', KC: 'Không Đính Kim Cương', CL: 'Vàng 24K', GT: '18,999,000đ' },
+  { loaiTS: 'Kiềng', hinh: 'image/image(14).jpg', TenSP: 'Kiềng vàng 18k KG205', GT: 'Hẹn Hò', MT: 'Hẹn Hò', KC: 'Đính Kim Cương', CL: 'Vàng 18K', GT: '50,999,000đ' },
+  { loaiTS: 'Nhẫn', hinh: 'image/images(3).jpg', TenSP: 'Nhẫn bạc D&C 1010', GT: 'Kỷ Niệm', MT: 'Kỷ Niệm', KC: 'Không Đính Kim Cương', CL: 'Vàng 18K', GT: '9,999,000đ' },
+  { loaiTS: 'Vòng Tay', hinh: 'image/th1.jpg', TenSP: 'Vòng tay vàng 18k BTK903', GT: 'Cầu Hôn', MT: 'Cầu Hôn', KC: 'Đính Kim Cương', CL: 'Vàng 18K', GT: '28,499,000đ' },
+  { loaiTS: 'Dây Chuyền', hinh: 'image/image(12).jpg', TenSP: 'Dây chuyền vàng 18k DC104', GT: 'Kết Hôn', MT: 'Kết Hôn', KC: 'Đính Đá Màu', CL: 'Vàng 18K', GT: '20,999,000đ' },
+  { loaiTS: 'Bông Tai', hinh: 'image/image(9).jpg', TenSP: 'Bông tai vàng 24k BT107', GT: 'Kỷ Niệm', MT: 'Kỷ Niệm', KC: 'Đính Kim Cương', CL: 'Vàng 24K', GT: '25,999,000đ' },
+  { loaiTS: 'Kiềng', hinh: 'image/image(15).jpg', TenSP: 'Kiềng vàng 18k KG206', GT: 'Kỷ Niệm', MT: 'Kỷ Niệm', KC: 'Không Đính Kim Cương', CL: 'Vàng 18K', GT: '40,999,000đ' }
 ];
 
-// Hàm hiển thị sản phẩm
-function HienTSC(loaiSanPhamChon, mucTieuChon, dinhKCChon, chatLieuChon) {
-  var list1 = document.getElementById("list1");
-  list1.innerHTML = '';
 
-  for (i = 0; i < arrTSC.length; i++) {
-    // Kiểm tra xem sản phẩm có thỏa mãn các điều kiện lọc không
+
+
+
+// Hàm hiển thị sản phẩm
+function HienTSC(loaiTS = '', mucTieu = '', KC = '', CL = '') {
+  var list1 = document.getElementById("list1");
+  list1.innerHTML = ''; // Xóa danh sách cũ
+
+  arrTSC.forEach(function (sanPham) {
     if (
-      (loaiSanPhamChon.length === 0 || loaiSanPhamChon.includes(arrTSC[i].loaiTS)) &&
-      (mucTieuChon.length === 0 || mucTieuChon.includes(arrTSC[i].MT)) &&
-      (dinhKCChon.length === 0 || dinhKCChon.includes(arrTSC[i].KC)) &&
-      (chatLieuChon.length === 0 || chatLieuChon.includes(arrTSC[i].CL))
+      (loaiTS === '' || sanPham.loaiTS === loaiTS) &&
+      (mucTieu === '' || sanPham.MT === mucTieu) &&
+      (KC === '' || sanPham.KC === KC) &&
+      (CL === '' || sanPham.CL === CL)
     ) {
       list1.innerHTML += `
         <div class="TSC">
-          <img src="${arrTSC[i].hinh}" />
-          <h3>${arrTSC[i].TenSP}</h3>
-          <h4>${arrTSC[i].GT}</h4>
+          <img src="${sanPham.hinh}" alt="${sanPham.TenSP}" />
+          <h3>${sanPham.TenSP}</h3>
+          <h4>${sanPham.GT}</h4>
         </div>
       `;
     }
+  });
+}
+
+// Hàm xử lý khi người dùng nhấn vào menu
+function ChonTSCMenu(loai, giaTri) {
+  // Xác định loại dữ liệu lọc (loaiTS, MT, KC, CL)
+  switch (loai) {
+    case 'loaiTS':
+      HienTSC(giaTri, '', '', '');
+      break;
+    case 'MT':
+      HienTSC('', giaTri, '', '');
+      break;
+    case 'KC':
+      HienTSC('', '', giaTri, '');
+      break;
+    case 'CL':
+      HienTSC('', '', '', giaTri);
+      break;
+    default:
+      HienTSC(); // Hiển thị toàn bộ sản phẩm nếu không có lọc
   }
 }
 
-// Hàm xử lý khi người dùng chọn các checkbox
-function ChonTSC() {
-  var loaiSanPhamChon = [];
-  var mucTieuChon = [];
-  var dinhKCChon = [];
-  var chatLieuChon = [];
-
-  var loaiTS = document.getElementsByClassName("loaiTS");
-  var MT = document.getElementsByClassName("MT");
-  var KC = document.getElementsByClassName("KC");
-  var CL = document.getElementsByClassName("CL");
-
-  // Lấy các giá trị được chọn trong mỗi nhóm checkbox
-  for (i = 0; i < loaiTS.length; i++) {
-    if (loaiTS[i].checked) loaiSanPhamChon.push(loaiTS[i].value);
-  }
-  for (i = 0; i < MT.length; i++) {
-    if (MT[i].checked) mucTieuChon.push(MT[i].value);
-  }
-  for (i = 0; i < KC.length; i++) {
-    if (KC[i].checked) dinhKCChon.push(KC[i].value);
-  }
-  for (i = 0; i < CL.length; i++) {
-    if (CL[i].checked) chatLieuChon.push(CL[i].value);
-  }
-
-  // Gọi hàm HienTSC với các giá trị đã chọn
-  HienTSC(loaiSanPhamChon, mucTieuChon, dinhKCChon, chatLieuChon);
-}
-
-// Gọi lần đầu tiên để hiển thị tất cả sản phẩm
-HienTSC([], [], [], []);
+// Hiển thị toàn bộ sản phẩm mặc định
+HienTSC();
