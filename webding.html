@@ -72,37 +72,44 @@
                 />
               </div>
             </li>
-            <li>
-              <a href="#" class="menu-item" id="item-2">Trang Sức Cưới</a>
-              <!-- Sub Menu 2-->
-              <div class="sub-menu-2">
-                <div class="purpose-menu">
-                  <span>Theo Mục Đích</span>
-                  <a href="#">Cầu Hôn</a><a href="#">Kết Hôn</a
-                  ><a href="#">Kỷ Niệm</a>
+            <ul>
+              <li>
+                <a href="#" class="menu-item" id="item-2">Trang Sức Cưới</a>
+                <!-- Sub Menu 2-->
+                <div class="sub-menu-2">
+                  <div class="purpose-menu">
+                    <span>Theo Mục Đích</span>
+                    <a href="#" onclick="ChonTSCMenu('MT', 'Cầu Hôn')">Cầu Hôn</a>
+                    <a href="#" onclick="ChonTSCMenu('MT', 'Kết Hôn')">Kết Hôn</a>
+                    <a href="#" onclick="ChonTSCMenu('MT', 'Kỷ Niệm')">Kỷ Niệm</a>
+                  </div>
+                  <div class="type-menu">
+                    <span>Chủng Loại</span>
+                    <a href="#" onclick="ChonTSCMenu('loaiTS', 'Nhẫn')">Nhẫn</a>
+                    <a href="#" onclick="ChonTSCMenu('loaiTS', 'Bông Tai')">Bông Tai</a>
+                    <a href="#" onclick="ChonTSCMenu('loaiTS', 'Kiềng')">Lắc</a>
+                    <a href="#" onclick="ChonTSCMenu('loaiTS', 'Vòng Tay')">Vòng Tay</a>
+                    <a href="#" onclick="ChonTSCMenu('loaiTS', 'Dây Chuyền')">Dây Chuyền</a>
+                  </div>
+                  <div class="product-line">
+                    <span>Dòng Trang Sức</span>
+                    <a href="#" onclick="ChonTSCMenu('KC', 'Đính Kim Cương')">Kim Cương</a>
+                    <a href="#" onclick="ChonTSCMenu('KC', 'Không Đính Kim Cương')">Không Đính Đá</a>
+                    <a href="#" onclick="ChonTSCMenu('KC', 'Đính Đá Màu')">Đá Màu</a>
+                  </div>
+                  <div class="material-menu">
+                    <span>Chất Liệu</span>
+                    <a href="#" onclick="ChonTSCMenu('CL', 'Vàng 24K')">Vàng 24K</a>
+                    <a href="#" onclick="ChonTSCMenu('CL', 'Vàng 18K')">Vàng 18K</a>
+                  </div>
+                  <img
+                    src="https://cdn.pnj.io/images/2024/10/trau-cau-08-10-24-Banner_BST_TC_KC_400x270.png"
+                    alt=""
+                    style="width: 300px; height: auto"
+                  />
                 </div>
-                <div class="type-menu">
-                  <span>Chủng Loại</span>
-                  <a href="#">Nhẫn</a><a href="#">Bông Tai</a><a href="#">Lắc</a
-                  ><a href="#">Vòng Tay</a><a href="#">Dây Chuyền</a>
-                </div>
-                <div class="product-line">
-                  <span>Dòng Trang Sức</span>
-                  <a href="#">Kim Cương</a><a href="#">Không Đính Đá</a
-                  ><a href="#">Đá Màu</a>
-                </div>
-                <div class="material-menu">
-                  <span>Chất Liệu</span>
-                  <a href="#">Vàng 24k</a>
-                  <a href="#">Vàng 18k</a>
-                </div>
-                <img
-                  src="https://cdn.pnj.io/images/2024/10/trau-cau-08-10-24-Banner_BST_TC_KC_400x270.png"
-                  alt=""
-                  style="width: 300px; height: auto"
-                />
-              </div>
-            </li>
+              </li>
+            </ul>
             <li>
               <a href="#" class="menu-item" id="item-3">Đồng Hồ</a>
               <!-- Sub Menu 3-->
@@ -512,55 +519,90 @@
       <!-- End Search -->
       <!-- End Header -->
       <!-- Main -->
-       <div class="container1">
-        <header>TRANG SỨC CƯỚI</header>
-        <main> 
-          <div id="cottrai">
-            <div id="accordion">
-          
-                <!-- Loại Sản Phẩm -->
-                <div class="cap">Loại Sản Phẩm</div>
-                <div class="ct">
-                    <label><input onchange="ChonTSC()" type="checkbox" class="loaiTS" value="Nhẫn"> Nhẫn</label>
-                    <label><input onchange="ChonTSC()" type="checkbox" class="loaiTS" value="Vòng Tay"> Vòng Tay</label>
-                    <label><input onchange="ChonTSC()" type="checkbox" class="loaiTS" value="Dây Chuyền"> Dây Chuyền</label>
-                    <label><input onchange="ChonTSC()" type="checkbox" class="loaiTS" value="Bông Tai"> Bông Tai</label>
-                    <label><input onchange="ChonTSC()" type="checkbox" class="loaiTS" value="Kiềng"> Kiềng</label>
-                </div>
-          
-                <!-- Mục Tiêu -->
-                <div class="cap">Mục Tiêu</div>
-                <div class="ct">
-                    <label><input onchange="ChonTSC()" type="checkbox" class="MT" value="Hẹn Hò"> Hẹn Hò</label>
-                    <label><input onchange="ChonTSC()" type="checkbox" class="MT" value="Cầu Hôn"> Cầu Hôn</label>
-                    <label><input onchange="ChonTSC()" type="checkbox" class="MT" value="Kết Hôn"> Kết Hôn</label>
-                    <label><input onchange="ChonTSC()" type="checkbox" class="MT" value="Kỷ Niệm"> Kỷ Niệm</label>
-                </div>
-          
-                <!-- Đính Thêm KC -->
-                <div class="cap">Đính Thêm KC</div>
-                <div class="ct">
-                    <label><input onchange="ChonTSC()" type="checkbox" class="KC" value="Đính Kim Cương"> Đính Kim Cương</label>
-                    <label><input onchange="ChonTSC()" type="checkbox" class="KC" value="Không Đính Kim Cương"> Không Đính Kim Cương</label>
-                    <label><input onchange="ChonTSC()" type="checkbox" class="KC" value="Đính Đá Màu"> Đính Đá Màu</label>
-                </div>
-          
-                <!-- Chất Liệu -->
-                <div class="cap">Chất Liệu</div>
-                <div class="ct">
-                    <label><input onchange="ChonTSC()" type="checkbox" class="CL" value="Vàng 18K"> Vàng 18K</label>
-                    <label><input onchange="ChonTSC()" type="checkbox" class="CL" value="Vàng 24K"> Vàng 24K</label>
-                </div>
-          
-            </div>
-        </div>
-        
-        <div id="cotphai">
-            <div id="list1"></div>
-        </div>
-      </main>
+       <div id="litle"></div>
+      <!-- Khu vực hiển thị sản phẩm -->
+<div id="list1">
+  <!-- Sản phẩm sẽ hiển thị tại đây -->
+</div>
+<div class="container">
+  <!-- Dòng 1 -->
+  <div class="row">
+      <div class="poster" style="animation: moveInLeft 1s ease-in-out 0s forwards;">
+          <img src="image/h1.jpg" alt="Trang sức kim cương">
+          <div class="poster-content">
+              <h2>Kim Cương Đẳng Cấp</h2>
+              <p>Khám phá bộ sưu tập kim cương sang trọng, dành riêng cho bạn.</p>
+          </div>
       </div>
-       </div>
+      <div class="poster" style="animation: moveInLeft 1s ease-in-out 0.5s forwards;">
+          <img src="image/h2.jpg" alt="Trang sức vàng 24k">
+          <div class="poster-content">
+              <h2>Vàng 24K Tuyệt Vời</h2>
+              <p>Bộ trang sức vàng 24K tinh tế, làm nổi bật vẻ đẹp của bạn.</p>
+          </div>
+      </div>
+      <div class="poster" style="animation: moveInLeft 1s ease-in-out 1s forwards;">
+          <img src="image/h3.jpg" alt="Trang sức ngọc trai">
+          <div class="poster-content">
+              <h2>Ngọc Trai Thiên Nhiên</h2>
+              <p>Ngọc trai tự nhiên cao cấp, mang đến vẻ đẹp thanh lịch cho phái đẹp.</p>
+          </div>
+      </div>
+      <div class="poster" style="animation: moveInLeft 1s ease-in-out 1.5s forwards;">
+          <img src="image/h4.jpg" alt="Trang sức bạc">
+          <div class="poster-content">
+              <h2>Sắc Bạc Tinh Tế</h2>
+              <p>Bộ trang sức bạc cao cấp, sang trọng cho các dịp đặc biệt.</p>
+          </div>
+      </div>
+      <div class="poster" style="animation: moveInLeft 1s ease-in-out 2s forwards;">
+          <img src="image/h5.jpg" alt="Trang sức sapphire">
+          <div class="poster-content">
+              <h2>Ngọc Sapphire Rực Rỡ</h2>
+              <p>Đắm chìm trong vẻ đẹp huyền bí của ngọc Sapphire, món quà hoàn hảo.</p>
+          </div>
+      </div>
+  </div>
+
+  <!-- Dòng 2 -->
+  <div class="row">
+      <div class="poster" style="animation: moveInRight 1s ease-in-out 0s forwards;">
+          <img src="image/h6.jpg" alt="Trang sức vàng hồng">
+          <div class="poster-content">
+              <h2>Vàng Hồng Tinh Tế</h2>
+              <p>Bộ trang sức vàng hồng với thiết kế đẹp mắt, đầy cuốn hút.</p>
+          </div>
+      </div>
+      <div class="poster" style="animation: moveInRight 1s ease-in-out 0.5s forwards;">
+          <img src="image/h7.jpg" alt="Trang sức kim cương trắng">
+          <div class="poster-content">
+              <h2>Kim Cương Trắng Sang Trọng</h2>
+              <p>Khám phá vẻ đẹp sáng chói của kim cương trắng, tinh túy và vĩnh cửu.</p>
+          </div>
+      </div>
+      <div class="poster" style="animation: moveInRight 1s ease-in-out 1s forwards;">
+          <img src="image/h8.jpg" alt="Trang sức đá quý">
+          <div class="poster-content">
+              <h2>Đá Quý Tự Nhiên</h2>
+              <p>Trang sức đá quý tự nhiên, độc đáo và có giá trị lâu dài.</p>
+          </div>
+      </div>
+      <div class="poster" style="animation: moveInRight 1s ease-in-out 1.5s forwards;">
+          <img src="image/h9.jpg" alt="Trang sức pha lê">
+          <div class="poster-content">
+              <h2>Pha Lê Lung Linh</h2>
+              <p>Bộ trang sức pha lê đẹp mắt, mang lại sự quyến rũ cho bạn.</p>
+          </div>
+      </div>
+      <div class="poster" style="animation: moveInRight 1s ease-in-out 2s forwards;">
+          <img src="image/h10.jpg" alt="Trang sức đá sapphire">
+          <div class="poster-content">
+              <h2>Đá Sapphire Vượt Thời Gian</h2>
+              <p>Sapphire, viên đá quý mang lại sự sang trọng và đẳng cấp cho người sở hữu.</p>
+          </div>
+      </div>
+  </div>
+</div>
        <footer class="footer">
         <hr />
         <div class="container">
@@ -663,6 +705,7 @@
           </div>
         </div>
       </footer> 
-      <script src="./search.js"></script>
+      <!-- Nút Trang Chủ -->
+    <script src="search.js" defer></script>
 </body>
 </html>
