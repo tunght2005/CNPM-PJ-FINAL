@@ -6,6 +6,7 @@
   --color-strong: #050404;
   --color-search: rgb(68, 68, 68);
   --color-price: #b08608;
+  --color-sell: #003868;
 }
 * {
   text-decoration: none;
@@ -132,6 +133,7 @@
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   column-gap: 20px;
+  z-index: 999;
 }
 .nav-menu ul li .sub-menu-1.active {
   transition: 1s ease;
@@ -191,6 +193,7 @@
   grid-template-columns: repeat(5, 1fr);
   column-gap: 20px;
   left: -129px;
+  z-index: 999;
 }
 .nav-menu ul li .sub-menu-2.active {
   transition: 1s ease;
@@ -251,6 +254,7 @@
   grid-template-columns: repeat(5, 1fr);
   column-gap: 20px;
   left: -296px;
+  z-index: 999;
 }
 .nav-menu ul li .sub-menu-3.active {
   transition: 1s ease;
@@ -306,6 +310,7 @@
   grid-template-columns: repeat(5, 1fr);
   column-gap: 20px;
   left: -420px;
+  z-index: 999;
 }
 .nav-menu ul li .sub-menu-4.active {
   transition: 1s ease;
@@ -356,6 +361,7 @@
   grid-template-columns: repeat(5, 1fr);
   column-gap: 20px;
   left: -543px;
+  z-index: 999;
 }
 .nav-menu ul li .sub-menu-5.active {
   transition: 1s ease;
@@ -380,11 +386,12 @@
   background: rgb(0, 0, 0, 0.6);
   width: 100%;
   height: 100%;
-  position: absolute;
+  position: fixed;
   top: 0;
   display: flex;
   justify-content: center;
   align-items: center;
+  z-index: 999;
 }
 .search.active {
   display: block;
@@ -610,7 +617,6 @@
 }
 /* End Seach */
 /* Menu */
-
 /* End Menu */
 
 /* End Header */
@@ -700,97 +706,3 @@ main {
   height: auto;
 }
 /* End Footer */
-
-/*--------------------------------------------------------------Bo-Loc*/
-.catalog {
-  display: flex;
-  justify-content: space-between; 
-  align-items: center;
-  flex-wrap: wrap; /* Cho phép nội dung xuống dòng nếu không đủ không gian */
-  padding: 10px 20px; /* Chừa khoảng trống hai bên */
-  max-width: 1100px; /* Giới hạn chiều rộng tối đa */
-  margin: 0 auto; /* Căn giữa nội dung trong khung */
-  gap: 10px;
-}
-
-.Bo-Loc-mid {
-  display: flex;
-  flex-wrap: wrap; /* Cho phép nội dung xuống dòng */
-  gap: 10px; /* Khoảng cách giữa các nút hoặc phần tử */
-}
-
-.Bo-Loc-mid p {
-  margin: 0;
-  font-weight: bold;
-}
-
-.Bo-Loc-mid select {
-  padding: 5px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  font-size: 11px;
-}
-
-.Bo-Loc-mid:first-child {
-  margin-left: auto; /* Đẩy phần "Sắp xếp" sang phải */
-  display: flex;
-  align-items: center;
-  gap: 5px; /* Khoảng cách giữa chữ và dropdown */
-}
-
-.danhmuc {
-  display: grid;
-  justify-content: center;
-  align-items: center;
-  grid-template-columns: repeat(3,400px);
-  gap: 20px;
-  padding: 20px;
-  margin: 0 auto;
-}
-
-.danhmuchinhanh{
-  width: 100%;
-  text-align: center;
-  padding:12px 0;
-  margin: 0 auto;
-  background-color: #fff;
-  border-radius: 16px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-}
-.danhmuchinhanh img {
-  width: 50%;
-  height: 250px;
-  object-fit: cover;
-}
-.danhmuchinhanh h1 {
-  margin: 10px 0 5px;
-  font-size: 16px;
-  font-weight: bold;
-  color: #333;
-}
-.danhmuchinhanh p {
-  font-size: 14px;
-  color: #2349c7;
-}
-.qc {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: relative;
-  width: 50%; /* Đặt chiều rộng 50% */
-  height: 0;
-  padding-top: 56.25%; /* Tỷ lệ 16:9 (9 / 16 = 0.5625, nhân với 100 để có 56.25%) */
-  overflow: hidden; /* Ẩn phần tràn ngoài container */
-}
-
-.qc img {
-  position: absolute;
-  width: 100%; /* Hình ảnh chiếm toàn bộ chiều rộng container */
-  height: 100%; /* Hình ảnh chiếm toàn bộ chiều cao container */
-  object-fit: cover; /* Điều chỉnh kích thước ảnh */
-  transition: transform 0.5s ease; /* Hiệu ứng chuyển động */
-  transform: translate(-50%, -50%); /* Đảm bảo hình ảnh luôn ở trung tâm */
-  left: 50%;
-  top: 50%;
-}
-
