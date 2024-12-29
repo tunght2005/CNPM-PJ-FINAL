@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Chương Trình Khuyến Mãi</title>
+</head>
+<body>
+    <h1>Chương Trình Khuyến Mãi</h1>
+    <ul>
+        {% for promotion in promotions %}
+        <li>{{ promotion.title }}: {{ promotion.discount_percentage }}% ({{ promotion.start_date }} - {{ promotion.end_date }})</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

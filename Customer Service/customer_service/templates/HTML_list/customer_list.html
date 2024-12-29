@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Danh Sách Khách Hàng</title>
+</head>
+<body>
+    <h1>Danh Sách Khách Hàng</h1>
+    <ul>
+        {% for customer in customers %}
+        <li>{{ customer.name }} - {{ customer.email }}</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
