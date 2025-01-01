@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Quản lý vận chuyển | Quản trị Admin</title>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- Main CSS-->
+    <link rel="stylesheet" type="text/css" href="../../assets/css/main.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css"
+    />
+    <!-- or -->
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/boxicons@latest/css/boxicons.min.css"
+    />
+    <!-- Font-icon css-->
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.css"
+    />
+  </head>
+
+  <body onload="time()" class="app sidebar-mini rtl">
+    <!-- Navbar-->
+    <header class="app-header">
+      <!-- Sidebar toggle button--><a
+        class="app-sidebar__toggle"
+        href="#"
+        data-toggle="sidebar"
+        aria-label="Hide Sidebar"
+      ></a>
+      <!-- Navbar Right Menu-->
+      <ul class="app-nav">
+        <!-- User Menu-->
+        <li>
+          <a class="app-nav__item" href="../../../Home/index.html"
+            ><i class="bx bx-log-out bx-rotate-180"></i>
+          </a>
+        </li>
+      </ul>
+    </header>
+    <!-- Sidebar menu-->
+    <div class="app-sidebar__overlay" data-toggle="sidebar"></div>
+    <aside class="app-sidebar">
+      <div class="app-sidebar__user">
+        <img
+          class="app-sidebar__user-avatar"
+          src="../../../Home/assets/css/img/logo-page.jpg"
+          width="50px"
+          alt="User Image"
+        />
+        <div>
+          <p class="app-sidebar__user-name"><b>Văn Tùng</b></p>
+          <p class="app-sidebar__user-designation">Chào mừng bạn trở lại</p>
+        </div>
+      </div>
+      <hr />
+      <ul class="app-menu">
+        <li>
+          <a class="app-menu__item" href="admin.html"
+            ><i class="app-menu__icon bx bx-tachometer"></i
+            ><span class="app-menu__label">Bảng điều khiển</span></a
+          >
+        </li>
+        <li>
+          <a class="app-menu__item" href="table-data-table.html"
+            ><i class="app-menu__icon bx bx-id-card"></i>
+            <span class="app-menu__label">Quản lý nhân viên</span></a
+          >
+        </li>
+        <li>
+          <a class="app-menu__item" href="page-customer.html"
+            ><i class="app-menu__icon bx bx-user-voice"></i
+            ><span class="app-menu__label">Quản lý khách hàng</span></a
+          >
+        </li>
+        <li>
+          <a class="app-menu__item" href="table-data-product.html"
+            ><i class="app-menu__icon bx bx-purchase-tag-alt"></i
+            ><span class="app-menu__label">Quản lý sản phẩm</span></a
+          >
+        </li>
+        <li>
+          <a class="app-menu__item" href="table-data-oder.html"
+            ><i class="app-menu__icon bx bx-task"></i
+            ><span class="app-menu__label">Quản lý đơn hàng</span></a
+          >
+        </li>
+        <li>
+          <a class="app-menu__item" href="table-data-banned.html"
+            ><i class="app-menu__icon bx bx-run"></i
+            ><span class="app-menu__label">Quản lý nội bộ </span></a
+          >
+        </li>
+        <li>
+          <a class="app-menu__item" href="table-data-money.html"
+            ><i class="app-menu__icon bx bx-dollar"></i
+            ><span class="app-menu__label">Bảng kê lương</span></a
+          >
+        </li>
+        <li>
+          <a class="app-menu__item" href="quan-ly-bao-cao.html"
+            ><i class="app-menu__icon bx bx-pie-chart-alt-2"></i
+            ><span class="app-menu__label">Báo cáo doanh thu</span></a
+          >
+        </li>
+        <li>
+          <a class="app-menu__item" href="table-data-service.html"
+            ><i class="app-menu__icon bx bx-support"></i
+            ><span class="app-menu__label"
+              >Trung Tâm Dịch Vụ <br />Khách Hàng</span
+            ></a
+          >
+        </li>
+        <li>
+          <a class="app-menu__item" href="table-data-feedback.html"
+            ><i class="app-menu__icon bx bx-message"></i
+            ><span class="app-menu__label">Quản Lý Feedback</span></a
+          >
+        </li>
+        <li>
+          <a class="app-menu__item active" href="table-data-transport.html"
+            ><i class="app-menu__icon bx bx-package"></i
+            ><span class="app-menu__label">Quản Lý Vận Chuyển</span></a
+          >
+        </li>
+        <li>
+          <a class="app-menu__item" href="table-data-review.html"
+            ><i class="app-menu__icon bx bx-star"></i
+            ><span class="app-menu__label">Quản lý đánh giá</span></a
+          >
+        </li>
+        <li>
+          <a class="app-menu__item" href="page-calendar.html"
+            ><i class="app-menu__icon bx bx-calendar-check"></i
+            ><span class="app-menu__label">Lịch công tác </span></a
+          >
+        </li>
+        <li>
+          <a class="app-menu__item" href="#"
+            ><i class="app-menu__icon bx bx-cog"></i
+            ><span class="app-menu__label">Cài đặt hệ thống</span></a
+          >
+        </li>
+      </ul>
+    </aside>
+    <main class="app-content">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="app-title">
+            <ul class="app-breadcrumb breadcrumb">
+              <li class="breadcrumb-item">
+                <a href="#"><b>Quản lý vận chuyển</b></a>
+              </li>
+            </ul>
+            <div id="clock"></div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <div class="tile">
+            <h3 class="tile-title">Thêm Đơn Hàng</h3>
+            <div class="tile-body">
+              <form class="row" id="order-form">
+                <div class="form-group col-md-4">
+                  <label class="control-label">Tên Khách Hàng</label>
+                  <input
+                    class="form-control"
+                    type="text"
+                    id="customer-name"
+                    required
+                  />
+                </div>
+                <div class="form-group col-md-4">
+                  <label class="control-label">Địa Chỉ</label>
+                  <input
+                    class="form-control"
+                    type="text"
+                    id="customer-address"
+                    required
+                  />
+                </div>
+                <div class="form-group col-md-4">
+                  <label class="control-label">Số Điện Thoại</label>
+                  <input
+                    class="form-control"
+                    type="tel"
+                    id="customer-phone"
+                    required
+                  />
+                </div>
+                <div class="form-group col-md-4">
+                  <label class="control-label">Tên Sản Phẩm</label>
+                  <input
+                    class="form-control"
+                    type="text"
+                    id="product-name"
+                    required
+                  />
+                </div>
+                <div class="form-group col-md-4">
+                  <label class="control-label">Số Lượng</label>
+                  <input
+                    class="form-control"
+                    type="number"
+                    id="product-quantity"
+                    required
+                  />
+                </div>
+                <div class="form-group col-md-4">
+                  <label class="control-label">Ngày Giao</label>
+                  <input
+                    class="form-control"
+                    type="date"
+                    id="delivery-date"
+                    required
+                  />
+                </div>
+                <div class="form-group col-md-12">
+                  <button type="submit" class="btn btn-primary">Lưu</button>
+                </div>
+              </form>
+            </div>
+          </div>
+          <div class="tile">
+            <h3 class="tile-title">Danh Sách Đơn Hàng</h3>
+            <div class="tile-body">
+              <table class="table table-hover table-bordered" id="order-table">
+                <thead>
+                  <tr>
+                    <th>Tên Khách Hàng</th>
+                    <th>Địa Chỉ</th>
+                    <th>Số Điện Thoại</th>
+                    <th>Tên Sản Phẩm</th>
+                    <th>Số Lượng</th>
+                    <th>Ngày Giao</th>
+                    <th>Hành Động</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <!-- Dữ liệu đơn hàng sẽ được thêm vào đây -->
+                  <tr>
+                    <td>Nguyễn Văn A</td>
+                    <td>123 Đường ABC, Quận 1</td>
+                    <td>0123456789</td>
+                    <td>Kim cương 1 carat</td>
+                    <td>2</td>
+                    <td>2023-12-01</td>
+                    <td>
+                      <button class="btn btn-danger btn-sm delete-btn">
+                        Xóa
+                      </button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Trần Thị B</td>
+                    <td>456 Đường XYZ, Quận 2</td>
+                    <td>0987654321</td>
+                    <td>Nhẫn vàng 24k</td>
+                    <td>1</td>
+                    <td>2023-12-02</td>
+                    <td>
+                      <button class="btn btn-danger btn-sm delete-btn">
+                        Xóa
+                      </button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+    <script src="../../assets/css/img/js/jquery-3.2.1.min.js"></script>
+    <!--===============================================================================================-->
+    <script src="../../assets/css/img/js/popper.min.js"></script>
+    <script src="https://unpkg.com/boxicons@latest/dist/boxicons.js"></script>
+    <!--===============================================================================================-->
+    <script src="../../assets/css/img/js/bootstrap.min.js"></script>
+    <!--===============================================================================================-->
+    <script src="../../assets/css/img/js/main.js"></script>
+    <!--===============================================================================================-->
+    <script src="../../assets/css/img/js/plugins/pace.min.js"></script>
+    <!--===============================================================================================-->
+    <script
+      type="text/javascript"
+      src="../../assets/css/img/js/plugins/chart.js"
+    ></script>
+    <!-- JavaScript -->
+    <script>
+      $(document).ready(function () {
+        // Xử lý sự kiện submit form
+        $("#order-form").on("submit", function (e) {
+          e.preventDefault();
+          const name = $("#customer-name").val();
+          const address = $("#customer-address").val();
+          const phone = $("#customer-phone").val();
+          const productName = $("#product-name").val();
+          const quantity = $("#product-quantity").val();
+          const deliveryDate = $("#delivery-date").val();
+
+          // Thêm đơn hàng vào bảng
+          const newRow = `
+                  <tr>
+                      <td>${name}</td>
+                      <td>${address}</td>
+                      <td>${phone}</td>
+                      <td>${productName}</td>
+                      <td>${quantity}</td>
+                      <td>${deliveryDate}</td>
+                      <td>
+                          <button class="btn btn-danger btn-sm delete-btn">Xóa</button>
+                      </td>
+                  </tr>
+              `;
+          $("#order-table tbody").append(newRow);
+
+          // Hiển thị thông báo thành công
+          swal("Thành công", "Đơn hàng đã được thêm!", "success");
+
+          // Xóa dữ liệu trong form
+          $("#order-form")[0].reset();
+        });
+
+        // Xử lý sự kiện xóa đơn hàng
+        $(document).on("click", ".delete-btn", function () {
+          const row = $(this).closest("tr");
+          swal({
+            title: "Cảnh báo",
+            text: "Bạn có chắc chắn là muốn xóa đơn hàng này?",
+            buttons: ["Hủy bỏ", "Đồng ý"],
+          }).then((willDelete) => {
+            if (willDelete) {
+              row.remove();
+              swal("Đã xóa thành công!", {
+                icon: "success",
+              });
+            }
+          });
+        });
+      });
+    </script>
+    <!--===============================================================================================-->
+    <script type="text/javascript">
+      var data = {
+        labels: [
+          "Tháng 1",
+          "Tháng 2",
+          "Tháng 3",
+          "Tháng 4",
+          "Tháng 5",
+          "Tháng 6",
+        ],
+        datasets: [
+          {
+            label: "Dữ liệu đầu tiên",
+            fillColor: "rgba(255, 213, 59, 0.767), 212, 59)",
+            strokeColor: "rgb(255, 212, 59)",
+            pointColor: "rgb(255, 212, 59)",
+            pointStrokeColor: "rgb(255, 212, 59)",
+            pointHighlightFill: "rgb(255, 212, 59)",
+            pointHighlightStroke: "rgb(255, 212, 59)",
+            data: [20, 59, 90, 51, 56, 100],
+          },
+          {
+            label: "Dữ liệu kế tiếp",
+            fillColor: "rgba(9, 109, 239, 0.651)  ",
+            pointColor: "rgb(9, 109, 239)",
+            strokeColor: "rgb(9, 109, 239)",
+            pointStrokeColor: "rgb(9, 109, 239)",
+            pointHighlightFill: "rgb(9, 109, 239)",
+            pointHighlightStroke: "rgb(9, 109, 239)",
+            data: [48, 48, 49, 39, 86, 10],
+          },
+        ],
+      };
+      var ctxl = $("#lineChartDemo").get(0).getContext("2d");
+      var lineChart = new Chart(ctxl).Line(data);
+
+      var ctxb = $("#barChartDemo").get(0).getContext("2d");
+      var barChart = new Chart(ctxb).Bar(data);
+    </script>
+    <script type="text/javascript">
+      //Thời Gian
+      function time() {
+        var today = new Date();
+        var weekday = new Array(7);
+        weekday[0] = "Chủ Nhật";
+        weekday[1] = "Thứ Hai";
+        weekday[2] = "Thứ Ba";
+        weekday[3] = "Thứ Tư";
+        weekday[4] = "Thứ Năm";
+        weekday[5] = "Thứ Sáu";
+        weekday[6] = "Thứ Bảy";
+        var day = weekday[today.getDay()];
+        var dd = today.getDate();
+        var mm = today.getMonth() + 1;
+        var yyyy = today.getFullYear();
+        var h = today.getHours();
+        var m = today.getMinutes();
+        var s = today.getSeconds();
+        m = checkTime(m);
+        s = checkTime(s);
+        nowTime = h + " giờ " + m + " phút " + s + " giây";
+        if (dd < 10) {
+          dd = "0" + dd;
+        }
+        if (mm < 10) {
+          mm = "0" + mm;
+        }
+        today = day + ", " + dd + "/" + mm + "/" + yyyy;
+        tmp = '<span class="date"> ' + today + " - " + nowTime + "</span>";
+        document.getElementById("clock").innerHTML = tmp;
+        clocktime = setTimeout("time()", "1000", "Javascript");
+
+        function checkTime(i) {
+          if (i < 10) {
+            i = "0" + i;
+          }
+          return i;
+        }
+      }
+    </script>
+  </body>
+</html>
