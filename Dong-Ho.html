@@ -483,50 +483,46 @@
     <!-- End Search -->
     <!-- End Header -->
     <!-- Main -->
-    <main></main>
-    <!-- End Main -->
-<!-- ---------------------------------Dong-Ho-->
- <section class="slider">
-  <div class="qc">
-    <img src="image/qc1.jpg" alt="">
-    <img src="image/qc2.jpg" alt="">
-    <img src="image/qc3.jpg" alt="">
-    <img src="image/qc4.png" alt="">
-    <img src="image/qc5.png" alt="">
-  </div>
-  <script>
-    const qcdong = document.querySelectorAll(".qc img");
-    let index = 0;
-    const totalImages = qcdong.length;
+    <main>
+      <!-- ---------------------------------Dong-Ho-->
+      <div class="container">
+        <section class="slider">
+          <div class="qc">
+            <img src="image/qc1.png" alt="Quảng cáo 1">
+            <img src="image/qc2.png" alt="Quảng cáo 2">
+            <img src="image/qc3.jpg" alt="Quảng cáo 3">
+          </div>
+        </section>
+      </div>
+      <script>
+       
+        const slider = document.querySelector('.slider .qc');
+        const images = document.querySelectorAll('.slider .qc img');
+        const totalImages = images.length;
+    
+        let currentIndex = 0;
+    
+        function showNextImage() {
+          currentIndex++;
+          if (currentIndex >= totalImages) {
+            currentIndex = 0;
+          }
 
-    function imgqc() {
-    index++;
-    if (index >= totalImages) {
-    index = 0;
-  }
-    qcdong.forEach((image, i) => {
-    const offset = (i - index) * 100;
-    image.style.transform = `translateX(${offset}%)`;
-  });
-}
-qcdong.forEach((image, i) => {
-  image.style.transform = `translateX(${i * 100}%)`;
-});
-setInterval(imgqc, 5000);
-  </script>
- </section>
+          slider.style.transform = `translateX(-${currentIndex * 100}%)`;
+        }
+    
+   
+        setInterval(showNextImage, 3000);
+      </script>
     <section class="Dong-Ho">
         <div class="catalog">
             <p>Bộ lọc:</p>
             <div class="Bo-Loc-mid">
                 <select>
                     <option disabled selected>Thương hiệu</option>
-                    <option value="Rado">Rado</option>
-                    <option value="Disney Watch">Disney Watch</option>
-                    <option value="Longines">Longines</option>
+                    <option value="Casio">Casio</option>
+                    <option value="Orient">Orient</option>
                     <option value="Citizen">Citizen</option>
-                    <option value="Seiko">Seiko</option>
-                    <option value="Titan">Titan</option>
                 </select>
                 <select>
                     <option disabled selected>Chất liệu dây</option>
@@ -616,38 +612,41 @@ setInterval(imgqc, 5000);
             <div class="danhmuc">
               <div class="danhmuchinhanh">
                 <img src="image/sp1.png" alt="">
-                <h1>Đồng hồ Disney & Marvel Nam M-9062RGB Dây Da</h1>
-                <p>4.950.000 ₫</p>
+                <h1>Đồng hồ Casio G-Shock Nữ GMA-S2100-1ADR Dây Cao Su 43 mm</h1>
+                <p>3.627.000 ₫</p>
+              </div>
+              <div class="danhmuchinhanh">
+                <img src="image/sp2.png" alt="" >
+                <h1>Đồng hồ Casio G-Shock Nam GD-B500-1DR Dây Cao Su 42 mm</h1>
+                <p>4.359.000 ₫</p>
               </div>
               <div class="danhmuchinhanh">
                 <img src="image/sp3.png" alt="" >
-                <h1>Đồng hồ Seiko 5 Sports Nam SRPK65K Dây Kim Loại</h1>
-                <p>9.500.000 ₫</p>
+                <h1>Đồng hồ Orient Star Nam RE-AV0125S00B Dây Kim Loại 41 mm</h1>
+                <p>26.370.000 đ</p>
               </div>
               <div class="danhmuchinhanh">
-                <img src="image/sp4.jpg" alt="" >
-                <h1>Đồng Hồ Nam Longines Record Collection L2.821.4.57.2</h1>
-                <p>37.000.000 đ</p>
+                <img src="image/sp4.png" alt="" >
+                <h1>Đồng hồ Orient Star Nam RE-AV0123G00B Dây Kim Loại 41 mm</h1>
+                <p>	27.070.000 ₫</p>
               </div>
               <div class="danhmuchinhanh">
-                <img src="image/sp5.jpg" alt="" >
-                <h1>Đồng Hồ Nam CITIZEN Eco-Drive CA4500-16X</h1>
-                <p>	9.450.000 đ</p>
+                <img src="image/sp5.png" alt="" >
+                <h1>Đồng hồ Citizen L Nữ EM1114-80Y Dây Kim Loại 30 mm</h1>
+                <p>31.185.000 ₫</p>
               </div>
               <div class="danhmuchinhanh">
-                <img src="image/sp6.png" alt="" >
-                <h1>Đồng Hồ Seiko - Nam SNK807K2</h1>
-                <p>3.850.000 ₫</p>
-              </div>
-              <div class="danhmuchinhanh">
-                <img src="image/sp7.jpg" alt="">
-                <h1>Đồng hồ TITAN Workwear 48 mm Nam 1806SM01</h1>
-                <p>412.000 ₫</p>
+                <img src="image/sp6.png" alt="">
+                <h1>Đồng hồ Citizen L Nữ EM1113-82Y Dây Kim Loại 30 mm</h1>
+                <p>27.720.000 ₫</p>
               </div>
             </div>
         </div>
         
     </section>
+    </main>
+    <!-- End Main -->
+
 
 
 
