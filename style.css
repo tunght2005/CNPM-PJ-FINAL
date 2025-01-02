@@ -819,3 +819,84 @@ main {
   height: auto;
   flex-shrink: 0;
 }
+/* câu hỏi thường gặp */
+.faq-container {
+  width: 50%;
+  margin: 20px auto;
+  font-family: Arial, sans-serif;
+  background-color: #ffffff;
+}
+.faq-container h2{
+  text-align: center;
+  margin-bottom: 20px;
+}
+.faq-title {
+  width: 100%;
+  padding: 15px;
+  background-color: #ffffff;
+  color: black;
+  font-size: 18px;
+  font-weight: bold;
+  text-align: left;
+  cursor: pointer;
+  outline: none;
+  transition: background-color 0.3s ease;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
+
+.faq-title:hover {
+  background-color: gray;
+}
+.sub-faq-title {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  background-color: #ffffff;
+  color: #050505;
+  font-size: 16px;
+  font-weight: normal;
+  text-align: left;
+  cursor: pointer;
+  outline: none;
+  transition: background-color 0.3s ease;
+  margin: 5px 0;
+  border-radius: 3px;
+}
+.sub-faq-title:hover {
+  background-color: gray;
+}
+.sub-faq-content {
+  display: none;
+  padding: 15px;
+  margin: 10px 0;
+  border: 1px solid #000000;
+  border-radius: 5px;
+  background-color: #ffffff;
+  transition: all 0.3s ease-in-out;
+}
+.faq-content{
+    display: none;
+    padding: 10px 20px;
+    background-color: #ffffff;
+    margin-top: 5px;
+    font-size: 14px;
+    line-height: 1.6;
+    color: #000000;
+    border-radius: 5px;
+}
+.sub-faq-content img {
+  max-width: 100%;
+  height: auto;
+  margin: 10px 0;
+  border-radius: 5px;
+  border: 1px solid #ddd;
+}
+.faq-title::after,
+.sub-faq-title::after {
+    content: '\25BC';
+    float: right;
+    font-size: 12px;
+    transition: transform 0.3s ease;
+}
+
