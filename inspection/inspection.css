@@ -887,9 +887,9 @@ form button:hover {
 /* Main */
 main {
   width: 100%;
-  height: 100px;
+  height: 50px;
   background: rgb(255, 255, 255);
-  margin-bottom: 70px;
+  margin-bottom: 0px;
 }
 /* End Main */
 /* Footer */
