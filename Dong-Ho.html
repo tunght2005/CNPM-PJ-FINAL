@@ -492,58 +492,42 @@
             <img src="image/qc2.png" alt="Quảng cáo 2">
             <img src="image/qc3.jpg" alt="Quảng cáo 3">
           </div>
+          <div class="dots">
+            <span class="dot active" data-index="0"></span>
+            <span class="dot" data-index="1"></span>
+            <span class="dot" data-index="2"></span>
+          </div>
         </section>
+        
       </div>
-      <script>
+<script>
        
-        const slider = document.querySelector('.slider .qc');
-        const images = document.querySelectorAll('.slider .qc img');
-        const totalImages = images.length;
-    
-        let currentIndex = 0;
-    
-        function showNextImage() {
-          currentIndex++;
-          if (currentIndex >= totalImages) {
-            currentIndex = 0;
-          }
 
-          slider.style.transform = `translateX(-${currentIndex * 100}%)`;
-        }
-    
-   
-        setInterval(showNextImage, 3000);
       </script>
     <section class="Dong-Ho">
         <div class="catalog">
             <p>Bộ lọc:</p>
             <div class="Bo-Loc-mid">
-                <select>
+                <select id="brandFilter">
                     <option disabled selected>Thương hiệu</option>
                     <option value="Casio">Casio</option>
                     <option value="Orient">Orient</option>
                     <option value="Citizen">Citizen</option>
                 </select>
-                <select>
+                <select id="materialFilter">
                     <option disabled selected>Chất liệu dây</option>
-                    <option value="DaySatin">Dây Satin</option>
-                    <option value="Kimloailuoi">Dây kim loại lưới</option>
-                    <option value="Datonghop">Dây gia tổng hợp</option>
                     <option value="Caosu">Dây cao su</option>
-                    <option value="Cao cấp">Dây cao cấp</option>
+                    <option value="Caocap">Dây cao cấp</option>
                     <option value="Thepkogi">Dây thép ko gỉ</option>
                     <option value="Vang">Dây vàng 18k</option>
                     <option value="Titanium">Dây titanium</option>
                 </select>
-                <select>
+                <select id="shapeFilter">
                     <option disabled selected>Hình dạng mặt</option>
                     <option value="Vuong">Vuông</option>
                     <option value="Tron">Tròn</option>
-                    <option value="Chunhat">Chữ nhật</option>
-                    <option value="Oval">Oval</option>
-                    <option value="Tonneau">Tonneau</option>
                 </select>
-                <select>
+                <select id="priceFilter">
                     <option disabled selected>Giá</option>
                     <option value="0-10">0-10.000.000</option>
                     <option value="10-20">10.000.000-20.000.000</option>
@@ -552,13 +536,13 @@
                     <option value="40-50">40.000.000-50.000.000</option>
                     <option value="50-100">50.000.000-100.000.000</option>
                 </select>
-                <select>
+                <select id="movementFilter">
                     <option disabled selected>Loại máy đồng hồ</option>
                     <option value="Pinmattroi">Pin mặt trời</option>
                     <option value="Pin">Pin</option>
                     <option value="Auto">Automatic</option>
                 </select>
-                <select>
+                <select id="gemFilter">
                     <option disabled selected>Loại đá chính</option>
                     <option value="Khongda">Không gắn đá</option>
                     <option value="Codinh">Đính kc</option>
@@ -598,10 +582,11 @@
                     <option value="Vanghong">Vàng hồng</option>
                     <option value="Bac">Bạc</option>
                 </select>
+                <button id="clearFilter">Hủy lọc</button>
             </div>
             <div class="Bo-Loc-mid">
                 <p>Sắp xếp:</p>
-                    <select name="" id=""><i class="fa-solid fa-sort-down"></i>
+                    <select name="" id="filterSelect"><i class="fa-solid fa-sort-down"></i>
                         <option value="New">Sản phẩm mới nhất</option>
                         <option value="Popular">Sản phẩm bán chạy</option>
                         <option value="Thapcao">Giá thấp dến cao</option>
@@ -609,40 +594,39 @@
                     </select>
                 </div>
             </div>
-            <div class="danhmuc">
-              <div class="danhmuchinhanh">
+            <div class="danhmuc" id="productList">
+              <div class="danhmuchinhanh"data-order="1" data-popularity="70" data-brand="Casio" data-material="Caosu" data-shape="Tron">
                 <img src="image/sp1.png" alt="">
                 <h1>Đồng hồ Casio G-Shock Nữ GMA-S2100-1ADR Dây Cao Su 43 mm</h1>
                 <p>3.627.000 ₫</p>
               </div>
-              <div class="danhmuchinhanh">
+              <div class="danhmuchinhanh"data-order="2" data-popularity="30" data-brand="Casio" data-material="Caocap" data-shape="Vuong">
                 <img src="image/sp2.png" alt="" >
                 <h1>Đồng hồ Casio G-Shock Nam GD-B500-1DR Dây Cao Su 42 mm</h1>
                 <p>4.359.000 ₫</p>
               </div>
-              <div class="danhmuchinhanh">
+              <div class="danhmuchinhanh"data-order="3" data-popularity="80" data-brand="Orient" data-material="Thepkogi" data-shape="Tron">
                 <img src="image/sp3.png" alt="" >
                 <h1>Đồng hồ Orient Star Nam RE-AV0125S00B Dây Kim Loại 41 mm</h1>
                 <p>26.370.000 đ</p>
               </div>
-              <div class="danhmuchinhanh">
+              <div class="danhmuchinhanh"data-order="4" data-popularity="10" data-brand="Orient" data-material="Thepkogi" data-shape="Tron">
                 <img src="image/sp4.png" alt="" >
                 <h1>Đồng hồ Orient Star Nam RE-AV0123G00B Dây Kim Loại 41 mm</h1>
                 <p>	27.070.000 ₫</p>
               </div>
-              <div class="danhmuchinhanh">
+              <div class="danhmuchinhanh"data-order="5" data-popularity="60" data-brand="Citizen" data-material="Titanium" data-shape="Tron">
                 <img src="image/sp5.png" alt="" >
                 <h1>Đồng hồ Citizen L Nữ EM1114-80Y Dây Kim Loại 30 mm</h1>
                 <p>31.185.000 ₫</p>
               </div>
-              <div class="danhmuchinhanh">
+              <div class="danhmuchinhanh"data-order="6" data-popularity="90" data-brand="Citizen" data-material="Vang" data-shape="Tron">
                 <img src="image/sp6.png" alt="">
                 <h1>Đồng hồ Citizen L Nữ EM1113-82Y Dây Kim Loại 30 mm</h1>
                 <p>27.720.000 ₫</p>
               </div>
             </div>
         </div>
-        
     </section>
     </main>
     <!-- End Main -->
