@@ -805,13 +805,13 @@ main {
   overflow: hidden;
 }
 .slider {
-  width: 100%;
   position: relative;
   overflow: hidden;
+  width: 100%;
 }
 .qc {
   display: flex;
-  transition: transform 1s ease-in-out;
+  transition: transform 0.5s ease-in-out;
 }
 
 .qc img {
@@ -819,6 +819,28 @@ main {
   height: auto;
   flex-shrink: 0;
 }
+.dots {
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 10px; 
+}
+
+.dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background-color: gray; 
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.dot.active {
+  background-color: white;
+}
+
 /* câu hỏi thường gặp */
 .faq-container {
   width: 50%;
