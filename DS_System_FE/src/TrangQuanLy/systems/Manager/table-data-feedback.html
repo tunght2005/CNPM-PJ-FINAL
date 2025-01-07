@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Phản hồi Feedback | Quản lý</title>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- Main CSS-->
+    <link rel="stylesheet" type="text/css" href="../../assets/css/main.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css"
+    />
+    <!-- or -->
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/boxicons@latest/css/boxicons.min.css"
+    />
+    <!-- Font-icon css-->
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.css"
+    />
+    <!-- 6 links và 1 scripts -->
+    <!-- Favicon -->
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="/favicon_io/apple-touch-icon.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="/favicon_io/favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="/favicon_io/favicon-16x16.png"
+    />
+    <link rel="manifest" href="/favicon_io/site.webmanifest" />
+    <!-- End -->
+  </head>
+
+  <body onload="time()" class="app sidebar-mini rtl">
+    <!-- Navbar-->
+    <header class="app-header">
+      <!-- Sidebar toggle button--><a
+        class="app-sidebar__toggle"
+        href="#"
+        data-toggle="sidebar"
+        aria-label="Hide Sidebar"
+      ></a>
+      <!-- Navbar Right Menu-->
+      <ul class="app-nav">
+        <!-- User Menu-->
+        <li>
+          <a class="app-nav__item" href="../../../Home/index.html"
+            ><i class="bx bx-log-out bx-rotate-180"></i>
+          </a>
+        </li>
+      </ul>
+    </header>
+    <!-- Sidebar menu-->
+    <div class="app-sidebar__overlay" data-toggle="sidebar"></div>
+    <aside class="app-sidebar">
+      <div class="app-sidebar__user">
+        <img
+          class="app-sidebar__user-avatar"
+          src="/Home/assets/css/img/logo-page.jpg"
+          width="50px"
+          alt="User Image"
+        />
+        <div>
+          <p class="app-sidebar__user-name"><b>Văn Tùng</b></p>
+          <p class="app-sidebar__user-designation">Chào mừng bạn trở lại</p>
+        </div>
+      </div>
+      <hr />
+       <!-- Menu Sidebar -->
+       <ul class="app-menu">
+        <li>
+          <a class="app-menu__item" href="./manager.html"
+            ><i class="app-menu__icon bx bx-tachometer"></i
+            ><span class="app-menu__label">Bảng điều khiển</span></a
+          >
+        </li>
+        <li>
+          <a class="app-menu__item" href="table-data-table.html"
+            ><i class="app-menu__icon bx bx-id-card"></i>
+            <span class="app-menu__label">Quản lý nhân viên</span></a
+          >
+        </li>
+        <li>
+          <a class="app-menu__item" href="page-customer.html"
+            ><i class="app-menu__icon bx bx-user-voice"></i
+            ><span class="app-menu__label">Quản lý khách hàng</span></a
+          >
+        </li>
+        <li>
+          <a class="app-menu__item" href="table-data-product.html"
+            ><i class="app-menu__icon bx bx-purchase-tag-alt"></i
+            ><span class="app-menu__label">Quản lý sản phẩm</span></a
+          >
+        </li>
+        <li>
+          <a class="app-menu__item" href="table-data-oder.html"
+            ><i class="app-menu__icon bx bx-task"></i
+            ><span class="app-menu__label">Quản lý đơn hàng</span></a
+          >
+        </li>
+        <li>
+          <a class="app-menu__item bg-secondary active" href="Block.html"
+            ><i class="app-menu__icon bx bx-run"></i
+            ><span class="app-menu__label">Quản lý nội bộ </span><i class='bx bx-lock'></i></a
+          >
+        </li>
+        <li>
+          <a class="app-menu__item" href="table-data-money.html"
+            ><i class="app-menu__icon bx bx-dollar"></i
+            ><span class="app-menu__label">Bảng kê lương</span
+            ></i
+          ></a>
+        </li>
+        <li>
+          <a class="app-menu__item" href="table-data-info.html"
+            ><i class="app-menu__icon bx bx-news"></i
+            ><span class="app-menu__label">Bảng tin tức</span></a
+          >
+        </li>
+        <li>
+          <a class="app-menu__item" href="quan-ly-bao-cao.html"
+            ><i class="app-menu__icon bx bx-pie-chart-alt-2"></i
+            ><span class="app-menu__label">Báo cáo doanh thu</span></a
+          >
+        </li>
+        <li>
+          <a class="app-menu__item" href="table-data-service.html"
+            ><i class="app-menu__icon bx bx-support"></i
+            ><span class="app-menu__label"
+              >Trung Tâm Dịch Vụ <br />Khách Hàng</span
+            ></a
+          >
+        </li>
+        <li>
+          <a class="app-menu__item active" href="table-data-feedback.html"
+            ><i class="app-menu__icon bx bx-message"></i
+            ><span class="app-menu__label">Quản Lý Feedback</span></a
+          >
+        </li>
+        <li>
+          <a class="app-menu__item bg-secondary active" href="Block.html"
+            ><i class="app-menu__icon bx bx-package"></i
+            ><span class="app-menu__label">Quản Lý Vận Chuyển</span><i class='bx bx-lock'></i></a
+          >
+        </li>
+        <li>
+          <a class="app-menu__item" href="table-data-review.html"
+            ><i class="app-menu__icon bx bx-star"></i
+            ><span class="app-menu__label">Quản lý đánh giá</span></a
+          >
+        </li>
+        <li>
+          <a class="app-menu__item bg-secondary active" href="Block.html"
+            ><i class="app-menu__icon bx bx-calendar-check"></i
+            ><span class="app-menu__label">Lịch công tác </span><i class='bx bx-lock'></i></a
+          >
+        </li>
+        <li>
+          <a class="app-menu__item" href="#"
+            ><i class="app-menu__icon bx bx-cog"></i
+            ><span class="app-menu__label">Cài đặt hệ thống</span></a
+          >
+        </li>
+      </ul>
+    </aside>
+    <main class="app-content">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="app-title">
+            <ul class="app-breadcrumb breadcrumb">
+              <li class="breadcrumb-item">
+                <a href="#"><b>Quản lý phản hồi</b></a>
+              </li>
+            </ul>
+            <div id="clock"></div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <!-- Trả lời phản hồi cho khách-->
+          <div class="tile">
+            <h3 class="tile-title">Phản hồi từ khách hàng</h3>
+            <div class="tile-body">
+              <table
+                class="table table-hover table-bordered"
+                id="feedback-table"
+              >
+                <thead>
+                  <tr>
+                    <th>Tên khách hàng</th>
+                    <th>Email</th>
+                    <th>Nội dung</th>
+                    <th>Thao tác</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Nguyễn Văn A</td>
+                    <td>tunght@gmail.com</td>
+                    <td>Phần mềm quản lý cửa hàng kim cương rất tốt</td>
+                    <td>
+                      <button class="btn btn-danger btn-sm trash">
+                        <i class="fas fa-trash-alt"></i>
+                      </button>
+                      <button
+                        class="btn btn-primary btn-sm edit"
+                        type="button"
+                        title="Sửa"
+                        id="show-emp"
+                        data-toggle="modal"
+                        data-target="#ModalUP"
+                      >
+                        <i class="fas fa-edit"></i>
+                      </button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Nguyễn Văn B</td>
+                    <td>hahaha@gmail.com</td>
+                    <td>Phần mềm quản lý cửa hàng kim cương rất tốt</td>
+                    <td>
+                      <button class="btn btn-danger btn-sm trash">
+                        <i class="fas fa-trash-alt"></i>
+                      </button>
+                      <button
+                        class="btn btn-primary btn-sm edit"
+                        type="button"
+                        title="Sửa"
+                        id="show-emp"
+                        data-toggle="modal"
+                        data-target="#ModalUP"
+                      >
+                        <i class="fas fa-edit"></i>
+                      </button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Nguyễn Văn C</td>
+                    <td>a@gmail.com</td>
+                    <td>Phần mềm quản lý cửa hàng kim cương rất tốt</td>
+                    <td>
+                      <button class="btn btn-danger btn-sm trash">
+                        <i class="fas fa-trash-alt"></i>
+                      </button>
+                      <button
+                        class="btn btn-primary btn-sm edit"
+                        type="button"
+                        title="Sửa"
+                        id="show-emp"
+                        data-toggle="modal"
+                        data-target="#ModalUP"
+                      >
+                        <i class="fas fa-edit"></i>
+                      </button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- <div class="text-center" style="font-size: 13px">
+        <p>
+          <b
+            >Copyright
+            <script type="text/javascript">
+              document.write(new Date().getFullYear());
+            </script>
+            Phần mềm quản lý cửa hàng kim cương | Diamond Shop System
+          </b>
+        </p>
+      </div> -->
+    </main>
+    <!-- Modal -->
+    <div
+      class="modal fade"
+      id="ModalUP"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">
+              Phản hồi lại khách
+            </h5>
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <form id="reply-form">
+              <div class="form-group">
+                <label for="reply-content" class="col-form-label"
+                  >Nội dung phản hồi:</label
+                >
+                <textarea
+                  class="form-control"
+                  id="reply-content"
+                  required
+                ></textarea>
+              </div>
+              <input type="hidden" id="feedback" />
+              <button type="submit" class="btn btn-primary">Gửi</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="../../assets/css/img/js/jquery-3.2.1.min.js"></script>
+    <!--===============================================================================================-->
+    <script src="../../assets/css/img/js/popper.min.js"></script>
+    <script src="https://unpkg.com/boxicons@latest/dist/boxicons.js"></script>
+    <!--===============================================================================================-->
+    <script src="../../assets/css/img/js/bootstrap.min.js"></script>
+    <!--===============================================================================================-->
+    <script src="../../assets/css/img/js/main.js"></script>
+    <!--===============================================================================================-->
+    <script src="../../assets/css/img/js/plugins/pace.min.js"></script>
+    <!--===============================================================================================-->
+    <script
+      type="text/javascript"
+      src="../../assets/css/img/js/plugins/chart.js"
+    ></script>
+    <script>
+      $(document).ready(function () {
+        // Hiển thị modal khi nhấn nút phản hồi
+        $(document).on("click", "#show-emp", function () {
+          const feedbackId = $(this).data("id");
+          $("#feedback").val(feedbackId);
+          $("#ModalUP").modal("show");
+        });
+        // Xử lý sự kiện gửi form phản hồi
+        $("#reply-form").on("submit", function (e) {
+          e.preventDefault();
+          const feedbackId = $("#feedback").val();
+          const replyContent = $("#reply-content").val();
+
+          // Đóng modal
+          $("#ModalUP").modal("hide");
+          // Hiển thị thông báo thành công
+          swal("Thành công", "Phản hồi đã được gửi!", "success");
+
+          // Reset form
+          $("#reply-form")[0].reset();
+        });
+        // $("#reply-form").on("submit", function (e) {
+        //   e.preventDefault();
+        //   const feedbackId = $("#feedback").val();
+        //   const replyContent = $("#reply-content").val();
+
+        //   // Gửi dữ liệu đến server
+        //   $.ajax({
+        //     url: "http://127.0.0.1:5000/api/reply-feedback", // URL của API Flask
+        //     method: "POST",
+        //     contentType: "application/json",
+        //     data: JSON.stringify({
+        //       feedbackId: feedbackId,
+        //       replyContent: replyContent,
+        //     }),
+        //     success: function (response) {
+        //       // Đóng modal
+        //       $("#ModalUP").modal("hide");
+        //       // Hiển thị thông báo thành công
+        //       swal("Thành công", "Phản hồi đã được gửi!", "success");
+        //     },
+        //     error: function () {
+        //       swal("Lỗi", "Không thể gửi phản hồi. Vui lòng thử lại.", "error");
+        //     },
+        //   });
+        // });
+        // Xử lý sự kiện xóa phản hồi
+        $(document).on("click", ".trash", function () {
+          const row = $(this).closest("tr");
+          swal({
+            title: "Cảnh báo",
+            text: "Bạn có chắc chắn là muốn xóa phản hồi này?",
+            buttons: ["Hủy bỏ", "Đồng ý"],
+          }).then((willDelete) => {
+            if (willDelete) {
+              row.remove();
+              swal("Đã xóa thành công!", {
+                icon: "success",
+              });
+            }
+          });
+        });
+      });
+    </script>
+    <!--===============================================================================================-->
+    <script type="text/javascript">
+      var data = {
+        labels: [
+          "Tháng 1",
+          "Tháng 2",
+          "Tháng 3",
+          "Tháng 4",
+          "Tháng 5",
+          "Tháng 6",
+        ],
+        datasets: [
+          {
+            label: "Dữ liệu đầu tiên",
+            fillColor: "rgba(255, 213, 59, 0.767), 212, 59)",
+            strokeColor: "rgb(255, 212, 59)",
+            pointColor: "rgb(255, 212, 59)",
+            pointStrokeColor: "rgb(255, 212, 59)",
+            pointHighlightFill: "rgb(255, 212, 59)",
+            pointHighlightStroke: "rgb(255, 212, 59)",
+            data: [20, 59, 90, 51, 56, 100],
+          },
+          {
+            label: "Dữ liệu kế tiếp",
+            fillColor: "rgba(9, 109, 239, 0.651)  ",
+            pointColor: "rgb(9, 109, 239)",
+            strokeColor: "rgb(9, 109, 239)",
+            pointStrokeColor: "rgb(9, 109, 239)",
+            pointHighlightFill: "rgb(9, 109, 239)",
+            pointHighlightStroke: "rgb(9, 109, 239)",
+            data: [48, 48, 49, 39, 86, 10],
+          },
+        ],
+      };
+      var ctxl = $("#lineChartDemo").get(0).getContext("2d");
+      var lineChart = new Chart(ctxl).Line(data);
+
+      var ctxb = $("#barChartDemo").get(0).getContext("2d");
+      var barChart = new Chart(ctxb).Bar(data);
+    </script>
+    <script type="text/javascript">
+      //Thời Gian
+      function time() {
+        var today = new Date();
+        var weekday = new Array(7);
+        weekday[0] = "Chủ Nhật";
+        weekday[1] = "Thứ Hai";
+        weekday[2] = "Thứ Ba";
+        weekday[3] = "Thứ Tư";
+        weekday[4] = "Thứ Năm";
+        weekday[5] = "Thứ Sáu";
+        weekday[6] = "Thứ Bảy";
+        var day = weekday[today.getDay()];
+        var dd = today.getDate();
+        var mm = today.getMonth() + 1;
+        var yyyy = today.getFullYear();
+        var h = today.getHours();
+        var m = today.getMinutes();
+        var s = today.getSeconds();
+        m = checkTime(m);
+        s = checkTime(s);
+        nowTime = h + " giờ " + m + " phút " + s + " giây";
+        if (dd < 10) {
+          dd = "0" + dd;
+        }
+        if (mm < 10) {
+          mm = "0" + mm;
+        }
+        today = day + ", " + dd + "/" + mm + "/" + yyyy;
+        tmp = '<span class="date"> ' + today + " - " + nowTime + "</span>";
+        document.getElementById("clock").innerHTML = tmp;
+        clocktime = setTimeout("time()", "1000", "Javascript");
+
+        function checkTime(i) {
+          if (i < 10) {
+            i = "0" + i;
+          }
+          return i;
+        }
+      }
+    </script>
+  </body>
+</html>
