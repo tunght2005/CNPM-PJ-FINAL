@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chỉnh sửa Diamond</title>
+</head>
+<body>
+    <h2>Chỉnh sửa Diamond</h2>
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div>
+            <label for="DiaName">Tên Diamond:</label>
+            <input type="text" name="DiaName" value="{{ diamond.DiaName }}" required>
+        </div>
+        <div>
+            <label for="carat">Carat:</label>
+            <input type="number" name="carat" step="0.01" value="{{ diamond.carat }}" required>
+        </div>
+        <div>
+            <label for="shape">Shape:</label>
+            <input type="text" name="shape" value="{{ diamond.shape }}" required>
+        </div>
+        <div>
+            <label for="cut">Cut:</label>
+            <input type="text" name="cut" value="{{ diamond.cut }}" required>
+        </div>
+        <div>
+            <label for="color">Color:</label>
+            <input type="text" name="color" value="{{ diamond.color }}" required>
+        </div>
+        <div>
+            <label for="clarity">Clarity:</label>
+            <input type="text" name="clarity" value="{{ diamond.clarity }}" required>
+        </div>
+        <div>
+            <label for="DiamondPrice">Giá Diamond:</label>
+            <input type="number" name="DiamondPrice" step="0.01" value="{{ diamond.DiamondPrice }}" required>
+        </div>
+        <div>
+            <label for="Image">Ảnh:</label>
+            <input type="file" name="Image">
+        </div>
+        <div>
+            <button type="submit">Lưu thay đổi</button>
+        </div>
+    </form>
+    <a href="{% url 'diamond_list' %}">Quay lại danh sách diamonds</a>
+</body>
+</html>
