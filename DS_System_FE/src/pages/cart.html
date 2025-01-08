@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Giỏ Hàng</title>
+    <link rel="stylesheet" href=
+"https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.css">
+</link>
+    <link rel="stylesheet" href="cart.css">
+</head>
+<body>
+    <div class="cart-container">
+        <a href="#" class="back-link">← Quay lại</a>
+        <h1>Giỏ Hàng</h1>
+        <div class="cart">
+            <!-- Danh sách sản phẩm -->
+            <div class="cart-item">
+                <div class="item-info">
+                    <input type="checkbox" class="item-checkbox">
+                    <img src="ring.jpg" alt="Nhẫn vàng 24K" class="item-image">
+                    <div class="item-details">
+                        <h2>Nhẫn Vàng 24K PNJ</h2>
+                        <p>Mã: GN0000Y003454</p>
+                        <div class="box-size">
+                            <div class="item-options">
+                                <!-- <label for="ring-size">Kích cỡ:</label> -->
+                                <select id="ring-size" class="ring-size">
+                                    <option value="13" selected>13</option>
+                                    <option value="14">14</option>
+                                    <option value="15">15</option>
+                                    <option value="16">16</option>
+                                    <option value="17">17</option>
+                                </select>
+                            </div>
+                            <div class="quantity">
+                                <button class="btn-decrease">-</button>
+                                <input type="number" class="quantity-input" value="1" min="1">
+                                <button class="btn-increase">+</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="item-price">
+                    <p>2,793,000₫</p>
+                    <button class="btn-remove"><i class="fa-solid fa-trash-can"></i></button>
+                </div>
+            </div>
+        </div>
+        <!-- Tổng tiền -->
+        <div class="cart-summary">
+            <p>Tạm tính: <span class="subtotal">2,793,000₫</span></p>
+            <p>Giảm giá: <span class="discount">0₫</span></p>
+            <p>Tổng tiền: <span class="total">2,793,000₫</span></p>
+            <p class="vat-note">(Giá tham khảo đã bao gồm VAT)</p>
+        </div>
+        <button class="btn-continue">Tiếp tục</button>
+    </div>
+    <script src="cart.js"></script>
+</body>
+</html>
