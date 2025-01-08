@@ -1,0 +1,29 @@
+<!DOCTYPE <!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>Email</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="">
+    </head>
+    <body>
+        {%for message in message%}
+        <div class="message {{message.tags}}">
+            {{message}}
+        </div>
+            {%endfor%}
+
+            {%if user.is_authencated%}
+            <h1>Chào mừng bạn đến với Diamond Store</h1>
+            <p>Trân trọng,</p>
+            <p>Đội ngũ Diamond Store</p>
+            {%else%}
+            <p>Chúng tôi rất vui khi bạn đã đăng ký tài khoản tại Diamond Store. 
+            Hãy trải nghiệm cùng chúng tôi những sản phẩm chất lượng và dịch vụ tốt nhất.</p>
+
+            <a href="{%url 'login'%}">Đăng nhập</a> or <a href="{%url 'register'%}">Đăng ký</a>
+            {%endif%}
+        
+    </body>
+</html>>

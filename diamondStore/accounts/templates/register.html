@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    {%load static%}
+    <!-- FontAwesome CSS -->
+    <link rel="stylesheet" href="{%static '/assets/img/favicon.png' %}" />
+    <link rel="stylesheet" href="{%static '/assets/css/uf-style.css' %}" />
+    {% comment %} <link rel="stylesheet" href="{%static '/assets/css/all.min.css' %}" /> {% endcomment %}
+    <link rel="stylesheet" href="{%static '/assets/css/bootstrap.min.css' %}" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"/>
+    <title>Register Account</title>
+  </head>
+  <body>
+    {%load socialaccount%}
+    <div class="uf-form-signin">
+      <div class="text-center">
+        <a href="#"
+          ><img
+            src="/static/assets/img/logo-page.jpg"
+            alt=""
+            width="250px"
+            height="auto"
+        /></a>
+        <h1 class="text-black h3">Đăng Ký Tài Khoản</h1>
+      </div>
+      <!--form start here-->
+      <form class="mt-4" method="POST" action="{% url 'register' %}">
+        {% csrf_token %}
+        <div class="input-group uf-input-group input-group-lg mb-3">
+          <span class="input-group-text"><i class="fa-solid fa-user"></i></span>
+          <label for="name"></label>
+          <input type="text" class="form-control" id="name" name="name" placeholder="Họ và tên" />
+        </div>
+        <div class="input-group uf-input-group input-group-lg mb-3">
+          <span class="input-group-text "><i class="fa-solid fa-envelope"></i></span>
+          <label for="email"></label>
+          <input type="text" class="form-control" id="email" name="email" placeholder="Địa chỉ Email" />
+        </div>
+        <div class="input-group uf-input-group input-group-lg mb-3">
+          <span class="input-group-text"><i class="fa-solid fa-phone"></i></span>
+          <label for="phone"></label>
+          <input type="text" class="form-control" id="phone" name="phone" placeholder="Số điện thoại" />
+        </div>
+        <div class="input-group uf-input-group input-group-lg mb-3">
+          <span class="input-group-text"><i class="fa-solid fa-lock"></i></span>
+          <label for="password1"></label>
+          <input
+            type="password"
+            class="form-control"
+            placeholder="Nhập Password"
+            id="password1"
+            name="password1"
+          />
+        </div>
+        <div class="input-group uf-input-group input-group-lg mb-3">
+          <span class="input-group-text"><i class="fa-solid fa-lock"></i></span>
+          <label for="password2"></label>
+          <input
+            type="password"
+            class="form-control"
+            placeholder="Nhập lại Password"
+            id="password2"
+            name="password2"
+          />
+        </div>
+        <div class="d-grid mb-4">
+          <button type="submit" class=" uf-btn-primary btn-lg">
+            Đăng ký
+          </button>
+        </div>
+        <div class="mt-4 text-center">
+          <span class="text-black">Đã có tài khoản?</span>
+          <a
+            href="{%url 'login'%}"
+            style="
+              background: rgb(248, 248, 248);
+              padding: 5px 10px;
+              border: 1px solid;
+              border-radius: 20px;
+              color: #050505;
+              text-decoration: none
+            "
+            >Đăng nhập</a
+          >
+        </div>
+      </form>
+    </div>
+
+    <!-- JavaScript -->
+
+    <!-- Separate Popper and Bootstrap JS -->
+    <script src="{% static './assets/js/bootstrap.min.js'%}"></script>
+    <script src="{% static './assets/js/popper.min.js'%}"></script>
+  </body>
+</html>

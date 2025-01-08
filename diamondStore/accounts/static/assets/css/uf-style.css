@@ -1,0 +1,90 @@
+/*!
+
+ =========================================================
+ * Login Form Bootstrap 1
+ =========================================================
+
+ * Product Page: https://uifresh.net
+ * Copyright 2021 UIFresh (https://uifresh.net)
+ * Coded by UIFresh
+
+ =========================================================
+
+ * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+ */
+html,
+body {
+  height: 100%;
+}
+body {
+  display: flex;
+  align-items: center;
+  background: #fff;
+}
+a {
+  color: #050505;
+  text-decoration: none;
+}
+a:hover {
+  color: #7c7c7c;
+}
+.uf-form-signin {
+  width: 100%;
+  max-width: 350px;
+  padding: 15px;
+  margin: auto;
+}
+.uf-input-group .input-group-text {
+  background: #0199fe70;
+  color: #000000;
+  border: unset;
+  font-size: 18px;
+  padding: 15px;
+  width: 50px;
+}
+
+.uf-input-group .form-control {
+  /* border: unset; */
+  border: 1px 1px 1px 0 solid #15151505;
+  font-size: 16px;
+  background: #d6f3ff70;
+}
+
+.uf-input-group .form-control:focus {
+  box-shadow: unset;
+  background: #ffffff;
+}
+.uf-btn-primary {
+  background: #000000;
+  color: #fff;
+}
+
+.uf-btn-primary:hover {
+  background: #676666;
+  color: #fff;
+}
+
+.uf-form-check-input:checked {
+  background-color: #050505;
+  border-color: #585858;
+}
+
+.uf-social-login .uf-social-ic + .uf-social-ic {
+  margin-left: 15px;
+}
+.uf-social-ic {
+  width: 40px;
+  height: 40px;
+  background: #fff;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.uf-social-ic:hover {
+  background: #b7b7b7;
+}
+.uf-social-ic:hover i {
+  color: #fff;
+}
