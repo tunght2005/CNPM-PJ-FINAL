@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block title %}Inventory List{% endblock %}
+
+{% block content %}
+<h1>Inventory List</h1>
+<table>
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Carat</th>
+            <th>Cut</th>
+            <th>Color</th>
+            <th>Clarity</th>
+            <th>Price</th>
+            <th>Quantity</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for diamond in diamonds %}
+        <tr>
+            <td>{{ diamond.id }}</td>
+            <td>{{ diamond.name }}</td>
+            <td>{{ diamond.carat }}</td>
+            <td>{{ diamond.cut }}</td>
+            <td>{{ diamond.color }}</td>
+            <td>{{ diamond.clarity }}</td>
+            <td>{{ diamond.price }}</td>
+            <td>{{ diamond.quantity }}</td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="8">No diamonds in inventory.</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
