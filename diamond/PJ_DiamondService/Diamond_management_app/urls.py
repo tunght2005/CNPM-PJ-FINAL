@@ -15,6 +15,6 @@ urlpatterns = [
 
     # URL thêm mới hoặc chỉnh sửa diamond
     path('diamond/add/', views.add_diamond, name='add_diamond'),
-    path('diamond/edit/<int:diamond_id>/', views.edit_diamond, name='edit_diamond'),
+    # path('diamond/edit/<int:diamond_id>/', views.edit_diamond, name='edit_diamond'),
     path('diamond/delete/<int:diamond_id>/', views.delete_diamond, name='delete_diamond'),
 ]
