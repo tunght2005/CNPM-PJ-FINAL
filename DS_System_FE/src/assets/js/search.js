@@ -131,3 +131,103 @@ subMenu5.addEventListener("mouseleave", () => {
     }
   }, 200);
 });
+
+// Câu hỏi thường gặp
+document.addEventListener("DOMContentLoaded", () => {
+  const faqTitles = document.querySelectorAll(".faq-title");
+  const subFaqTitles = document.querySelectorAll(".sub-faq-title");
+
+  faqTitles.forEach(title => {
+      title.addEventListener("click", () => {
+          const content = title.nextElementSibling;
+          content.style.display = content.style.display === "block" ? "none" : "block";
+
+          faqTitles.forEach(otherTitle => {
+              if (otherTitle !== title) {
+                  otherTitle.nextElementSibling.style.display = "none";
+              }
+          });
+      });
+  });
+
+  subFaqTitles.forEach(subTitle => {
+      subTitle.addEventListener("click", () => {
+          const subContent = subTitle.nextElementSibling;
+          subContent.style.display = subContent.style.display === "block" ? "none" : "block";
+      });
+  });
+});
+
+// Lọc sản phẩm theo thương hiệu
+function filterProducts() {
+  const selectedBrand = document.getElementById('brandFilter').value;
+  const selectedMaterial = document.getElementById('materialFilter').value;
+  const selectedShape = document.getElementById('shapeFilter').value;
+  const products = document.querySelectorAll('#productList .danhmuchinhanh');
+
+  products.forEach((product) => {
+    const matchesBrand = selectedBrand === 'Thương hiệu' || product.dataset.brand === selectedBrand;
+    const matchesMaterial = selectedMaterial === undefined || selectedMaterial === 'Chất liệu dây' || product.dataset.material === selectedMaterial;
+    const matchesShape = selectedShape === 'Hình dạng mặt' || product.dataset.shape === selectedShape;
+
+    if (matchesBrand && matchesMaterial && matchesShape) {
+      product.style.display = 'block';
+    } else {
+      product.style.display = 'none';
+    }
+  });
+}
+
+// Xử lý sự kiện thay đổi của bộ lọc thương hiệu
+document.getElementById('brandFilter').addEventListener('change', filterProducts);
+document.getElementById('materialFilter').addEventListener('change', filterProducts);
+document.getElementById('shapeFilter').addEventListener('change', filterProducts);
+
+// Thêm sự kiện cho nút hủy lọc
+document.getElementById('clearFilter').addEventListener('click', () => {
+  // Đặt lại bộ lọc về giá trị mặc định
+  document.getElementById('brandFilter').value = 'Thương hiệu';
+  document.getElementById('materialFilter').value = 'Chất liệu dây';
+  document.getElementById('shapeFilter').value = 'Hình dạng mặt';
+
+  // Hiển thị tất cả các sản phẩm khi hủy lọc
+  const products = document.querySelectorAll('#productList .danhmuchinhanh');
+  products.forEach(product => {
+    product.style.display = 'block';
+  });
+});
+
+
+
+
+// bộ lọc sắp xếp
+document.getElementById('filterSelect').addEventListener('change', function () {
+  const filterValue = this.value;
+  const productList = document.getElementById('productList');
+  const products = Array.from(productList.children);
+
+  if (filterValue === 'Thapcao') {
+    
+    products.sort((a, b) => getPrice(a) - getPrice(b));
+  } else if (filterValue === 'Caothap') {
+    
+    products.sort((a, b) => getPrice(b) - getPrice(a));
+  } else if (filterValue === 'New') {
+   
+    products.sort((a, b) => a.dataset.order - b.dataset.order);
+  } else if (filterValue === 'Popular') {
+    
+    products.sort((a, b) => getPopularity(b) - getPopularity(a));
+  }
+
+  products.forEach((product) => productList.appendChild(product));
+});
+
+function getPrice(product) {
+  const priceText = product.querySelector('p').textContent;
+  return parseFloat(priceText.replace(/[^\d]/g, ''));
+}
+
+function getPopularity(product) {
+  return parseInt(product.dataset.popularity || 0);
+}
