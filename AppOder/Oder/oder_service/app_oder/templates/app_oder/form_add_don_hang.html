@@ -1,0 +1,248 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Danh sách đơn hàng | Quản trị Admin</title>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Main CSS-->
+  <link rel="stylesheet" type="text/css" href="{% static 'main.css' %}" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
+  <!-- or -->
+  <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
+
+  <!-- Font-icon css-->
+  <link rel="stylesheet" type="text/css"
+    href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.css">
+  <!-- 6 links 1 script -->
+  <!-- Favicon -->
+  <link
+  rel="apple-touch-icon"
+  sizes="180x180"
+  href="/favicon_io/apple-touch-icon.png"
+/>
+<link
+  rel="icon"
+  type="image/png"
+  sizes="32x32"
+  href="/favicon_io/favicon-32x32.png"
+/>
+<link
+  rel="icon"
+  type="image/png"
+  sizes="16x16"
+  href="/favicon_io/favicon-16x16.png"
+/>
+<link rel="manifest" href="/favicon_io/site.webmanifest" />
+</head>
+
+<body onload="time()" class="app sidebar-mini rtl">
+  <!-- Navbar-->
+  <header class="app-header">
+    <!-- Sidebar toggle button--><a class="app-sidebar__toggle" href="#" data-toggle="sidebar"
+      aria-label="Hide Sidebar"></a>
+    <!-- Navbar Right Menu-->
+    <ul class="app-nav">
+
+
+      <!-- User Menu-->
+      <li><a class="app-nav__item" href="../../../Home/index.html"><i class='bx bx-log-out bx-rotate-180'></i> </a>
+
+      </li>
+    </ul>
+  </header>
+  <!-- Sidebar menu-->
+  <div class="app-sidebar__overlay" data-toggle="sidebar"></div>
+  <aside class="app-sidebar">
+    <div class="app-sidebar__user"><img class="app-sidebar__user-avatar" src="/Home/assets/css/img/logo-page.jpg" width="50px"
+        alt="User Image">
+      <div>
+        <p class="app-sidebar__user-name"><b>Văn Tùng</b></p>
+        <p class="app-sidebar__user-designation">Chào mừng bạn trở lại</p>
+      </div>
+    </div>
+    <hr>
+    <!-- Menu sidebar -->
+    <ul class="app-menu">
+      <li>
+        <a class="app-menu__item" href="admin.html"
+          ><i class="app-menu__icon bx bx-tachometer"></i
+          ><span class="app-menu__label">Bảng điều khiển</span></a
+        >
+      </li>
+      <li>
+        <a class="app-menu__item" href="table-data-table.html"
+          ><i class="app-menu__icon bx bx-id-card"></i>
+          <span class="app-menu__label">Quản lý nhân viên</span></a
+        >
+      </li>
+      <li>
+        <a class="app-menu__item" href="page-customer.html"
+          ><i class="app-menu__icon bx bx-user-voice"></i
+          ><span class="app-menu__label">Quản lý khách hàng</span></a
+        >
+      </li>
+      <li>
+        <a class="app-menu__item" href="table-data-product.html"
+          ><i class="app-menu__icon bx bx-purchase-tag-alt"></i
+          ><span class="app-menu__label">Quản lý sản phẩm</span></a
+        >
+      </li>
+      <li>
+        <a class="app-menu__item active" href="table-data-oder.html"
+          ><i class="app-menu__icon bx bx-task"></i
+          ><span class="app-menu__label">Quản lý đơn hàng</span></a
+        >
+      </li>
+      <li>
+        <a class="app-menu__item" href="table-data-banned.html"
+          ><i class="app-menu__icon bx bx-run"></i
+          ><span class="app-menu__label">Quản lý nội bộ </span></a
+        >
+      </li>
+      <li>
+        <a class="app-menu__item" href="table-data-money.html"
+          ><i class="app-menu__icon bx bx-dollar"></i
+          ><span class="app-menu__label">Bảng kê lương</span></a
+        >
+      </li>
+      <li>
+        <a class="app-menu__item" href="table-data-info.html"
+          ><i class="app-menu__icon bx bx-news"></i
+          ><span class="app-menu__label">Bảng tin tức</span></a
+        >
+      </li>
+      <li>
+        <a class="app-menu__item" href="quan-ly-bao-cao.html"
+          ><i class="app-menu__icon bx bx-pie-chart-alt-2"></i
+          ><span class="app-menu__label">Báo cáo doanh thu</span></a
+        >
+      </li>
+      <li>
+        <a class="app-menu__item" href="table-data-service.html"
+          ><i class="app-menu__icon bx bx-support"></i
+          ><span class="app-menu__label"
+            >Trung Tâm Dịch Vụ <br />Khách Hàng</span
+          ></a
+        >
+      </li>
+      <li>
+        <a class="app-menu__item" href="table-data-feedback.html"
+          ><i class="app-menu__icon bx bx-message"></i
+          ><span class="app-menu__label">Quản Lý Feedback</span></a
+        >
+      </li>
+      <li>
+        <a class="app-menu__item" href="table-data-transport.html"
+          ><i class="app-menu__icon bx bx-package"></i
+          ><span class="app-menu__label">Quản Lý Vận Chuyển</span></a
+        >
+      </li>
+      <li>
+        <a class="app-menu__item" href="table-data-review.html"
+          ><i class="app-menu__icon bx bx-star"></i
+          ><span class="app-menu__label">Quản lý đánh giá</span></a
+        >
+      </li>
+      <li>
+        <a class="app-menu__item" href="page-calendar.html"
+          ><i class="app-menu__icon bx bx-calendar-check"></i
+          ><span class="app-menu__label">Lịch công tác </span></a
+        >
+      </li>
+      <li>
+        <a class="app-menu__item" href="#"
+          ><i class="app-menu__icon bx bx-cog"></i
+          ><span class="app-menu__label">Cài đặt hệ thống</span></a
+        >
+      </li>
+    </ul>
+  </aside>
+    <main class="app-content">
+      <div class="app-title">
+        <ul class="app-breadcrumb breadcrumb">
+          <li class="breadcrumb-item">Danh sách đơn hàng</li>
+          <li class="breadcrumb-item"><a href="#">Thêm đơn hàng</a></li>
+        </ul>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <div class="tile">
+            <h3 class="tile-title">Tạo mới đơn hàng</h3>
+            <div class="tile-body">
+              <form class="row"method="post" action="{% url 'form_add_don_hang' %}">
+                {% csrf_token %}
+                {% csrf_token %}
+                <div class="form-group col-md-4">
+                  <label class="control-label">{{ form.customer_name.label }}</label>
+                  {{ form.customer_name }}
+                </div>
+                <div class="form-group col-md-4">
+                  <label class="control-label">{{ form.customer_phone.label }}</label>
+                  {{ form.customer_phone }}
+                </div>
+                <div class="form-group col-md-4">
+                  <label class="control-label">{{ form.customer_address.label }}</label>
+                  {{ form.customer_address }}
+                </div>
+                <div class="form-group col-md-4">
+                  <label class="control-label">{{ form.seller_name.label }}</label>
+                  {{ form.seller_name }}
+                </div>
+                <div class="form-group col-md-4">
+                  <label class="control-label">{{ form.seller_id.label }}</label>
+                  {{ form.seller_id }}
+                </div>
+                <div class="form-group col-md-4">
+                  <label class="control-label">{{ form.order_date.label }}</label>
+                  {{ form.order_date }}
+                </div>
+                <div class="form-group col-md-4">
+                  <label class="control-label">{{ form.product_name.label }}</label>
+                  {{ form.product_name }}
+                </div>
+                <div class="form-group col-md-4">
+                  <label class="control-label">{{ form.product_code.label }}</label>
+                  {{ form.product_code }}
+                </div>
+                <div class="form-group col-md-4">
+                  <label class="control-label">{{ form.quantity.label }}</label>
+                  {{ form.quantity }}
+                </div>
+                <div class="form-group col-md-4">
+                  <label class="control-label">{{ form.status.label }}</label>
+                  {{ form.status }}
+                </div>
+                <div class="form-group col-md-4">
+                  <label class="control-label">{{ form.note.label }}</label>
+                  {{ form.note }}
+                </div>
+        </div>
+        <button class="btn btn-save" type="submit">Lưu lại</button>
+          <a class="btn btn-cancel" href="{% url 'table_data_oder' %}">Hủy bỏ</a>
+        <!-- <div class="text-center" style="font-size: 13px">
+          <p>
+            <b
+              >Copyright
+              <script type="text/javascript">
+                document.write(new Date().getFullYear());
+              </script>
+              Phần mềm quản lý cửa hàng kim cương | Diamond Shop System
+            </b>
+          </p>
+        </div> -->
+    </main>
+    <!-- Essential javascripts for application to work-->
+    <script src="../../assets/css/img/js/jquery-3.2.1.min.js"></script>
+    <script src="../../assets/css/img/js/popper.min.js"></script>
+    <script src="../../assets/css/img/js/bootstrap.min.js"></script>
+    <script src="../../assets/css/img/js/main.js"></script>
+    <!-- The javascript plugin to display page loading on top-->
+    <script src="../../assets/css/img/js/plugins/pace.min.js"></script>
+  </body>
+</html>
