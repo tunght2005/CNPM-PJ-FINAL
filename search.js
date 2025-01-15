@@ -256,6 +256,29 @@ function ChonTSCMenu(loai, giaTri) {
     default:
       HienTSC(); // Hiển thị toàn bộ sản phẩm nếu không có lọc
   }
+  // Hàm này mở/đóng các mục chính (Phạm Vi Giao Hàng, Thời Gian Giao Hàng...)
+function toggleMainPanel() {
+  const mainPanel = document.getElementById("shipping-details");
+  
+  // Khi click vào "Chính Sách Giao Hàng", toggle hiển thị các mục bên trong
+  mainPanel.style.display = (mainPanel.style.display === "block") ? "none" : "block";
+}
+
+// Hàm này mở/đóng phần nội dung của các mục
+function togglePanel(element) {
+  const panel = element.nextElementSibling; // Lấy phần nội dung kế bên tiêu đề
+  
+  // Đóng tất cả các panel khác
+  const allPanels = document.querySelectorAll(".panel");
+  allPanels.forEach(function(p) {
+    if (p !== panel) {
+      p.classList.remove("show");
+    }
+  });
+
+  // Toggle hiển thị phần nội dung của mục được click
+  panel.classList.toggle("show");
+}
 }
 
 // Hiển thị toàn bộ sản phẩm mặc định
