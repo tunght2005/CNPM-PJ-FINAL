@@ -1,16 +1,53 @@
 from django import forms
-from .models import diamond
 
-class DiamondForm(forms.ModelForm):
-    class Meta:
-        model = diamond
-        fields = ['DiaName', 'carat', 'shape', 'cut', 'color', 'clarity', 'DiamondPrice']
-        widgets = {
-            'shape': forms.Select(attrs={'class': 'form-control'}),
-            'cut': forms.Select(attrs={'class': 'form-control'}),
-            'color': forms.TextInput(attrs={'class': 'form-control'}),
-            'clarity': forms.TextInput(attrs={'class': 'form-control'}),
-            'DiaName': forms.TextInput(attrs={'class': 'form-control'}),
-            'carat': forms.NumberInput(attrs={'class': 'form-control'}),
-            'DiamondPrice': forms.NumberInput(attrs={'class': 'form-control'}),
-        }
+class diamondform(forms.Form):
+    SHAPE_CHOICES = [
+        ('Round', 'Round'),
+        ('Princess', 'Princess'),
+        ('Oval', 'Oval'),
+        ('Emerald', 'Emerald'),
+        ('Cushion', 'Cushion'),
+        ('Marquise', 'Marquise'),
+        ('Pear', 'Pear'),
+        ('Asscher', 'Asscher'),
+        ('Radiant', 'Radiant'),
+        ('Heart', 'Heart'),
+    ]
+
+    CUT_CHOICES = [
+        ('Bad', 'Bad'),
+        ('Good', 'Good'),
+        ('Very Good', 'Very Good'),
+        ('Excellent', 'Excellent'),
+    ]
+
+    DiaName = forms.CharField(
+        label='Tên kim cương',
+        max_length=100,
+    )
+    carat = forms.FloatField(
+        label='Carat',
+    )
+    shape = forms.ChoiceField(
+        label='Hình dạng',
+        choices=SHAPE_CHOICES,
+    )
+    cut = forms.ChoiceField(
+        label='Cắt',
+        choices=CUT_CHOICES,
+    )
+    color = forms.CharField(
+        label='Màu',
+        max_length=100,
+    )
+    clarity = forms.CharField(
+        label='Độ trong suốt',
+        max_length=100,
+    )
+    DiamondPrice = forms.IntegerField(
+        label='Giá',
+    )
+    image = forms.ImageField(
+        label='Hình ảnh',
+        required=False,
+    )

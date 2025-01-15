@@ -1,11 +1,41 @@
 from django.shortcuts import render, get_object_or_404, redirect
+from .forms import diamondform
 from .models import diamond
+from datetime import datetime
 from django.http import HttpResponse, JsonResponse
-
 
 def diamond_list(request):
     diamonds = diamond.objects.all()
-    return render(request, 'table-data-info.html', {'diamonds': diamonds})
+    return render(request, 'Diamond_management_app/table-data-info.html', {'diamonds': diamonds})
+
+def add_diamond(request):
+    if request.method == 'POST':
+        form = diamondform(request.POST, request.FILES)
+        if form.is_valid():
+            DiaName = form.cleaned_data['DiaName']
+            carat = form.cleaned_data['carat']
+            shape = form.cleaned_data['shape']
+            cut = form.cleaned_data['cut']
+            color = form.cleaned_data['color']
+            clarity = form.cleaned_data['clarity']
+            DiamondPrice = form.cleaned_data['DiamondPrice']
+            image = form.cleaned_data.get('image')
+
+            diamond.objects.create(
+                DiaName=DiaName,
+                carat=carat,
+                shape=shape,
+                cut=cut,
+                color=color,
+                clarity=clarity,
+                DiamondPrice=DiamondPrice,
+                image=image
+            )
+            return redirect('diamond_list')
+    else:
+        form = diamondform()
+    
+    return render(request, 'Diamond_management_app/form-add-news.html', {'form': form})
 
 
 def add_diamond(request):
@@ -35,15 +65,16 @@ def add_diamond(request):
         )
         diamond_obj.save()
         
-        return redirect('diamond_list')  # Quay lại danh sách diamonds
+        return redirect('diamond_list')
     
-    return render(request, 'form-add-news.html')
-
+    return render(request, 'Diamond_management_app/form-add-news.html')
 
 def delete_diamond(request, diamond_id):
+    obj = get_object_or_404(diamond, id=diamond_id)
+    
     if request.method == 'POST':
-        # Lấy diamond cần xóa
-        dia = get_object_or_404(diamond, id=diamond_id)
-        dia.delete()  # Xóa diamond khỏi cơ sở dữ liệu
-        return JsonResponse({'success': True})  # Trả về kết quả thành công
-    return JsonResponse({'success': False})  # Trả về kết quả thất bại
+        obj.delete()
+        return JsonResponse({'success': True})
+    
+    return JsonResponse({'success': False})
+
