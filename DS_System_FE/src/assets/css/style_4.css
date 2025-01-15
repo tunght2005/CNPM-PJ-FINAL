@@ -644,13 +644,6 @@
   margin: 10px auto; /* Căn giữa và thêm khoảng cách */
 }
 
-body {
-  font-family: Arial, sans-serif;
-  margin: 0;
-  padding: 0;
-  background-color: #f9f9f9;
-  color: #0a0a0a;
-}
 
 /* Tiêu đề của danh mục */
 h1 {

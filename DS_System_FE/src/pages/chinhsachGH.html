@@ -7,7 +7,7 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css"
     />
-    <link rel="stylesheet" href="../assets/css/add.css" />
+    <link rel="stylesheet" href="../assets/css/style_5.css" />
     <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
@@ -32,7 +32,7 @@
    />
    <link rel="manifest" href="../favicon_io/site.webmanifest" />
    <!-- End -->
-    <title>Địa chỉ giao hàng</title>
+    <title>Trang Sức Cưới</title>
   </head>
   <body>
     <!-- Header -->
@@ -506,78 +506,92 @@
     </div>
     <!-- End Search -->
     <!-- End Header -->
-    <!-- Main -->
- <!-- Breadcrumb -->
- <div class="breadcrumb">
-  <a href="#">Trang chủ</a>
-  <span>Địa chỉ giao hàng</span>
-</div>
-<!-- Layout chính -->
-<div class="container-sidebar">
-  <!-- Sidebar -->
-  <aside class="sidebar">
-    <div class="profile">
-      <img
-        src="https://hoanghamobile.com/tin-tuc/wp-content/uploads/2024/07/anh-avatar-anime-5.jpg"
-        alt="Avatar"
-        class="avatar"
-      />
-      <h3>Tài khoản của<br /><span>Lê Tùng</span></h3>
-    </div>
-    <ul class="menu-sidebar">
-      <li>
-        <a href="customer.html">Thông tin tài khoản</a>
-      </li>
-      <li><a href="notification.html">Thông báo của tôi</a></li>
-      <li><a href="manage-order.html">Quản lý đơn hàng</a></li>
-      <li><a href="address.html" class="active">Sổ địa chỉ</a></li>
-      <li><a href="review.html">Đánh giá sản phẩm</a></li>
-      <li><a href="product-views.html">Sản phẩm bạn đã xem</a></li>
-      <li><a href="wishlist.html">Sản phẩm yêu thích</a></li>
-      <li><a href="comments.html">Nhận xét của tôi</a></li>
-      <li><a href="../index.html">Đăng xuất</a></li>
-    </ul>
-  </aside>
-  <!-- Nội dung chính -->
-  <main class="content-profile">
-    <h4>Địa chỉ giao hàng</h4>
-    <div class="container-add">
-      <div class="header-add">Sổ địa chỉ</div>
-      <div id="address-list">
-        <div class="address-card">
-          <div class="address-info">
-            <strong>TÙNG LÊ</strong>
-            <p>
-              Địa chỉ: Nguyễn Duy Trinh, Phường Bình Trưng Tây, Thành phố
-              Thủ Đức, Hồ Chí Minh
-            </p>
-            <p>Điện thoại: 0919191916</p>
+    <div class="shipping-policy">
+      <h1 class="post-title">Chinh Sách Giao Hàng</h1>
+  
+      <div id="shipping-details" class="accordion-content">
+        <div class="accordion-section">
+          <h3 class="accordion" onclick="togglePanel(this)">Phạm Vi Giao Hàng</h3>
+          <div class="panel">
+            <p>Chúng tôi cung cấp dịch vụ giao hàng trên toàn quốc, bao gồm cả các khu vực thành thị và nông thôn. Các đơn hàng sẽ được giao đến địa chỉ mà khách hàng cung cấp trong quá trình đặt hàng. Vui lòng đảm bảo rằng thông tin địa chỉ giao hàng là chính xác để tránh bất kỳ sự cố nào trong quá trình giao hàng.</p>
+            <ul>
+              <li>•Địa chỉ giao hàng phải rõ ràng, chính xác, bao gồm tên, số điện thoại và mã bưu chính (nếu có).</li>
+              <li>•Chúng tôi có thể không giao hàng đến những khu vực không có dịch vụ vận chuyển hoặc những khu vực có điều kiện giao thông khó khăn.</li>
+            </ul>
           </div>
-          <a href="#" class="edit-link">Chỉnh sửa</a>
+        </div>
+  
+        <div class="accordion-section">
+          <h3 class="accordion" onclick="togglePanel(this)">Thời Gian Giao Hàng</h3>
+          <div class="panel">
+            <p>Thời gian giao hàng có thể từ 1-7 ngày làm việc, tùy thuộc vào khu vực và loại đơn hàng. Thời gian giao hàng có thể thay đổi trong các trường hợp đặc biệt như sự kiện khuyến mãi lớn, mùa lễ hội hoặc tình hình giao thông.</p>
+            <ul>
+              <li><strong>•Nội thành:</strong> Thời gian giao hàng từ 1-3 ngày làm việc.</li>
+              <li><strong>•Ngoại thành và các tỉnh:</strong> Thời gian giao hàng từ 3-7 ngày làm việc.</li>
+              <li><strong>•Khu vực xa xôi hoặc khó khăn:</strong> Thời gian giao hàng có thể lâu hơn tùy thuộc vào điều kiện giao thông và đối tác vận chuyển.</li>
+            </ul>
+          </div>
+        </div>
+  
+        <div class="accordion-section">
+          <h3 class="accordion" onclick="togglePanel(this)">Chi Phí Giao Hàng</h3>
+          <div class="panel">
+            <p>Chi phí giao hàng sẽ được tính tùy theo khu vực và trọng lượng đơn hàng. Chúng tôi luôn cố gắng cung cấp mức phí hợp lý nhất cho khách hàng. Dưới đây là cách tính phí giao hàng:</p>
+            <ul>
+              <li><strong>•Miễn phí giao hàng:</strong> Đối với đơn hàng từ 500,000 VNĐ trở lên, phí giao hàng sẽ được miễn phí.</li>
+              <li><strong>•Đơn hàng dưới 500,000 VNĐ:</strong> Phí giao hàng sẽ được tính tùy theo trọng lượng và khu vực giao hàng, với chi phí sẽ được thông báo trong quá trình thanh toán.</li>
+              <li><strong>•Phí giao hàng cho khu vực xa xôi:</strong> Phí giao hàng có thể cao hơn đối với các khu vực không thuộc phạm vi giao hàng thông thường hoặc có điều kiện giao thông khó khăn.</li>
+            </ul>
+          </div>
+        </div>
+  
+        <div class="accordion-section">
+          <h3 class="accordion" onclick="togglePanel(this)">Phương Thức Giao Hàng</h3>
+          <div class="panel">
+            <p>Chúng tôi hợp tác với các đơn vị vận chuyển uy tín như Viettel Post, Giao Hàng Nhanh, và các dịch vụ giao hàng nội bộ. Bạn có thể lựa chọn phương thức giao hàng phù hợp với nhu cầu của mình.</p>
+            <ul>
+              <li><strong>•Viettel Post:</strong> Giao hàng nhanh chóng và đảm bảo an toàn.</li>
+              <li><strong>•Giao Hàng Nhanh:</strong> Phương thức giao hàng phổ biến và linh hoạt.</li>
+              <li><strong>•Giao hàng nội bộ:</strong> Dành cho các đơn hàng nội thành, giao nhanh và tiện lợi.</li>
+            </ul>
+          </div>
+        </div>
+  
+        <div class="accordion-section">
+          <h3 class="accordion" onclick="togglePanel(this)">Theo Dõi Đơn Hàng</h3>
+          <div class="panel">
+            <p>Sau khi đơn hàng được giao đi, bạn sẽ nhận được một mã vận đơn qua email hoặc tin nhắn để theo dõi tình trạng giao hàng. Bạn có thể kiểm tra tình trạng đơn hàng của mình bất cứ lúc nào thông qua trang web của chúng tôi hoặc hệ thống theo dõi của đơn vị vận chuyển.</p>
+            <ul>
+              <li><strong>•Mã vận đơn:</strong> Mỗi đơn hàng sẽ có mã vận đơn riêng biệt, giúp bạn dễ dàng theo dõi tình trạng giao hàng.</li>
+              <li><strong>•Trạng thái giao hàng:</strong> Bạn có thể thấy trạng thái hiện tại của đơn hàng (đang giao, đã giao, hoặc gặp sự cố).</li>
+            </ul>
+          </div>
+        </div>
+  
+        <div class="accordion-section">
+          <h3 class="accordion" onclick="togglePanel(this)">Trường Hợp Giao Hàng Không Thành Công</h3>
+          <div class="panel">
+            <p>Trong trường hợp giao hàng không thành công, chúng tôi sẽ cố gắng liên hệ lại với bạn để sắp xếp một lần giao hàng khác. Nếu sau ba lần giao hàng không thành công, đơn hàng sẽ bị hủy và bạn sẽ được hoàn lại tiền (nếu đã thanh toán trước).</p>
+            <ul>
+              <li><strong>•Lý do giao hàng không thành công:</strong> Không xác định được địa chỉ, không có người nhận, hoặc các yếu tố bất khả kháng khác.</li>
+              <li><strong>•Thời gian yêu cầu:</strong> Để đảm bảo quyền lợi của bạn, vui lòng liên hệ với chúng tôi trong vòng 24 giờ sau khi nhận được thông báo giao hàng không thành công.</li>
+            </ul>
+          </div>
+        </div>
+  
+        <div class="accordion-section">
+          <h3 class="accordion" onclick="togglePanel(this)">Đổi Trả Sản Phẩm</h3>
+          <div class="panel">
+            <p>Trong trường hợp sản phẩm bị lỗi do nhà sản xuất hoặc không đúng với đơn hàng, bạn có thể yêu cầu đổi trả trong vòng 7 ngày kể từ ngày nhận hàng. Phí vận chuyển sẽ do chúng tôi chịu trách nhiệm.</p>
+            <ul>
+              <li><strong>•Sản phẩm lỗi:</strong> Nếu sản phẩm bị lỗi từ nhà sản xuất hoặc có vấn đề không thể khắc phục, bạn có quyền yêu cầu đổi trả.</li>
+              <li><strong>•Điều kiện đổi trả:</strong> Sản phẩm phải còn nguyên tem mác, chưa qua sử dụng và có hóa đơn mua hàng.</li>
+              <li><strong>•Phí vận chuyển:</strong> Chúng tôi sẽ chịu chi phí vận chuyển trong trường hợp đổi trả do lỗi từ sản phẩm hoặc đơn hàng không đúng.</li>
+            </ul>
+          </div>
         </div>
       </div>
-
-      <button id="add-address" class="add-address">
-        + Thêm địa chỉ mới
-      </button>
     </div>
-
-    <div class="modal" id="edit-modal">
-      <div class="modal-content">
-        <h2>Chỉnh sửa địa chỉ</h2>
-        <label for="edit-name">Tên</label>
-        <input type="text" id="edit-name" />
-        <label for="edit-address">Địa chỉ</label>
-        <input type="text" id="edit-address" />
-        <label for="edit-phone">Số điện thoại</label>
-        <input type="text" id="edit-phone" />
-        <button id="save-btn">Lưu</button>
-        <button class="cancel" id="cancel-btn">Hủy</button>
-      </div>
-    </div>
-  </main>
-</div>
-
 <!-- End Main -->
     <!-- End Main -->
     <!-- Footer -->
@@ -688,9 +702,7 @@
         </div>
       </div>
     </footer>
-     <!-- End Sản Phảm Tương Tự -->
-     <script src="../assets/js/address-reset.js"></script>
-     <script src="../assets/js/profile.js"></script>
-     <script src="../assets/js/search.js"></script>
+    <script src="../assets/js/search.js"></script>
+    <script src="../assets/js/wedding.js"></script>
   </body>
 </html>

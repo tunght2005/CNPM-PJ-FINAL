@@ -7,7 +7,7 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css"
     />
-    <link rel="stylesheet" href="../assets/css/add.css" />
+    <link rel="stylesheet" href="../assets/css/style_5.css" />
     <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
@@ -32,7 +32,7 @@
    />
    <link rel="manifest" href="../favicon_io/site.webmanifest" />
    <!-- End -->
-    <title>Địa chỉ giao hàng</title>
+    <title>Diamond Shop</title>
   </head>
   <body>
     <!-- Header -->
@@ -507,78 +507,118 @@
     <!-- End Search -->
     <!-- End Header -->
     <!-- Main -->
- <!-- Breadcrumb -->
- <div class="breadcrumb">
-  <a href="#">Trang chủ</a>
-  <span>Địa chỉ giao hàng</span>
-</div>
-<!-- Layout chính -->
-<div class="container-sidebar">
-  <!-- Sidebar -->
-  <aside class="sidebar">
-    <div class="profile">
-      <img
-        src="https://hoanghamobile.com/tin-tuc/wp-content/uploads/2024/07/anh-avatar-anime-5.jpg"
-        alt="Avatar"
-        class="avatar"
-      />
-      <h3>Tài khoản của<br /><span>Lê Tùng</span></h3>
-    </div>
-    <ul class="menu-sidebar">
-      <li>
-        <a href="customer.html">Thông tin tài khoản</a>
-      </li>
-      <li><a href="notification.html">Thông báo của tôi</a></li>
-      <li><a href="manage-order.html">Quản lý đơn hàng</a></li>
-      <li><a href="address.html" class="active">Sổ địa chỉ</a></li>
-      <li><a href="review.html">Đánh giá sản phẩm</a></li>
-      <li><a href="product-views.html">Sản phẩm bạn đã xem</a></li>
-      <li><a href="wishlist.html">Sản phẩm yêu thích</a></li>
-      <li><a href="comments.html">Nhận xét của tôi</a></li>
-      <li><a href="../index.html">Đăng xuất</a></li>
-    </ul>
-  </aside>
-  <!-- Nội dung chính -->
-  <main class="content-profile">
-    <h4>Địa chỉ giao hàng</h4>
-    <div class="container-add">
-      <div class="header-add">Sổ địa chỉ</div>
-      <div id="address-list">
-        <div class="address-card">
-          <div class="address-info">
-            <strong>TÙNG LÊ</strong>
-            <p>
-              Địa chỉ: Nguyễn Duy Trinh, Phường Bình Trưng Tây, Thành phố
-              Thủ Đức, Hồ Chí Minh
-            </p>
-            <p>Điện thoại: 0919191916</p>
+    <div class="tygh-content clearfix">
+      <div class="container-fluid content-grid">
+        <div class="row-fluid">
+          <div class="span16">
+            <div id="breadcrumbs_266">
+              <div class="ty-breadcrumbs clearfix">
+                <a href="index.html" class="ty-breadcrumbs__a" id="homeButton">Trang Chủ</a> <!-- Thêm id cho liên kết -->
+                <span class="ty-breadcrumbs__slash">/</span>
+                <div class="ty-breadcrumbs__current">
+                  <a href="webding.html" id="jewelryPageButton">Trang Sức Cưới</a>
+                </div>
+              </div>
+            </div>
           </div>
-          <a href="#" class="edit-link">Chỉnh sửa</a>
         </div>
       </div>
-
-      <button id="add-address" class="add-address">
-        + Thêm địa chỉ mới
-      </button>
     </div>
-
-    <div class="modal" id="edit-modal">
-      <div class="modal-content">
-        <h2>Chỉnh sửa địa chỉ</h2>
-        <label for="edit-name">Tên</label>
-        <input type="text" id="edit-name" />
-        <label for="edit-address">Địa chỉ</label>
-        <input type="text" id="edit-address" />
-        <label for="edit-phone">Số điện thoại</label>
-        <input type="text" id="edit-phone" />
-        <button id="save-btn">Lưu</button>
-        <button class="cancel" id="cancel-btn">Hủy</button>
+    <div class="carousel-container">
+      <div class="carousel">
+        <img src="image/1-banner_quahenho.jpg" alt="Ảnh 1" class="carousel-image">
+        <img src="image/2-banner_cauhon.jpg" alt="Ảnh 2" class="carousel-image">
+        <img src="image/3-banner_ket_hon.jpg" alt="Ảnh 3" class="carousel-image">
+        <img src="image/4-banner_kyniem.jpg" alt="Ảnh 4" class="carousel-image">
       </div>
+      <!-- Mũi tên điều hướng -->
+      <span class="carousel-arrow left-arrow" onclick="moveSlide(-1)">&#10094;</span>
+      <span class="carousel-arrow right-arrow" onclick="moveSlide(1)">&#10095;</span>
     </div>
-  </main>
+    <!-- Main -->
+     <div id="litle"></div>
+    <!-- Khu vực hiển thị sản phẩm -->
+<div id="list1">
+<!-- Sản phẩm sẽ hiển thị tại đây -->
 </div>
-
-<!-- End Main -->
+<div class="container-row">
+<!-- Dòng 1 -->
+<div class="row">
+    <div class="poster" style="animation: moveInLeft 1s ease-in-out 0s forwards;">
+        <img src="image/h1.jpg" alt="Trang sức kim cương">
+        <div class="poster-content">
+            <h2>Kim Cương Đẳng Cấp</h2>
+            <p>Khám phá bộ sưu tập kim cương sang trọng, dành riêng cho bạn.</p>
+        </div>
+    </div>
+    <div class="poster" style="animation: moveInLeft 1s ease-in-out 0.5s forwards;">
+        <img src="image/h2.jpg" alt="Trang sức vàng 24k">
+        <div class="poster-content">
+            <h2>Vàng 24K Tuyệt Vời</h2>
+            <p>Bộ trang sức vàng 24K tinh tế, làm nổi bật vẻ đẹp của bạn.</p>
+        </div>
+    </div>
+    <div class="poster" style="animation: moveInLeft 1s ease-in-out 1s forwards;">
+        <img src="image/h3.jpg" alt="Trang sức ngọc trai">
+        <div class="poster-content">
+            <h2>Ngọc Trai Thiên Nhiên</h2>
+            <p>Ngọc trai tự nhiên cao cấp, mang đến vẻ đẹp thanh lịch cho phái đẹp.</p>
+        </div>
+    </div>
+    <div class="poster" style="animation: moveInLeft 1s ease-in-out 1.5s forwards;">
+        <img src="image/h4.jpg" alt="Trang sức bạc">
+        <div class="poster-content">
+            <h2>Sắc Bạc Tinh Tế</h2>
+            <p>Bộ trang sức bạc cao cấp, sang trọng cho các dịp đặc biệt.</p>
+        </div>
+    </div>
+    <div class="poster" style="animation: moveInLeft 1s ease-in-out 2s forwards;">
+        <img src="image/h5.jpg" alt="Trang sức sapphire">
+        <div class="poster-content">
+            <h2>Ngọc Sapphire Rực Rỡ</h2>
+            <p>Đắm chìm trong vẻ đẹp huyền bí của ngọc Sapphire, món quà hoàn hảo.</p>
+        </div>
+    </div>
+</div>
+<!-- Dòng 2 -->
+<div class="row">
+    <div class="poster" style="animation: moveInRight 1s ease-in-out 0s forwards;">
+        <img src="image/h6.jpg" alt="Trang sức vàng hồng">
+        <div class="poster-content">
+            <h2>Vàng Hồng Tinh Tế</h2>
+            <p>Bộ trang sức vàng hồng với thiết kế đẹp mắt, đầy cuốn hút.</p>
+        </div>
+    </div>
+    <div class="poster" style="animation: moveInRight 1s ease-in-out 0.5s forwards;">
+        <img src="image/h7.jpg" alt="Trang sức kim cương trắng">
+        <div class="poster-content">
+            <h2>Kim Cương Trắng Sang Trọng</h2>
+            <p>Khám phá vẻ đẹp sáng chói của kim cương trắng, tinh túy và vĩnh cửu.</p>
+        </div>
+    </div>
+    <div class="poster" style="animation: moveInRight 1s ease-in-out 1s forwards;">
+        <img src="image/h8.jpg" alt="Trang sức đá quý">
+        <div class="poster-content">
+            <h2>Đá Quý Tự Nhiên</h2>
+            <p>Trang sức đá quý tự nhiên, độc đáo và có giá trị lâu dài.</p>
+        </div>
+    </div>
+    <div class="poster" style="animation: moveInRight 1s ease-in-out 1.5s forwards;">
+        <img src="image/h9.jpg" alt="Trang sức pha lê">
+        <div class="poster-content">
+            <h2>Pha Lê Lung Linh</h2>
+            <p>Bộ trang sức pha lê đẹp mắt, mang lại sự quyến rũ cho bạn.</p>
+        </div>
+    </div>
+    <div class="poster" style="animation: moveInRight 1s ease-in-out 2s forwards;">
+        <img src="image/h10.jpg" alt="Trang sức đá sapphire">
+        <div class="poster-content">
+            <h2>Đá Sapphire Vượt Thời Gian</h2>
+            <p>Sapphire, viên đá quý mang lại sự sang trọng và đẳng cấp cho người sở hữu.</p>
+        </div>
+    </div>
+</div>
+</div>
     <!-- End Main -->
     <!-- Footer -->
 
@@ -688,9 +728,61 @@
         </div>
       </div>
     </footer>
-     <!-- End Sản Phảm Tương Tự -->
-     <script src="../assets/js/address-reset.js"></script>
-     <script src="../assets/js/profile.js"></script>
-     <script src="../assets/js/search.js"></script>
+    <script src="../assets/js/search.js"></script>
+    <script src="../assets/js/wedding.js"></script>
+    <script>
+      const listImage = document.querySelector('.list-images')
+const imgs= document.querySelectorAll('.list-images img')
+const length = imgs.length
+const width = imgs[0].offsetWidth
+const btnLeft = document.querySelector('.btn-left')
+const btnRight = document.querySelector('.btn-right')
+let current = 0
+
+const handleChangeSlide = () => {
+    current++
+    if (current >= length ){
+        current = 0
+       listImage.style.transition  = 'none'
+       listImage.style.transform = `translateX(0)`
+       document.querySelector('.active').classList.remove('active')
+       document.querySelector('.index-item-' + current).classList.add('active')
+       setTimeout(() =>{
+        listImage.style.transition  = 'transform 0.5s ease-in-out'
+       },50)
+    }else {
+    listImage.style.transform = `translateX(${-width *current}px)`
+    document.querySelector('.active').classList.remove('active')
+    document.querySelector('.index-item-' + current).classList.add('active')
+    }
+}
+let handleEventChangeSlide = setInterval(handleChangeSlide,3000)
+
+btnRight.addEventListener('click', () =>{
+    clearInterval(handleEventChangeSlide)
+    handleChangeSlide()
+    handleEventChangeSlide = setInterval(handleChangeSlide,3000)
+})
+
+btnLeft.addEventListener('click', () =>{
+    clearInterval(handleEventChangeSlide)
+    current--
+    if (current < 0){
+        current = length -1
+       listImage.style.transform = `translateX(${-width * current}px)`
+       document.querySelector('.active').classList.remove('active')
+       document.querySelector('.index-item-' + current).classList.add('active')
+       setTimeout(() =>{
+        listImage.style.transition  = 'transform 0.5s ease-in-out'
+       },50)
+    }else {
+    listImage.style.transform = `translateX(${-width *current}px)`
+    document.querySelector('.active').classList.remove('active')
+    document.querySelector('.index-item-' + current).classList.add('active')
+    }
+    handleEventChangeSlide = setInterval(handleChangeSlide,3000)
+})
+
+    </script>
   </body>
 </html>

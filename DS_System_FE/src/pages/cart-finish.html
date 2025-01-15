@@ -7,7 +7,8 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css"
     />
-    <link rel="stylesheet" href="../assets/css/add.css" />
+    <link rel="stylesheet" href="../assets/css/cart.css" />
+    <link rel="stylesheet" href="../assets/css/style.css" />
     <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
@@ -32,7 +33,7 @@
    />
    <link rel="manifest" href="../favicon_io/site.webmanifest" />
    <!-- End -->
-    <title>Địa chỉ giao hàng</title>
+    <title>Cart</title>
   </head>
   <body>
     <!-- Header -->
@@ -507,78 +508,10 @@
     <!-- End Search -->
     <!-- End Header -->
     <!-- Main -->
- <!-- Breadcrumb -->
- <div class="breadcrumb">
-  <a href="#">Trang chủ</a>
-  <span>Địa chỉ giao hàng</span>
-</div>
-<!-- Layout chính -->
-<div class="container-sidebar">
-  <!-- Sidebar -->
-  <aside class="sidebar">
-    <div class="profile">
-      <img
-        src="https://hoanghamobile.com/tin-tuc/wp-content/uploads/2024/07/anh-avatar-anime-5.jpg"
-        alt="Avatar"
-        class="avatar"
-      />
-      <h3>Tài khoản của<br /><span>Lê Tùng</span></h3>
-    </div>
-    <ul class="menu-sidebar">
-      <li>
-        <a href="customer.html">Thông tin tài khoản</a>
-      </li>
-      <li><a href="notification.html">Thông báo của tôi</a></li>
-      <li><a href="manage-order.html">Quản lý đơn hàng</a></li>
-      <li><a href="address.html" class="active">Sổ địa chỉ</a></li>
-      <li><a href="review.html">Đánh giá sản phẩm</a></li>
-      <li><a href="product-views.html">Sản phẩm bạn đã xem</a></li>
-      <li><a href="wishlist.html">Sản phẩm yêu thích</a></li>
-      <li><a href="comments.html">Nhận xét của tôi</a></li>
-      <li><a href="../index.html">Đăng xuất</a></li>
-    </ul>
-  </aside>
-  <!-- Nội dung chính -->
-  <main class="content-profile">
-    <h4>Địa chỉ giao hàng</h4>
-    <div class="container-add">
-      <div class="header-add">Sổ địa chỉ</div>
-      <div id="address-list">
-        <div class="address-card">
-          <div class="address-info">
-            <strong>TÙNG LÊ</strong>
-            <p>
-              Địa chỉ: Nguyễn Duy Trinh, Phường Bình Trưng Tây, Thành phố
-              Thủ Đức, Hồ Chí Minh
-            </p>
-            <p>Điện thoại: 0919191916</p>
-          </div>
-          <a href="#" class="edit-link">Chỉnh sửa</a>
-        </div>
-      </div>
-
-      <button id="add-address" class="add-address">
-        + Thêm địa chỉ mới
-      </button>
-    </div>
-
-    <div class="modal" id="edit-modal">
-      <div class="modal-content">
-        <h2>Chỉnh sửa địa chỉ</h2>
-        <label for="edit-name">Tên</label>
-        <input type="text" id="edit-name" />
-        <label for="edit-address">Địa chỉ</label>
-        <input type="text" id="edit-address" />
-        <label for="edit-phone">Số điện thoại</label>
-        <input type="text" id="edit-phone" />
-        <button id="save-btn">Lưu</button>
-        <button class="cancel" id="cancel-btn">Hủy</button>
-      </div>
-    </div>
-  </main>
-</div>
-
-<!-- End Main -->
+    <div class="cart-container">
+      <a href="#" class="back-link">← Quay lại</a>
+      <div class="box-finish"><span>Bạn đã thanh toán thành công !!!! <br> Thanks by  DIAMOND STORE</span></div>
+  </div>
     <!-- End Main -->
     <!-- Footer -->
 
@@ -688,9 +621,7 @@
         </div>
       </div>
     </footer>
-     <!-- End Sản Phảm Tương Tự -->
-     <script src="../assets/js/address-reset.js"></script>
-     <script src="../assets/js/profile.js"></script>
-     <script src="../assets/js/search.js"></script>
+    <script src="../assets/js/cart.js"></script>
+    <script src="../assets/js/search.js"></script>
   </body>
 </html>

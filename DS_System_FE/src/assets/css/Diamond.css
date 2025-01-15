@@ -291,7 +291,7 @@ button:hover {
 }
 .header hr {
   margin-top: -10px;
-  width: 1300px;
+  /* width: 1300px; */
   border: 0.01px solid #e6e3e3;
   position: absolute;
   left: 50px;

@@ -716,7 +716,9 @@
   flex-direction: column;
   width: 100%;
 }
-
+.container-sidebar .content-profile .container{
+  margin-top: 30px;
+}
 /* End */
 /* End Main */
 /* Footer */

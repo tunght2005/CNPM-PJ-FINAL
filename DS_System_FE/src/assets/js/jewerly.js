@@ -12,15 +12,15 @@ const handleChangeSlide = () => {
         current = 0
        listImage.style.transition  = 'none'
        listImage.style.transform = `translateX(0)`
-       document.querySelector('.active').classList.remove('active')
-       document.querySelector('.index-item-' + current).classList.add('active')
+       document.querySelector('.active1').classList.remove('active1')
+       document.querySelector('.index-item-' + current).classList.add('active1')
        setTimeout(() =>{
         listImage.style.transition  = 'transform 0.5s ease-in-out'
        },50)
     }else {
     listImage.style.transform = `translateX(${-width *current}px)`
-    document.querySelector('.active').classList.remove('active')
-    document.querySelector('.index-item-' + current).classList.add('active')
+    document.querySelector('.active1').classList.remove('active1')
+    document.querySelector('.index-item-' + current).classList.add('active1')
     }
 }
 let handleEventChangeSlide = setInterval(handleChangeSlide,3000)
@@ -37,15 +37,15 @@ btnLeft.addEventListener('click', () =>{
     if (current < 0){
         current = length -1
        listImage.style.transform = `translateX(${-width * current}px)`
-       document.querySelector('.active').classList.remove('active')
-       document.querySelector('.index-item-' + current).classList.add('active')
+       document.querySelector('.active1').classList.remove('active1')
+       document.querySelector('.index-item-' + current).classList.add('active1')
        setTimeout(() =>{
         listImage.style.transition  = 'transform 0.5s ease-in-out'
        },50)
     }else {
     listImage.style.transform = `translateX(${-width *current}px)`
-    document.querySelector('.active').classList.remove('active')
-    document.querySelector('.index-item-' + current).classList.add('active')
+    document.querySelector('.active1').classList.remove('active1')
+    document.querySelector('.index-item-' + current).classList.add('active1')
     }
     handleEventChangeSlide = setInterval(handleChangeSlide,3000)
 })

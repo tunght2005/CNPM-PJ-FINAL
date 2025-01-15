@@ -7,9 +7,32 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css"
     />
-    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-    <link rel="stylesheet" href="jewelry.css" />
-    <title>HEADER_FOOTER</title>
+    <link rel="stylesheet" href="../assets/css/jewelry.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
+    />
+     <!-- Favicon -->
+     <link
+     rel="apple-touch-icon"
+     sizes="180x180"
+     href="../favicon_io/apple-touch-icon.png"
+   />
+   <link
+     rel="icon"
+     type="image/png"
+     sizes="32x32"
+     href="../favicon_io/favicon-32x32.png"
+   />
+   <link
+     rel="icon"
+     type="image/png"
+     sizes="16x16"
+     href="../favicon_io/favicon-16x16.png"
+   />
+   <link rel="manifest" href="../favicon_io/site.webmanifest" />
+   <!-- End -->
+    <title>Diamond Shop</title>
   </head>
   <body>
     <!-- Header -->
@@ -17,14 +40,14 @@
       <div class="container">
         <div class="right-info">
           <a href="#"><i class="fa-solid fa-users"></i>Quan Hệ Cổ Đông</a>
-          <a href="#"><i class="fa-solid fa-map-location-dot"></i>Cửa Hàng</a>
+          <a href="Diamond.html"><i class="fa-solid fa-map-location-dot"></i>Cửa Hàng</a>
           <a href="#"><i class="fa-solid fa-headset"></i>Hotline: 18000xxxx</a>
         </div>
-        <a href="index.html"
-          ><img src="https://github.com/tunght2005/CNPM-PJ-FINAL/blob/main/Components/img/logo-page.jpg?raw=true" alt="" class="logo-header"
+        <a href="index1.html"
+          ><img src="../assets/img/img-main/logo-page.jpg" alt="" class="logo-header"
         /></a>
         <div class="left-info-shop">
-          <a href="user-card.html" class="user-card"
+          <a href="customer.html" class="user-card"
             ><i class="fa-solid fa-user"></i>Tài Khoản Của Tôi
           </a>
           <a href="cart.html" class="cart-shop">
@@ -41,13 +64,13 @@
       <nav class="nav-menu">
         <ul>
           <li>
-            <a href="#" class="menu-item" id="item-1">Trang Sức</a>
+            <a href="jewelry.html" class="menu-item" id="item-1">Trang Sức</a>
             <!-- Sub Menu -->
             <div class="sub-menu-1">
               <div class="type-menu">
                 <span>Chủng Loại</span>
-                <a href="nhan.html">Nhẫn</a><a href="bong-tai.html">Bông Tai</a><a href="lac.html">Lắc</a
-                ><a href="vong.html">Vòng</a><a href="day-chuyen.html">Dây Chuyền</a>
+                <a href="#">Nhẫn</a><a href="#">Bông Tai</a><a href="#">Lắc</a
+                ><a href="#">Vòng</a><a href="#">Dây Chuyền</a>
               </div>
               <div class="material-menu">
                 <span>Chất Liệu</span>
@@ -73,7 +96,7 @@
             </div>
           </li>
           <li>
-            <a href="#" class="menu-item" id="item-2">Trang Sức Cưới</a>
+            <a href="wedding.html" class="menu-item" id="item-2">Trang Sức Cưới</a>
             <!-- Sub Menu 2-->
             <div class="sub-menu-2">
               <div class="purpose-menu">
@@ -104,7 +127,7 @@
             </div>
           </li>
           <li>
-            <a href="#" class="menu-item" id="item-3">Đồng Hồ</a>
+            <a href="Dong-Ho.html" class="menu-item" id="item-3">Đồng Hồ</a>
             <!-- Sub Menu 3-->
             <div class="sub-menu-3">
               <div class="branch-menu">
@@ -130,7 +153,7 @@
             </div>
           </li>
           <li>
-            <a href="#" class="menu-item" id="item-4">Quà Tặng</a>
+            <a href="gift.html" class="menu-item" id="item-4">Quà Tặng</a>
             <!-- Sub Menu 4-->
             <div class="sub-menu-4">
               <div class="gift-menu">
@@ -188,17 +211,304 @@
             </div>
           </li>
           <li>
-            <a href="#" class="menu-item">Blog</a>
+            <a href="blog.html" class="menu-item">Blog</a>
           </li>
           <li>
-            <a href="#" class="menu-item">Khuyến Mãi</a>
+            <a href="sales.html" class="menu-item">Khuyến Mãi</a>
           </li>
           <input type="search" id="search-menu" placeholder="Tìm Kiếm Nhanh" />
         </ul>
       </nav>
     </header>
+    <!-- Search -->
+    <div class="search">
+      <div class="wrap-search">
+        <div class="search-container">
+          <div class="search-bar">
+            <button id="search-btn">
+              <i class="fa-solid fa-magnifying-glass"></i>
+            </button>
+            <input type="text" id="search-input" placeholder="Tìm kiếm..." />
+            <span id="search-btn-cancel">x</span>
+          </div>
+          <div class="search-main">
+            <div class="content-sale">
+              <div class="box">
+                <img
+                  src="https://cdn.pnj.io/images/image-update/layout/iconhotdeal-new.svg"
+                  alt=""
+                  class="icon-search"
+                  style="width: 15px; height: auto"
+                />
+                <h4>Ưu đãi online</h4>
+              </div>
+              <div class="tags">
+                <a href="sales.html" class="tag">Trang sức vàng ưu đãi 25%</a>
+                <a href="sales.html" class="tag">Trang sức vàng ưu đãi 40%</a>
+              </div>
+            </div>
+            <div class="rank-search">
+              <div class="box">
+                <img
+                  src="https://cdn.pnj.io/images/image-update/layout/mobile/mui_ten.svg"
+                  alt=""
+                  class="icon-search"
+                  style="width: 15px; height: auto"
+                />
+                <span>Top tìm kiếm</span>
+              </div>
+              <a href="sales.html" class="tag">Hàng Mới </a
+              ><a href="#" class="tag">Nhẫn Cưới </a
+              ><a href="#" class="tag">Vòng Cổ</a>
+            </div>
+            <div class="service-hot">
+              <div class="box">
+                <img
+                  src="https://cdn.pnj.io/images/image-update/layout/mobile/hot.svg"
+                  alt=""
+                  class="icon-search"
+                  style="width: 15px; height: auto"
+                />
+                <span>Dịch vụ hot</span>
+              </div>
+              <a class="tag" href="gift.html" class="gift">Phiếu quà tặng</a>
+            </div>
+            <div class="branch-search">
+              <div class="box">
+                <img
+                  src="https://cdn.pnj.io/images/image-update/searchbar/brand_icon.svg"
+                  alt=""
+                  class="icon-search"
+                  style="width: 15px; height: auto"
+                />
+                <span>Thương hiệu nổi bật</span>
+              </div>
+              <a href="#"
+                ><img
+                  src="https://cdn.pnj.io/images/image-update/searchbar/style.svg"
+                  alt=""
+                  class="image-branch" /></a
+              ><a href="#"
+                ><img
+                  src="https://cdn.pnj.io/images/image-update/searchbar/disney.svg"
+                  alt=""
+                  class="image-branch"
+              /></a>
+            </div>
+            <div class="product-top">
+              <div class="box">
+                <img
+                  src="https://cdn.pnj.io/images/image-update/layout/mobile/tim_kiem.svg"
+                  alt=""
+                  class="icon-search"
+                  style="width: 15px; height: auto"
+                />
+                <span>Sản phẩm được tìm kiếm nhiều nhất</span>
+              </div>
+              <div class="wrap">
+                <div class="detail">
+                  <img
+                    src="https://www.pnj.com.vn/search/_next/image?url=https%3A%2F%2Fcdn.pnj.io%2Fimages%2Fdetailed%2F222%2Fsp-gb0000y003038-bong-tai-vang-24k-pnj-1.png&w=64&q=75"
+                    alt=""
+                    style="width: 60px; height: auto"
+                  />
+                  <span class="price">9.999.999đ</span>
+                </div>
+                <div class="detail">
+                  <img
+                    src="https://www.pnj.com.vn/search/_next/image?url=https%3A%2F%2Fcdn.pnj.io%2Fimages%2Fdetailed%2F222%2Fsp-gb0000y003038-bong-tai-vang-24k-pnj-1.png&w=64&q=75"
+                    alt=""
+                    style="width: 60px; height: auto"
+                  />
+                  <span class="price">9.999.999đ</span>
+                </div>
+                <div class="detail">
+                  <img
+                    src="https://www.pnj.com.vn/search/_next/image?url=https%3A%2F%2Fcdn.pnj.io%2Fimages%2Fdetailed%2F222%2Fsp-gb0000y003038-bong-tai-vang-24k-pnj-1.png&w=64&q=75"
+                    alt=""
+                    style="width: 60px; height: auto"
+                  />
+                  <span class="price">9.999.999đ</span>
+                </div>
+                <div class="detail">
+                  <img
+                    src="https://www.pnj.com.vn/search/_next/image?url=https%3A%2F%2Fcdn.pnj.io%2Fimages%2Fdetailed%2F222%2Fsp-gb0000y003038-bong-tai-vang-24k-pnj-1.png&w=64&q=75"
+                    alt=""
+                    style="width: 60px; height: auto"
+                  />
+                  <span class="price">9.999.999đ</span>
+                </div>
+                <div class="detail">
+                  <img
+                    src="https://www.pnj.com.vn/search/_next/image?url=https%3A%2F%2Fcdn.pnj.io%2Fimages%2Fdetailed%2F222%2Fsp-gb0000y003038-bong-tai-vang-24k-pnj-1.png&w=64&q=75"
+                    alt=""
+                    style="width: 60px; height: auto"
+                  />
+                  <span class="price">9.999.999đ</span>
+                </div>
+                <div class="detail">
+                  <img
+                    src="https://www.pnj.com.vn/search/_next/image?url=https%3A%2F%2Fcdn.pnj.io%2Fimages%2Fdetailed%2F222%2Fsp-gb0000y003038-bong-tai-vang-24k-pnj-1.png&w=64&q=75"
+                    alt=""
+                    style="width: 60px; height: auto"
+                  />
+                  <span class="price">9.999.999đ</span>
+                </div>
+                <div class="detail">
+                  <img
+                    src="https://www.pnj.com.vn/search/_next/image?url=https%3A%2F%2Fcdn.pnj.io%2Fimages%2Fdetailed%2F222%2Fsp-gb0000y003038-bong-tai-vang-24k-pnj-1.png&w=64&q=75"
+                    alt=""
+                    style="width: 60px; height: auto"
+                  />
+                  <span class="price">9.999.999đ</span>
+                </div>
+                <div class="detail">
+                  <img
+                    src="https://www.pnj.com.vn/search/_next/image?url=https%3A%2F%2Fcdn.pnj.io%2Fimages%2Fdetailed%2F222%2Fsp-gb0000y003038-bong-tai-vang-24k-pnj-1.png&w=64&q=75"
+                    alt=""
+                    style="width: 60px; height: auto"
+                  />
+                  <span class="price">9.999.999đ</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="search-sub">
+            <div class="content-search">
+              <img
+                style="width: 80px; height: auto"
+                src="https://cdn.pnj.io/images/thumbnails/485/485/detailed/204/sp-gmdd00w000634-mat-day-chuyen-kim-cuong-vang-trang-14k-pnj-chu-a-1.png"
+                alt=""
+              />
+              <div class="title-product">
+                <span class="name-product">Vòng Vàng 18k </span>
+                <div class="detail-product">
+                  <span class="price">9.999.999đ</span>
+                  <span class="stock">991 đã bán</span>
+                </div>
+              </div>
+            </div>
+            <div class="content-search">
+              <img
+                style="width: 80px; height: auto"
+                src="https://cdn.pnj.io/images/thumbnails/485/485/detailed/204/sp-gmdd00w000634-mat-day-chuyen-kim-cuong-vang-trang-14k-pnj-chu-a-1.png"
+                alt=""
+              />
+              <div class="title-product">
+                <span class="name-product">Vòng Vàng 18k </span>
+                <div class="detail-product">
+                  <span class="price">9.999.999đ</span>
+                  <span class="stock">992 đã bán</span>
+                </div>
+              </div>
+            </div>
+            <div class="content-search">
+              <img
+                style="width: 80px; height: auto"
+                src="https://cdn.pnj.io/images/thumbnails/485/485/detailed/204/sp-gmdd00w000634-mat-day-chuyen-kim-cuong-vang-trang-14k-pnj-chu-a-1.png"
+                alt=""
+              />
+              <div class="title-product">
+                <span class="name-product">Vòng Vàng 18k </span>
+                <div class="detail-product">
+                  <span class="price">9.999.999đ</span>
+                  <span class="stock">993 đã bán</span>
+                </div>
+              </div>
+            </div>
+            <div class="content-search">
+              <img
+                style="width: 80px; height: auto"
+                src="https://cdn.pnj.io/images/thumbnails/485/485/detailed/204/sp-gmdd00w000634-mat-day-chuyen-kim-cuong-vang-trang-14k-pnj-chu-a-1.png"
+                alt=""
+              />
+              <div class="title-product">
+                <span class="name-product">Vòng Vàng 18k </span>
+                <div class="detail-product">
+                  <span class="price">9.999.999đ</span>
+                  <span class="stock">994 đã bán</span>
+                </div>
+              </div>
+            </div>
+            <div class="content-search">
+              <img
+                style="width: 80px; height: auto"
+                src="https://cdn.pnj.io/images/thumbnails/485/485/detailed/204/sp-gmdd00w000634-mat-day-chuyen-kim-cuong-vang-trang-14k-pnj-chu-a-1.png"
+                alt=""
+              />
+              <div class="title-product">
+                <span class="name-product">Vòng Vàng 18k </span>
+                <div class="detail-product">
+                  <span class="price">9.999.999đ</span>
+                  <span class="stock">995 đã bán</span>
+                </div>
+              </div>
+            </div>
+            <div class="content-search">
+              <img
+                style="width: 80px; height: auto"
+                src="https://cdn.pnj.io/images/thumbnails/485/485/detailed/204/sp-gmdd00w000634-mat-day-chuyen-kim-cuong-vang-trang-14k-pnj-chu-a-1.png"
+                alt=""
+              />
+              <div class="title-product">
+                <span class="name-product">Vòng Vàng 18k </span>
+                <div class="detail-product">
+                  <span class="price">9.999.999đ</span>
+                  <span class="stock">996 đã bán</span>
+                </div>
+              </div>
+            </div>
+            <div class="content-search">
+              <img
+                style="width: 80px; height: auto"
+                src="https://cdn.pnj.io/images/thumbnails/485/485/detailed/204/sp-gmdd00w000634-mat-day-chuyen-kim-cuong-vang-trang-14k-pnj-chu-a-1.png"
+                alt=""
+              />
+              <div class="title-product">
+                <span class="name-product">Vòng Vàng 18k </span>
+                <div class="detail-product">
+                  <span class="price">9.999.999đ</span>
+                  <span class="stock">997 đã bán</span>
+                </div>
+              </div>
+            </div>
+            <div class="content-search">
+              <img
+                style="width: 80px; height: auto"
+                src="https://cdn.pnj.io/images/thumbnails/485/485/detailed/204/sp-gmdd00w000634-mat-day-chuyen-kim-cuong-vang-trang-14k-pnj-chu-a-1.png"
+                alt=""
+              />
+              <div class="title-product">
+                <span class="name-product">Vòng Vàng 18k </span>
+                <div class="detail-product">
+                  <span class="price">9.999.999đ</span>
+                  <span class="stock">998 đã bán</span>
+                </div>
+              </div>
+            </div>
+            <div class="content-search">
+              <img
+                style="width: 80px; height: auto"
+                src="https://cdn.pnj.io/images/thumbnails/485/485/detailed/204/sp-gmdd00w000634-mat-day-chuyen-kim-cuong-vang-trang-14k-pnj-chu-a-1.png"
+                alt=""
+              />
+              <div class="title-product">
+                <span class="name-product">Vòng Vàng 18k </span>
+                <div class="detail-product">
+                  <span class="price">9.999.999đ</span>
+                  <span class="stock">999 đã bán</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- End Search -->
+    <!-- End Header -->
+    <!-- Main -->
     <!-- tiêu đề -->
-     <div class="slide-show">
+    <div class="slide-show">
       <div class="list-images">
         <img src="https://cdn.pnj.io/images/promo/231/ngaydoi-12-12-24-1972x640CTA.jpg" alt="" style="width: 100%;">
         <img src="https://cdn.pnj.io/images/promo/231/xmas-24-1972x640-cta.jpg" alt="" style="width: 100%;">
@@ -482,294 +792,6 @@
             </div>
           </div>
     </section>
-    <!-- Search -->
-    <div class="search">
-      <div class="wrap-search">
-        <div class="search-container">
-          <div class="search-bar">
-            <button id="search-btn">
-              <i class="fa-solid fa-magnifying-glass"></i>
-            </button>
-            <input type="text" id="search-input" placeholder="Tìm kiếm..." />
-            <span id="search-btn-cancel">x</span>
-          </div>
-          <div class="search-main">
-            <div class="content-sale">
-              <div class="box">
-                <img
-                  src="https://cdn.pnj.io/images/image-update/layout/iconhotdeal-new.svg"
-                  alt=""
-                  class="icon-search"
-                  style="width: 15px; height: auto"
-                />
-                <h4>Ưu đãi online</h4>
-              </div>
-              <div class="tags">
-                <a href="#" class="tag">Trang sức vàng ưu đãi 25%</a>
-                <a href="#" class="tag">Trang sức vàng ưu đãi 40%</a>
-              </div>
-            </div>
-            <div class="rank-search">
-              <div class="box">
-                <img
-                  src="https://cdn.pnj.io/images/image-update/layout/mobile/mui_ten.svg"
-                  alt=""
-                  class="icon-search"
-                  style="width: 15px; height: auto"
-                />
-                <span>Top tìm kiếm</span>
-              </div>
-              <a href="#" class="tag">Hàng Mới </a
-              ><a href="#" class="tag">Nhẫn Cưới </a
-              ><a href="#" class="tag">Vòng Cổ</a>
-            </div>
-            <div class="service-hot">
-              <div class="box">
-                <img
-                  src="https://cdn.pnj.io/images/image-update/layout/mobile/hot.svg"
-                  alt=""
-                  class="icon-search"
-                  style="width: 15px; height: auto"
-                />
-                <span>Dịch vụ hot</span>
-              </div>
-              <a class="tag" href="gift.html" class="gift">Phiếu quà tặng</a>
-            </div>
-            <div class="branch-search">
-              <div class="box">
-                <img
-                  src="https://cdn.pnj.io/images/image-update/searchbar/brand_icon.svg"
-                  alt=""
-                  class="icon-search"
-                  style="width: 15px; height: auto"
-                />
-                <span>Thương hiệu nổi bật</span>
-              </div>
-              <a href="#"
-                ><img
-                  src="https://cdn.pnj.io/images/image-update/searchbar/style.svg"
-                  alt=""
-                  class="image-branch" /></a
-              ><a href="#"
-                ><img
-                  src="https://cdn.pnj.io/images/image-update/searchbar/disney.svg"
-                  alt=""
-                  class="image-branch"
-              /></a>
-            </div>
-            <div class="product-top">
-              <div class="box">
-                <img
-                  src="https://cdn.pnj.io/images/image-update/layout/mobile/tim_kiem.svg"
-                  alt=""
-                  class="icon-search"
-                  style="width: 15px; height: auto"
-                />
-                <span>Sản phẩm được tìm kiếm nhiều nhất</span>
-              </div>
-              <div class="wrap">
-                <div class="detail">
-                  <img
-                    src="https://www.pnj.com.vn/search/_next/image?url=https%3A%2F%2Fcdn.pnj.io%2Fimages%2Fdetailed%2F222%2Fsp-gb0000y003038-bong-tai-vang-24k-pnj-1.png&w=64&q=75"
-                    alt=""
-                    style="width: 60px; height: auto"
-                  />
-                  <span class="price">9.999.999đ</span>
-                </div>
-                <div class="detail">
-                  <img
-                    src="https://www.pnj.com.vn/search/_next/image?url=https%3A%2F%2Fcdn.pnj.io%2Fimages%2Fdetailed%2F222%2Fsp-gb0000y003038-bong-tai-vang-24k-pnj-1.png&w=64&q=75"
-                    alt=""
-                    style="width: 60px; height: auto"
-                  />
-                  <span class="price">9.999.999đ</span>
-                </div>
-                <div class="detail">
-                  <img
-                    src="https://www.pnj.com.vn/search/_next/image?url=https%3A%2F%2Fcdn.pnj.io%2Fimages%2Fdetailed%2F222%2Fsp-gb0000y003038-bong-tai-vang-24k-pnj-1.png&w=64&q=75"
-                    alt=""
-                    style="width: 60px; height: auto"
-                  />
-                  <span class="price">9.999.999đ</span>
-                </div>
-                <div class="detail">
-                  <img
-                    src="https://www.pnj.com.vn/search/_next/image?url=https%3A%2F%2Fcdn.pnj.io%2Fimages%2Fdetailed%2F222%2Fsp-gb0000y003038-bong-tai-vang-24k-pnj-1.png&w=64&q=75"
-                    alt=""
-                    style="width: 60px; height: auto"
-                  />
-                  <span class="price">9.999.999đ</span>
-                </div>
-                <div class="detail">
-                  <img
-                    src="https://www.pnj.com.vn/search/_next/image?url=https%3A%2F%2Fcdn.pnj.io%2Fimages%2Fdetailed%2F222%2Fsp-gb0000y003038-bong-tai-vang-24k-pnj-1.png&w=64&q=75"
-                    alt=""
-                    style="width: 60px; height: auto"
-                  />
-                  <span class="price">9.999.999đ</span>
-                </div>
-                <div class="detail">
-                  <img
-                    src="https://www.pnj.com.vn/search/_next/image?url=https%3A%2F%2Fcdn.pnj.io%2Fimages%2Fdetailed%2F222%2Fsp-gb0000y003038-bong-tai-vang-24k-pnj-1.png&w=64&q=75"
-                    alt=""
-                    style="width: 60px; height: auto"
-                  />
-                  <span class="price">9.999.999đ</span>
-                </div>
-                <div class="detail">
-                  <img
-                    src="https://www.pnj.com.vn/search/_next/image?url=https%3A%2F%2Fcdn.pnj.io%2Fimages%2Fdetailed%2F222%2Fsp-gb0000y003038-bong-tai-vang-24k-pnj-1.png&w=64&q=75"
-                    alt=""
-                    style="width: 60px; height: auto"
-                  />
-                  <span class="price">9.999.999đ</span>
-                </div>
-                <div class="detail">
-                  <img
-                    src="https://www.pnj.com.vn/search/_next/image?url=https%3A%2F%2Fcdn.pnj.io%2Fimages%2Fdetailed%2F222%2Fsp-gb0000y003038-bong-tai-vang-24k-pnj-1.png&w=64&q=75"
-                    alt=""
-                    style="width: 60px; height: auto"
-                  />
-                  <span class="price">9.999.999đ</span>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="search-sub">
-            <div class="content-search">
-              <img
-                style="width: 80px; height: auto"
-                src="https://cdn.pnj.io/images/thumbnails/485/485/detailed/204/sp-gmdd00w000634-mat-day-chuyen-kim-cuong-vang-trang-14k-pnj-chu-a-1.png"
-                alt=""
-              />
-              <div class="title-product">
-                <span class="name-product">Vòng Vàng 18k </span>
-                <div class="detail-product">
-                  <span class="price">9.999.999đ</span>
-                  <span class="stock">991 đã bán</span>
-                </div>
-              </div>
-            </div>
-            <div class="content-search">
-              <img
-                style="width: 80px; height: auto"
-                src="https://cdn.pnj.io/images/thumbnails/485/485/detailed/204/sp-gmdd00w000634-mat-day-chuyen-kim-cuong-vang-trang-14k-pnj-chu-a-1.png"
-                alt=""
-              />
-              <div class="title-product">
-                <span class="name-product">Vòng Vàng 18k </span>
-                <div class="detail-product">
-                  <span class="price">9.999.999đ</span>
-                  <span class="stock">992 đã bán</span>
-                </div>
-              </div>
-            </div>
-            <div class="content-search">
-              <img
-                style="width: 80px; height: auto"
-                src="https://cdn.pnj.io/images/thumbnails/485/485/detailed/204/sp-gmdd00w000634-mat-day-chuyen-kim-cuong-vang-trang-14k-pnj-chu-a-1.png"
-                alt=""
-              />
-              <div class="title-product">
-                <span class="name-product">Vòng Vàng 18k </span>
-                <div class="detail-product">
-                  <span class="price">9.999.999đ</span>
-                  <span class="stock">993 đã bán</span>
-                </div>
-              </div>
-            </div>
-            <div class="content-search">
-              <img
-                style="width: 80px; height: auto"
-                src="https://cdn.pnj.io/images/thumbnails/485/485/detailed/204/sp-gmdd00w000634-mat-day-chuyen-kim-cuong-vang-trang-14k-pnj-chu-a-1.png"
-                alt=""
-              />
-              <div class="title-product">
-                <span class="name-product">Vòng Vàng 18k </span>
-                <div class="detail-product">
-                  <span class="price">9.999.999đ</span>
-                  <span class="stock">994 đã bán</span>
-                </div>
-              </div>
-            </div>
-            <div class="content-search">
-              <img
-                style="width: 80px; height: auto"
-                src="https://cdn.pnj.io/images/thumbnails/485/485/detailed/204/sp-gmdd00w000634-mat-day-chuyen-kim-cuong-vang-trang-14k-pnj-chu-a-1.png"
-                alt=""
-              />
-              <div class="title-product">
-                <span class="name-product">Vòng Vàng 18k </span>
-                <div class="detail-product">
-                  <span class="price">9.999.999đ</span>
-                  <span class="stock">995 đã bán</span>
-                </div>
-              </div>
-            </div>
-            <div class="content-search">
-              <img
-                style="width: 80px; height: auto"
-                src="https://cdn.pnj.io/images/thumbnails/485/485/detailed/204/sp-gmdd00w000634-mat-day-chuyen-kim-cuong-vang-trang-14k-pnj-chu-a-1.png"
-                alt=""
-              />
-              <div class="title-product">
-                <span class="name-product">Vòng Vàng 18k </span>
-                <div class="detail-product">
-                  <span class="price">9.999.999đ</span>
-                  <span class="stock">996 đã bán</span>
-                </div>
-              </div>
-            </div>
-            <div class="content-search">
-              <img
-                style="width: 80px; height: auto"
-                src="https://cdn.pnj.io/images/thumbnails/485/485/detailed/204/sp-gmdd00w000634-mat-day-chuyen-kim-cuong-vang-trang-14k-pnj-chu-a-1.png"
-                alt=""
-              />
-              <div class="title-product">
-                <span class="name-product">Vòng Vàng 18k </span>
-                <div class="detail-product">
-                  <span class="price">9.999.999đ</span>
-                  <span class="stock">997 đã bán</span>
-                </div>
-              </div>
-            </div>
-            <div class="content-search">
-              <img
-                style="width: 80px; height: auto"
-                src="https://cdn.pnj.io/images/thumbnails/485/485/detailed/204/sp-gmdd00w000634-mat-day-chuyen-kim-cuong-vang-trang-14k-pnj-chu-a-1.png"
-                alt=""
-              />
-              <div class="title-product">
-                <span class="name-product">Vòng Vàng 18k </span>
-                <div class="detail-product">
-                  <span class="price">9.999.999đ</span>
-                  <span class="stock">998 đã bán</span>
-                </div>
-              </div>
-            </div>
-            <div class="content-search">
-              <img
-                style="width: 80px; height: auto"
-                src="https://cdn.pnj.io/images/thumbnails/485/485/detailed/204/sp-gmdd00w000634-mat-day-chuyen-kim-cuong-vang-trang-14k-pnj-chu-a-1.png"
-                alt=""
-              />
-              <div class="title-product">
-                <span class="name-product">Vòng Vàng 18k </span>
-                <div class="detail-product">
-                  <span class="price">9.999.999đ</span>
-                  <span class="stock">999 đã bán</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <!-- End Search -->
-    <!-- End Header -->
-    <!-- Main -->
-    <main></main>
     <!-- End Main -->
     <!-- Footer -->
 
@@ -777,7 +799,11 @@
       <hr />
       <div class="container">
         <!-- Logo -->
-        <img style="width: 400px;" src="https://github.com/tunght2005/CNPM-PJ-FINAL/blob/main/Components/img/logo-page.jpg?raw=true" alt="" class="logo-footer" />
+        <img
+          src="../assets/img/img-main/logo-page.jpg"
+          alt=""
+          class="logo-footer"
+        />
         <div class="wrap-content">
           <!-- Content Cty -->
           <div class="content-footer">
@@ -801,20 +827,20 @@
           <div class="intro-footer">
             <span>VỀ D & C</span>
             <a href="#">Tuyển Dụng</a>
-            <a href="#">Kiểm định kim cương</a>
-            <a href="#">Quà tặng</a>
+            <a href="inspection.html">Kiểm định kim cương</a>
+            <a href="gift.html">Quà tặng</a>
           </div>
           <!-- Dịch vụ, chính sách -->
           <div class="use-footer">
             <span>DỊCH VỤ KHÁCH HÀNG</span>
-            <a href="#">Hướng dẫn đo size trang sức</a>
-            <a href="#">Hướng dân mua và thanh toán</a>
-            <a href="#">Cẩm nang sử dụng trang sức</a>
-            <a href="#">Câu hỏi thường gặp</a>
+            <a href="huong_dan_do_size.html">Hướng dẫn đo size trang sức</a>
+            <a href="buy-bill.html">Hướng dân mua và thanh toán</a>
+            <a href="cam_nang.html">Cẩm nang sử dụng trang sức</a>
+            <a href="Cau-Hoi-Thuong-Gap.html">Câu hỏi thường gặp</a>
             <span>TỔNG HỢP CÁC CHÍNH SÁCH D&C</span>
-            <a href="#">Chính sách giao hàng</a>
-            <a href="#">Chính sách bảo hành</a>
-            <a href="#">Chính sách bảo mật thông tin</a>
+            <a href="chinhsachGH.html">Chính sách giao hàng</a>
+            <a href="Chính-Sach-Bao-Hanh.html">Chính sách bảo hành</a>
+            <a href="baomattt.html">Chính sách bảo mật thông tin</a>
           </div>
           <!-- Link social -->
           <div class="social-footer">
@@ -875,61 +901,7 @@
         </div>
       </div>
     </footer>
-    <script src="search.js"></script>
-    <script src="jewerly.js"></script>
-    <script>
-      const listImage = document.querySelector('.list-images')
-const imgs= document.querySelectorAll('.list-images img')
-const length = imgs.length
-const width = imgs[0].offsetWidth
-const btnLeft = document.querySelector('.btn-left')
-const btnRight = document.querySelector('.btn-right')
-let current = 0
-
-const handleChangeSlide = () => {
-    current++
-    if (current >= length ){
-        current = 0
-       listImage.style.transition  = 'none'
-       listImage.style.transform = `translateX(0)`
-       document.querySelector('.active').classList.remove('active')
-       document.querySelector('.index-item-' + current).classList.add('active')
-       setTimeout(() =>{
-        listImage.style.transition  = 'transform 0.5s ease-in-out'
-       },50)
-    }else {
-    listImage.style.transform = `translateX(${-width *current}px)`
-    document.querySelector('.active').classList.remove('active')
-    document.querySelector('.index-item-' + current).classList.add('active')
-    }
-}
-let handleEventChangeSlide = setInterval(handleChangeSlide,3000)
-
-btnRight.addEventListener('click', () =>{
-    clearInterval(handleEventChangeSlide)
-    handleChangeSlide()
-    handleEventChangeSlide = setInterval(handleChangeSlide,3000)
-})
-
-btnLeft.addEventListener('click', () =>{
-    clearInterval(handleEventChangeSlide)
-    current--
-    if (current < 0){
-        current = length -1
-       listImage.style.transform = `translateX(${-width * current}px)`
-       document.querySelector('.active').classList.remove('active')
-       document.querySelector('.index-item-' + current).classList.add('active')
-       setTimeout(() =>{
-        listImage.style.transition  = 'transform 0.5s ease-in-out'
-       },50)
-    }else {
-    listImage.style.transform = `translateX(${-width *current}px)`
-    document.querySelector('.active').classList.remove('active')
-    document.querySelector('.index-item-' + current).classList.add('active')
-    }
-    handleEventChangeSlide = setInterval(handleChangeSlide,3000)
-})
-
-    </script>
+    <script src="../assets/js/search.js"></script>
+    <script src="../assets/js/jewerly.js"></script>
   </body>
 </html>

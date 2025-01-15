@@ -6,6 +6,7 @@
   --color-strong: #050404;
   --color-search: rgb(68, 68, 68);
   --color-price: #b08608;
+  --color-sell: #003868;
 }
 * {
   text-decoration: none;
@@ -22,7 +23,7 @@
 }
 .header hr {
   margin-top: -10px;
-  width: 1300px;
+  /* width: 1300px; */
   border: 0.01px solid #e6e3e3;
   position: absolute;
   left: 50px;
@@ -614,49 +615,14 @@
   font-size: 14px;
   font-weight: 600;
 }
+/* End Seach */
+/* Menu */
+/* End Menu */
 
-main {
-  max-width: 1200px;
-  margin: 20px auto;
-  padding: 0 20px;
-}
+/* End Header */
+/* Main */
 
-.blog-list {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 20px;
-}
-
-.blog-post {
-  background: #fff;
-  border: 1px solid #ddd;
-  border-radius: 5px;
-  padding: 15px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-}
-
-.blog-post img {
-  width: 100%;
-  border-radius: 5px;
-}
-
-.blog-post h2 {
-  font-size: 20px;
-  margin: 15px 0 10px;
-}
-
-.blog-post p {
-  margin: 0 0 10px;
-}
-
-.blog-post a {
-  color: #007bff;
-  text-decoration: none;
-}
-
-.blog-post a:hover {
-  text-decoration: underline;
-}
+/* End Main */
 /* Footer */
 .footer {
   width: 1200px;
@@ -735,4 +701,311 @@ main {
   height: auto;
 }
 /* End Footer */
+/* 3333 */
+.ty-breadcrumbs {
+  display: flex;
+  justify-content: center; /* Căn giữa toàn bộ breadcrumb */
+  align-items: center; /* Căn giữa theo chiều dọc */
+  gap: 8px; /* Khoảng cách giữa các phần tử */
+}
 
+.ty-breadcrumbs__a {
+  text-decoration: none;
+  color: #989696; /* Màu chữ của 'Trang chủ' */
+  font-size: 16px;
+}
+
+.ty-breadcrumbs__slash {
+  font-size: 16px;
+  color: #000;
+}
+
+.ty-breadcrumbs__current {
+  font-size: 16px;
+  font-weight: normal;
+  color: #0c0b0b; /* Màu chữ của 'Trang Sức Cưới' */
+}
+
+/* Carousel */
+.carousel-container {
+  position: relative;
+  width: 75%; /* Đặt chiều rộng của carousel là 75% */
+  margin: 0 auto; /* Xóa margin trên và dưới để carousel gần sát với phần trên */
+  padding-top: 0; /* Xóa khoảng cách trên của carousel */
+  overflow: hidden; /* Ẩn phần thừa bên ngoài carousel */
+  z-index: 0; /* Đảm bảo carousel nằm dưới menu */
+}
+
+.carousel {
+  display: flex;
+  transition: transform 0.5s ease-in-out;
+}
+
+.carousel-image {
+  width: 100%; /* Mỗi ảnh chiếm 100% chiều rộng của carousel */
+  height: auto;
+}
+
+.carousel-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 30px;
+  color: white;
+  background-color: rgba(0, 0, 0, 0.5);
+  padding: 10px;
+  cursor: pointer;
+  z-index: 2; /* Đảm bảo mũi tên ở trên cùng carousel */
+}
+
+.left-arrow {
+  left: 0;
+}
+
+.right-arrow {
+  right: 0;
+}
+
+#list1 {
+  display: flex;            /* Sử dụng flexbox để hiển thị các sản phẩm theo dòng */
+  flex-wrap: wrap;          /* Cho phép các sản phẩm xuống dòng nếu không đủ chỗ */
+  justify-content: center;  /* Căn giữa các sản phẩm trong container */
+  gap: 20px;                /* Khoảng cách giữa các sản phẩm */
+  margin: 0 auto;           /* Căn giữa container trên trang */
+  max-width: 75%;           /* Chiếm 75% chiều rộng của trang */
+}
+
+/* Thùng chứa sản phẩm */
+.TSC {
+  width: calc(33.33% - 20px);  /* Mỗi sản phẩm chiếm 1/3 chiều rộng của container (cộng với khoảng cách) */
+  text-align: center;          /* Căn giữa nội dung trong mỗi sản phẩm */
+  margin: 10px 0;              /* Khoảng cách trên và dưới */
+  border: 1px solid #ddd;     /* Đường viền nhẹ cho mỗi sản phẩm */
+  border-radius: 5px;         /* Bo tròn các góc của sản phẩm */
+  overflow: hidden;           /* Ẩn phần thừa nếu có */
+  padding: 10px;              /* Padding cho các sản phẩm */
+  box-sizing: border-box;     /* Đảm bảo padding không làm thay đổi kích thước tổng thể */
+}
+
+/* Hình ảnh sản phẩm */
+.TSC img {
+  width: 100%;               /* Đảm bảo hình ảnh chiếm toàn bộ chiều rộng của sản phẩm */
+  height: auto;              /* Giữ tỷ lệ của ảnh */
+  object-fit: cover;         /* Đảm bảo hình ảnh phủ hết vùng chứa mà không bị méo */
+}
+
+/* Tên sản phẩm */
+.TSC h3 {
+  font-size: 16px;
+  margin: 10px 0;
+  font-weight: bold;
+}
+
+/* Giá sản phẩm */
+.TSC h4 {
+  font-size: 14px;
+  color: #f00;
+  margin: 0;
+}
+
+/* WWW */
+.container-row {
+  position: relative;
+  width: 100%;
+  max-width: 1200px;
+  margin: 50px auto;
+  overflow: hidden;
+}
+.row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 50px;
+  position: relative;
+}
+.poster {
+  position: relative;
+  display: flex;
+  align-items: center;
+  background-color: #fff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+  padding: 20px;
+  width: 220px;
+  height: 200px;
+  opacity: 0; /* Khởi đầu ẩn */
+}
+.poster img {
+  width: 80px;
+  height: auto;
+  margin-right: 10px;
+  border-radius: 8px;
+}
+.poster-content {
+  flex: 1;
+}
+.poster-content h2 {
+  margin: 0 0 10px;
+  font-size: 18px;
+}
+.poster-content p {
+  margin: 0;
+  font-size: 14px;
+}
+
+/* Animation xuất hiện */
+@keyframes moveInLeft {
+  from {
+      transform: translateX(-100%);
+      opacity: 0;
+  }
+  to {
+      transform: translateX(0);
+      opacity: 1;
+  }
+}
+@keyframes moveInRight {
+  from {
+      transform: translateX(100%);
+      opacity: 0;
+  }
+  to {
+      transform: translateX(0);
+      opacity: 1;
+  }
+}
+
+
+.shipping-policy {
+  width: 80%;
+  margin: 20px auto;
+  padding: 20px;
+  background-color: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.accordion {
+  background-color: #f5f5f5;
+  color: #333;
+  padding: 15px;
+  font-size: 18px;
+  cursor: pointer;
+  border: 1px solid #f8f4f4;
+  margin-bottom: 15px;
+  text-align: left;
+  border-radius: 5px;
+  transition: background-color 0.3s ease, border 0.3s ease;
+}
+
+.accordion:hover {
+  background-color: #eaeaea;
+  border-color: #ccc;
+}
+
+.accordion:after {
+  content: '\25BC'; /* Mũi tên xuống */
+  float: right;
+  font-size: 14px;
+  transition: transform 0.3s ease;
+}
+
+.accordion.active:after {
+  transform: rotate(180deg); /* Xoay mũi tên lên */
+}
+
+.panel {
+  display: none;
+  padding: 15px;
+  background-color: #ffffff;
+  margin-top: -10px;
+  margin-bottom: 10px;
+  border-left: 4px solid #ddd;
+  border-radius: 0 0 5px 5px;
+  box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.05);
+  font-size: 16px;
+}
+
+.panel.show {
+  display: block;
+}
+
+/* Khoảng cách giữa các phần nội dung */
+.section {
+  padding: 20px;
+  margin-bottom: 30px;
+  background-color: #fdfdfd;
+  border: 1px solid #e5e5e5;
+  border-radius: 10px;
+}
+
+p {
+  margin-bottom: 15px; /* Khoảng cách giữa các đoạn */
+}
+li{
+  margin-bottom: 15px;
+}
+
+/* Định dạng các tiêu đề nhỏ */
+strong {
+  color: #0056b3; /* Màu xanh hoặc màu chủ đạo của trang */
+  font-weight: bold;
+}
+
+/* Nền và viền cho phần chứa nội dung */
+.content-section {
+  background-color: #ffffff; /* Nền trắng hoặc nền nhẹ để làm nổi bật nội dung */
+  padding: 20px;
+  border: 1px solid #ddd; /* Viền nhẹ */
+  border-radius: 8px; /* Góc bo tròn */
+  margin-bottom: 20px; /* Khoảng cách với phần dưới */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Hiệu ứng bóng nhẹ */
+}
+h2.accordion {
+  background-color: #ffffff;
+  color: #000; /* Đặt màu chữ để đảm bảo dễ đọc */
+  padding: 10px;
+  border: 1px solid #ddd; /* Tùy chọn: thêm viền nếu cần */
+}
+
+/* Nền màu trắng cho các tiêu đề phụ */
+h3.accordion {
+  background-color: #ffffff;
+  color: #000; /* Đặt màu chữ */
+  padding: 8px;
+  border: 1px solid #ddd; /* Tùy chọn */
+  margin-bottom: 5px;
+}
+.general#blog.desktop .post-title, .general#mp_video .post-title {
+  font-size: 26px;
+  text-align: center;
+  font-weight: bold;
+  color: #0f3564;
+}
+.general#blog .post-title, .general#mp_video .post-title {
+  font-size: 18px;
+  line-height: 26px;
+  text-align: left;
+  color: #555;
+  margin: 10px 0;
+  text-transform: uppercase;
+}
+.general .ty-tygh h1 {
+  font-size: 22px;
+}
+
+h1 {
+  font-size: 2em;
+  margin: 0.67em 0;
+  text-align: center;
+}
+
+h1 {
+  display: block;
+  font-size: 2em;
+  margin-block-start: 0.67em;
+  margin-block-end: 0.67em;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+  font-weight: bold;
+  unicode-bidi: isolate;
+}

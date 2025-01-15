@@ -621,23 +621,19 @@
 
 /* End Header */
 /* Main */
-main {
-  width: 100%;
-  height: 50px;
-  background: rgb(255, 255, 255);
-  margin-bottom: 0px;
-}
+
 .list-images{
   display: flex;
   transition: 0.5s;
 }
 .slide-show{
   width: 100%;
-  max-width: 1800px;
   background-color: aqua;
   display: flex;
   overflow: hidden;
   position: relative;
+  align-items: center;
+  margin: 30px 0;
 }
 .slide-show img{
   width: 100%;
@@ -678,7 +674,7 @@ main {
   margin: 8px;
   border-radius: 50%;
 }
-.active{
+.active1{
   background-color: black;
 }
 .nav-menu ul li .sub-menu-1,
@@ -719,32 +715,33 @@ main {
   padding: 5px;
   width: 80%; /* Điều chỉnh chiều rộng khung */
   max-width: 1200px; /* Giới hạn chiều rộng tối đa */
-  border: 1px solid #ccc;
   border-radius: 10px;
-  background-color: #f9f9f9;
 }
 .item{
-  flex: 1; /* Mỗi item chiếm 1 phần không gian đều */
-  min-width: 100px; /* Đảm bảo mỗi item có chiều rộng tối thiểu */
   box-sizing: border-box;
-  padding: 5px; /* Giảm padding trong các phần tử con */
   background-color: #fff;
-  border: 1px solid #ddd;
+}
+select{
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  cursor: pointer;
+}
+.item-submit {
+  color: #fff;
+  border: none;
   border-radius: 5px;
+  margin: auto 0;
+}
+.item-submit button {
+  padding: 10px;
+  border-radius: 10px;
+  cursor: pointer;
 }
 option{
   font-family: Arial;
 }
 
-/* Tổng quan */
-body {
-  font-family: Arial, sans-serif;
-  line-height: 1.6;
-  margin: 0;
-  padding: 0;
-  /* background-color: #f4f4f9; */
-  color: #333;
-}
 
 h2 {
   text-align: center;
