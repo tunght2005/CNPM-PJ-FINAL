@@ -121,10 +121,11 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
 import os
-
+STATIC_ROOT = BASE_DIR / 'productionfiles'
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, "Diamond_management_app", "static"),
+    # os.path.join(BASE_DIR, "Diamond_management_app", "static"),
+    BASE_DIR / 'Diamond_management_app/static/Diamond_management_app/css',
 ]
 
 
