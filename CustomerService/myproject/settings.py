@@ -54,12 +54,12 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'myproject.urls'
-
+import os
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
-        'APP_DIRS': True,
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],  # Thêm thư mục templates
+        'APP_DIRS': True,  # Cho phép Django tìm template trong thư mục app/templates
         'OPTIONS': {
             'context_processors': [
                 'django.template.context_processors.debug',
@@ -78,9 +78,13 @@ WSGI_APPLICATION = 'myproject.wsgi.application'
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+    "default": {
+        "ENGINE": "django.db.backends.mysql",
+        "NAME": "db",
+        "USER": "root",
+        "PASSWORD": "1234",
+        "HOST": "127.0.0.1",
+        "PORT": "3307",
     }
 }
 

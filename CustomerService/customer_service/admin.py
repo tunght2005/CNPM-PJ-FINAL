@@ -3,4 +3,3 @@ from .models import Customer, Promotion
 
 admin.site.register(Customer)
 admin.site.register(Promotion)
-
