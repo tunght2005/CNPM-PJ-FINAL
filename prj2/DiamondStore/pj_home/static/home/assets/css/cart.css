@@ -1,0 +1,161 @@
+
+
+.cart-container {
+    max-width: 900px;
+    margin: 20px auto;
+    background: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.back-link {
+    display: block;
+    margin-bottom: 15px;
+    color: #007bff;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+h1 {
+    text-align: center;
+    font-size: 15px;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.cart-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #ddd;
+    padding: 10px 0;
+}
+
+.item-info {
+    display: flex;
+    align-items: center;
+}
+.item-info img{
+    width: 70px;
+    margin-right: 25px;
+}
+.item-checkbox {
+    margin-right: 10px;
+}
+
+.item-image {
+    width: 50px;
+    margin-right: 15px;
+}
+
+.item-details h2 {
+    margin: 0;
+    font-size: 16px;
+    color: #333;
+}
+
+.item-details p {
+    margin: 5px 0;
+    font-size: 14px;
+    color: #777;
+}
+
+.item-options {
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+    
+}
+
+.item-options label {
+    margin-right: 10px;
+    font-size: 14px;
+}
+
+.ring-size {
+    padding: 5px;
+    font-size: 14px;
+}
+
+.quantity {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+    justify-content: flex-start; /* Canh về phía trái */
+    gap: 5px; /* Khoảng cách giữa các nút */
+}
+
+.quantity-input {
+    width: 40px;
+    text-align: center;
+    margin: 0 5px;
+    width: 50px; /* Tăng chiều rộng của ô nhập số */
+    text-align: center;
+}
+
+.btn-remove {
+    background: none;
+    border: none;
+    color: #7c7c7c;
+    font-size: 16px;
+    cursor: pointer;
+}
+.btn-remove:hover{
+    color: #ff1a1a;
+}
+.box-size{
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+    justify-content: flex-start; /* Canh về phía trái */
+    gap: 5px; /* Khoảng cách giữa các nút */
+}
+
+.item-price {
+    text-align: right;
+    font-size: 16px;
+    display: flex;
+    width: 130px;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.cart-summary {
+    margin-top: 20px;
+    text-align: left;
+    font-size: 14px;
+}
+
+.cart-summary p {
+    margin: 5px 0;
+}
+
+.vat-note {
+    font-size: 12px;
+    color: #777;
+}
+
+.btn-continue {
+    width: 100%;
+    padding: 15px;
+    background: #0056b3;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.btn-continue:hover {
+    background: #003f88;
+}
+
+.box-finish{
+    display: flex; 
+    justify-content: center;
+font-size: 30px;
+font-weight: 600;
+color: #0eaf2e;
+}

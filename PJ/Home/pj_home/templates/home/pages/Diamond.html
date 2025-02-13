@@ -1,0 +1,982 @@
+{% load static%}
+<!DOCTYPE html>
+<html lang="vn">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css"
+    />
+    <link rel="stylesheet" href="{% static 'home/assets/css/Diamond.css' %}" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
+    />
+     <!-- Favicon -->
+     <link
+     rel="apple-touch-icon"
+     sizes="180x180"
+     href="{% static 'home/favicon_io/apple-touch-icon.png' %}"
+   />
+   <link
+     rel="icon"
+     type="image/png"
+     sizes="32x32"
+     href="{% static 'home/favicon_io/favicon-32x32.png' %}"
+   />
+   <link
+     rel="icon"
+     type="image/png"
+     sizes="16x16"
+     href="{% static 'home/favicon_io/favicon-16x16.png' %}"
+   />
+   <link rel="manifest" href="{% static 'home/favicon_io/site.webmanifest' %}" />
+   <!-- End -->
+    <title>Address</title>
+  </head>
+  <body>
+     <!-- Header -->
+     <header class="header">
+      <div class="container">
+        <div class="right-info">
+          <a href="#"><i class="fa-solid fa-users"></i>Quan Hệ Cổ Đông</a>
+          <a href="{% url 'diamond_page' %}"><i class="fa-solid fa-map-location-dot"></i>Cửa Hàng</a>
+          <a href="#"><i class="fa-solid fa-headset"></i>Hotline: 18000xxxx</a>
+        </div>
+        <a href="{% url 'home_page1' %}"
+          ><img src="{%static 'home/assets/img/img-main/logo-page.jpg' %}" alt="" class="logo-header"
+        /></a>
+        <div class="left-info-shop">
+          <a href="{% url 'customer_page' %}" class="user-card"
+            ><i class="fa-solid fa-user"></i>Tài Khoản Của Tôi
+          </a>
+          <a href="{% url 'cart_page' %}" class="cart-shop">
+            <img
+              style="width: 20px; height: auto"
+              src="https://cdn.pnj.io/images/image-update/layout/icon-cart-new.svg"
+              alt=""
+            />
+            <span>Giỏ Hàng</span><span class="number-cart">0</span></a
+          >
+        </div>
+      </div>
+      <hr />
+      <nav class="nav-menu">
+        <ul>
+          <li>
+            <a href="{% url 'jewelry_page' %}" class="menu-item" id="item-1">Trang Sức</a>
+            <!-- Sub Menu -->
+            <div class="sub-menu-1">
+              <div class="type-menu">
+                <span>Chủng Loại</span>
+                <a href="#">Nhẫn</a><a href="#">Bông Tai</a><a href="#">Lắc</a
+                ><a href="#">Vòng</a><a href="#">Dây Chuyền</a>
+              </div>
+              <div class="material-menu">
+                <span>Chất Liệu</span>
+                <a href="#">Vàng</a>
+                <a href="#">Bạc</a>
+              </div>
+              <div class="product-line">
+                <span>Dòng Hàng</span>
+                <a href="#">Trang Sức Đính Kim Cương</a
+                ><a href="#">Trang Sức Không Đính Đá</a
+                ><a href="#">Kim Cương Viên</a>
+              </div>
+              <div class="style-menu">
+                <span>Trang Sức Phong Thuỷ</span>
+                <a href="#">Trang Sức Theo Cung & Mệnh</a
+                ><a href="#">Best Seller</a><a href="#">Hàng Đặt Trước</a>
+              </div>
+              <img
+                src="https://cdn.pnj.io/images/2024/11/vuondasac-t12-400x270CTA.png"
+                alt=""
+                style="width: 300px; height: auto"
+              />
+            </div>
+          </li>
+          <li>
+            <a href="{% url 'wedding_page' %}" class="menu-item" id="item-2">Trang Sức Cưới</a>
+            <!-- Sub Menu 2-->
+            <div class="sub-menu-2">
+              <div class="purpose-menu">
+                <span>Theo Mục Đích</span>
+                <a href="#">Cầu Hôn</a><a href="#">Kết Hôn</a
+                ><a href="#">Kỷ Niệm</a>
+              </div>
+              <div class="type-menu">
+                <span>Chủng Loại</span>
+                <a href="#">Nhẫn</a><a href="#">Bông Tai</a><a href="#">Lắc</a
+                ><a href="#">Vòng Tay</a><a href="#">Dây Chuyền</a>
+              </div>
+              <div class="product-line">
+                <span>Dòng Trang Sức</span>
+                <a href="#">Kim Cương</a><a href="#">Không Đính Đá</a
+                ><a href="#">Đá Màu</a>
+              </div>
+              <div class="material-menu">
+                <span>Chất Liệu</span>
+                <a href="#">Vàng 24k</a>
+                <a href="#">Vàng 18k</a>
+              </div>
+              <img
+                src="https://cdn.pnj.io/images/2024/10/trau-cau-08-10-24-Banner_BST_TC_KC_400x270.png"
+                alt=""
+                style="width: 300px; height: auto"
+              />
+            </div>
+          </li>
+          <li>
+            <a href="{% url 'watch_page' %}" class="menu-item" id="item-3">Đồng Hồ</a>
+            <!-- Sub Menu 3-->
+            <div class="sub-menu-3">
+              <div class="branch-menu">
+                <span>Thương Hiệu Nhật Bản</span>
+                <a href="#">Casio</a><a href="#">Orient</a
+                ><a href="#">Citizen</a>
+              </div>
+              <div class="type-menu">
+                <span>Chủng Loại</span>
+                <a href="#">Hàng Đặt Trước</a><a href="#">Đồng Hồ</a
+                ><a href="#">Đồng Hồ Cặp</a>
+              </div>
+              <div class="gener-menu">
+                <span>Giới Tính</span>
+                <a href="#">Nam</a>
+                <a href="#">Nữ</a>
+              </div>
+              <img
+                src="https://cdn.pnj.io/images/promo/216/PNJ-Watch-post-1-3.png"
+                alt=""
+                style="width: 300px; height: auto"
+              />
+            </div>
+          </li>
+          <li>
+            <a href="{% url 'gift_page' %}" class="menu-item" id="item-4">Quà Tặng</a>
+            <!-- Sub Menu 4-->
+            <div class="sub-menu-4">
+              <div class="gift-menu">
+                <span>Gợi Ý Quà Tặng</span>
+                <a href="#">Cho Người Lớn</a><a href="#">Cho Trẻ Em</a>
+              </div>
+              <div class="type-menu">
+                <span>Quà Tặng Mỹ Nghệ</span>
+                <a href="#">Tượng Phong Thuỷ</a><a href="#">Tranh Phong Thuỷ</a>
+              </div>
+              <img
+                src="https://cdn.pnj.io/images/2024/09/DW_Navigation_Bar_CTA_400x270.png"
+                alt=""
+                style="width: 300px; height: auto"
+              />
+            </div>
+          </li>
+          <li>
+            <a href="#" class="menu-item" id="item-5">Thương Hiệu</a>
+            <div class="sub-menu-5">
+              <div class="branch-menu">
+                <div class="box">
+                  <img
+                    src="https://cdn.pnj.io/images/image-update/layout/iconhotdeal-new.svg"
+                    alt=""
+                    class="icon-search"
+                    style="width: 15px; height: auto"
+                  />
+                  <span>Thương Hiệu</span>
+                </div>
+                <div class="image">
+                  <a href="#"
+                    ><img
+                      src="https://cdn.pnj.io/images/2023/relayout-pdp/mencode-thuonghieu-logo.svg"
+                      alt=""
+                      style="width: 100px; height: 50px" /></a
+                  ><a href="#"
+                    ><img
+                      src="https://cdn.pnj.io/images/2023/brand-search-bar/watch.svg"
+                      alt=""
+                      style="width: 100px; height: 50px" /></a
+                  ><a href="#"
+                    ><img
+                      src="https://cdn.pnj.io/images/2023/brand-search-bar/style.svg"
+                      alt=""
+                      style="width: 100px; height: 50px" /></a
+                  ><a href="#"
+                    ><img
+                      src="https://cdn.pnj.io/images/2023/brand-search-bar/disney.svg"
+                      alt=""
+                      style="width: 100px; height: 50px"
+                  /></a>
+                </div>
+              </div>
+            </div>
+          </li>
+          <li>
+            <a href="{% url 'blog_page' %}" class="menu-item">Blog</a>
+          </li>
+          <li>
+            <a href="{% url 'sales_page' %}" class="menu-item">Khuyến Mãi</a>
+          </li>
+          <input type="search" id="search-menu" placeholder="Tìm Kiếm Nhanh" />
+        </ul>
+      </nav>
+    </header>
+    <!-- Search -->
+    <div class="search">
+      <div class="wrap-search">
+        <div class="search-container">
+          <div class="search-bar">
+            <button id="search-btn">
+              <i class="fa-solid fa-magnifying-glass"></i>
+            </button>
+            <input type="text" id="search-input" placeholder="Tìm kiếm..." />
+            <span id="search-btn-cancel">x</span>
+          </div>
+          <div class="search-main">
+            <div class="content-sale">
+              <div class="box">
+                <img
+                  src="https://cdn.pnj.io/images/image-update/layout/iconhotdeal-new.svg"
+                  alt=""
+                  class="icon-search"
+                  style="width: 15px; height: auto"
+                />
+                <h4>Ưu đãi online</h4>
+              </div>
+              <div class="tags">
+                <a href="{% url 'sales_page' %}" class="tag">Trang sức vàng ưu đãi 25%</a>
+                <a href="{% url 'sales_page' %}" class="tag">Trang sức vàng ưu đãi 40%</a>
+              </div>
+            </div>
+            <div class="rank-search">
+              <div class="box">
+                <img
+                  src="https://cdn.pnj.io/images/image-update/layout/mobile/mui_ten.svg"
+                  alt=""
+                  class="icon-search"
+                  style="width: 15px; height: auto"
+                />
+                <span>Top tìm kiếm</span>
+              </div>
+              <a href="{% url 'sales_page' %}" class="tag">Hàng Mới </a
+              ><a href="#" class="tag">Nhẫn Cưới </a
+              ><a href="#" class="tag">Vòng Cổ</a>
+            </div>
+            <div class="service-hot">
+              <div class="box">
+                <img
+                  src="https://cdn.pnj.io/images/image-update/layout/mobile/hot.svg"
+                  alt=""
+                  class="icon-search"
+                  style="width: 15px; height: auto"
+                />
+                <span>Dịch vụ hot</span>
+              </div>
+              <a class="tag" href="{% url 'gift_page' %}" class="gift">Phiếu quà tặng</a>
+            </div>
+            <div class="branch-search">
+              <div class="box">
+                <img
+                  src="https://cdn.pnj.io/images/image-update/searchbar/brand_icon.svg"
+                  alt=""
+                  class="icon-search"
+                  style="width: 15px; height: auto"
+                />
+                <span>Thương hiệu nổi bật</span>
+              </div>
+              <a href="#"
+                ><img
+                  src="https://cdn.pnj.io/images/image-update/searchbar/style.svg"
+                  alt=""
+                  class="image-branch" /></a
+              ><a href="#"
+                ><img
+                  src="https://cdn.pnj.io/images/image-update/searchbar/disney.svg"
+                  alt=""
+                  class="image-branch"
+              /></a>
+            </div>
+            <div class="product-top">
+              <div class="box">
+                <img
+                  src="https://cdn.pnj.io/images/image-update/layout/mobile/tim_kiem.svg"
+                  alt=""
+                  class="icon-search"
+                  style="width: 15px; height: auto"
+                />
+                <span>Sản phẩm được tìm kiếm nhiều nhất</span>
+              </div>
+              <div class="wrap">
+                <div class="detail">
+                  <img
+                    src="https://www.pnj.com.vn/search/_next/image?url=https%3A%2F%2Fcdn.pnj.io%2Fimages%2Fdetailed%2F222%2Fsp-gb0000y003038-bong-tai-vang-24k-pnj-1.png&w=64&q=75"
+                    alt=""
+                    style="width: 60px; height: auto"
+                  />
+                  <span class="price">9.999.999đ</span>
+                </div>
+                <div class="detail">
+                  <img
+                    src="https://www.pnj.com.vn/search/_next/image?url=https%3A%2F%2Fcdn.pnj.io%2Fimages%2Fdetailed%2F222%2Fsp-gb0000y003038-bong-tai-vang-24k-pnj-1.png&w=64&q=75"
+                    alt=""
+                    style="width: 60px; height: auto"
+                  />
+                  <span class="price">9.999.999đ</span>
+                </div>
+                <div class="detail">
+                  <img
+                    src="https://www.pnj.com.vn/search/_next/image?url=https%3A%2F%2Fcdn.pnj.io%2Fimages%2Fdetailed%2F222%2Fsp-gb0000y003038-bong-tai-vang-24k-pnj-1.png&w=64&q=75"
+                    alt=""
+                    style="width: 60px; height: auto"
+                  />
+                  <span class="price">9.999.999đ</span>
+                </div>
+                <div class="detail">
+                  <img
+                    src="https://www.pnj.com.vn/search/_next/image?url=https%3A%2F%2Fcdn.pnj.io%2Fimages%2Fdetailed%2F222%2Fsp-gb0000y003038-bong-tai-vang-24k-pnj-1.png&w=64&q=75"
+                    alt=""
+                    style="width: 60px; height: auto"
+                  />
+                  <span class="price">9.999.999đ</span>
+                </div>
+                <div class="detail">
+                  <img
+                    src="https://www.pnj.com.vn/search/_next/image?url=https%3A%2F%2Fcdn.pnj.io%2Fimages%2Fdetailed%2F222%2Fsp-gb0000y003038-bong-tai-vang-24k-pnj-1.png&w=64&q=75"
+                    alt=""
+                    style="width: 60px; height: auto"
+                  />
+                  <span class="price">9.999.999đ</span>
+                </div>
+                <div class="detail">
+                  <img
+                    src="https://www.pnj.com.vn/search/_next/image?url=https%3A%2F%2Fcdn.pnj.io%2Fimages%2Fdetailed%2F222%2Fsp-gb0000y003038-bong-tai-vang-24k-pnj-1.png&w=64&q=75"
+                    alt=""
+                    style="width: 60px; height: auto"
+                  />
+                  <span class="price">9.999.999đ</span>
+                </div>
+                <div class="detail">
+                  <img
+                    src="https://www.pnj.com.vn/search/_next/image?url=https%3A%2F%2Fcdn.pnj.io%2Fimages%2Fdetailed%2F222%2Fsp-gb0000y003038-bong-tai-vang-24k-pnj-1.png&w=64&q=75"
+                    alt=""
+                    style="width: 60px; height: auto"
+                  />
+                  <span class="price">9.999.999đ</span>
+                </div>
+                <div class="detail">
+                  <img
+                    src="https://www.pnj.com.vn/search/_next/image?url=https%3A%2F%2Fcdn.pnj.io%2Fimages%2Fdetailed%2F222%2Fsp-gb0000y003038-bong-tai-vang-24k-pnj-1.png&w=64&q=75"
+                    alt=""
+                    style="width: 60px; height: auto"
+                  />
+                  <span class="price">9.999.999đ</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="search-sub">
+            <div class="content-search">
+              <img
+                style="width: 80px; height: auto"
+                src="https://cdn.pnj.io/images/thumbnails/485/485/detailed/204/sp-gmdd00w000634-mat-day-chuyen-kim-cuong-vang-trang-14k-pnj-chu-a-1.png"
+                alt=""
+              />
+              <div class="title-product">
+                <span class="name-product">Vòng Vàng 18k </span>
+                <div class="detail-product">
+                  <span class="price">9.999.999đ</span>
+                  <span class="stock">991 đã bán</span>
+                </div>
+              </div>
+            </div>
+            <div class="content-search">
+              <img
+                style="width: 80px; height: auto"
+                src="https://cdn.pnj.io/images/thumbnails/485/485/detailed/204/sp-gmdd00w000634-mat-day-chuyen-kim-cuong-vang-trang-14k-pnj-chu-a-1.png"
+                alt=""
+              />
+              <div class="title-product">
+                <span class="name-product">Vòng Vàng 18k </span>
+                <div class="detail-product">
+                  <span class="price">9.999.999đ</span>
+                  <span class="stock">992 đã bán</span>
+                </div>
+              </div>
+            </div>
+            <div class="content-search">
+              <img
+                style="width: 80px; height: auto"
+                src="https://cdn.pnj.io/images/thumbnails/485/485/detailed/204/sp-gmdd00w000634-mat-day-chuyen-kim-cuong-vang-trang-14k-pnj-chu-a-1.png"
+                alt=""
+              />
+              <div class="title-product">
+                <span class="name-product">Vòng Vàng 18k </span>
+                <div class="detail-product">
+                  <span class="price">9.999.999đ</span>
+                  <span class="stock">993 đã bán</span>
+                </div>
+              </div>
+            </div>
+            <div class="content-search">
+              <img
+                style="width: 80px; height: auto"
+                src="https://cdn.pnj.io/images/thumbnails/485/485/detailed/204/sp-gmdd00w000634-mat-day-chuyen-kim-cuong-vang-trang-14k-pnj-chu-a-1.png"
+                alt=""
+              />
+              <div class="title-product">
+                <span class="name-product">Vòng Vàng 18k </span>
+                <div class="detail-product">
+                  <span class="price">9.999.999đ</span>
+                  <span class="stock">994 đã bán</span>
+                </div>
+              </div>
+            </div>
+            <div class="content-search">
+              <img
+                style="width: 80px; height: auto"
+                src="https://cdn.pnj.io/images/thumbnails/485/485/detailed/204/sp-gmdd00w000634-mat-day-chuyen-kim-cuong-vang-trang-14k-pnj-chu-a-1.png"
+                alt=""
+              />
+              <div class="title-product">
+                <span class="name-product">Vòng Vàng 18k </span>
+                <div class="detail-product">
+                  <span class="price">9.999.999đ</span>
+                  <span class="stock">995 đã bán</span>
+                </div>
+              </div>
+            </div>
+            <div class="content-search">
+              <img
+                style="width: 80px; height: auto"
+                src="https://cdn.pnj.io/images/thumbnails/485/485/detailed/204/sp-gmdd00w000634-mat-day-chuyen-kim-cuong-vang-trang-14k-pnj-chu-a-1.png"
+                alt=""
+              />
+              <div class="title-product">
+                <span class="name-product">Vòng Vàng 18k </span>
+                <div class="detail-product">
+                  <span class="price">9.999.999đ</span>
+                  <span class="stock">996 đã bán</span>
+                </div>
+              </div>
+            </div>
+            <div class="content-search">
+              <img
+                style="width: 80px; height: auto"
+                src="https://cdn.pnj.io/images/thumbnails/485/485/detailed/204/sp-gmdd00w000634-mat-day-chuyen-kim-cuong-vang-trang-14k-pnj-chu-a-1.png"
+                alt=""
+              />
+              <div class="title-product">
+                <span class="name-product">Vòng Vàng 18k </span>
+                <div class="detail-product">
+                  <span class="price">9.999.999đ</span>
+                  <span class="stock">997 đã bán</span>
+                </div>
+              </div>
+            </div>
+            <div class="content-search">
+              <img
+                style="width: 80px; height: auto"
+                src="https://cdn.pnj.io/images/thumbnails/485/485/detailed/204/sp-gmdd00w000634-mat-day-chuyen-kim-cuong-vang-trang-14k-pnj-chu-a-1.png"
+                alt=""
+              />
+              <div class="title-product">
+                <span class="name-product">Vòng Vàng 18k </span>
+                <div class="detail-product">
+                  <span class="price">9.999.999đ</span>
+                  <span class="stock">998 đã bán</span>
+                </div>
+              </div>
+            </div>
+            <div class="content-search">
+              <img
+                style="width: 80px; height: auto"
+                src="https://cdn.pnj.io/images/thumbnails/485/485/detailed/204/sp-gmdd00w000634-mat-day-chuyen-kim-cuong-vang-trang-14k-pnj-chu-a-1.png"
+                alt=""
+              />
+              <div class="title-product">
+                <span class="name-product">Vòng Vàng 18k </span>
+                <div class="detail-product">
+                  <span class="price">9.999.999đ</span>
+                  <span class="stock">999 đã bán</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- End Search -->
+    <!-- End Header -->
+    <!-- Main -->
+    <div class="row-fluid div-full-page-outer">
+      <div class="span16 div-full-page full-content">
+          <div class="ty-wysiwyg-content">
+              <div class="hotline-htch">
+                  <div class="item">
+                      <div class="item-inner">
+                          <h2>Tư vấn online, nhận ngay ưu đãi</h2>
+                          <p>
+                              Chỉ cần một cuộc gọi miễn phí, 
+                              <br>
+                              ưu đãi độc quyền online này dành riêng cho bạn
+                          </p>
+                      </div>
+                  </div>
+                  <div class="item">
+                      <div class="item-inner">
+                          <div class="img-icon">
+                              <a href="tel:18001018">
+                                  <img class="img" style="width:100%;" src="https://cdn.pnj.io/images/image-update/2023/hotline/htch-btn1-v2.svg" alt="Hotline 18001018">
+                                  <img class="img" src="https://cdn.pnj.io/images/image-update/2023/hotline/htch-btn2.svg" alt="Hotline 18001018 gọi ngay">
+                              </a>
+                          </div>
+                          <p class="text-italic">
+                               (Vui lòng nhấn phím 1 để chọn ngôn ngữ tiếng việt,
+                              <br>
+                               tiếp tục nhấn phím 1 để gặp ngay nhân viên tư vấn) 
+                          </p>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+  <div class="row-fluid">
+      <div class="span16">
+          <div class="mp-stores search-stores-system">
+              <h2 class="title">Hệ thống cửa hàng</h2>
+              <div class="search-panel">
+                  <div class="ty-control-group">
+                      <label class="cm-required" for="elm_stores-state">
+                          Tỉnh/Thành phố:
+                      </label>
+                      <input type="hidden" id="elm_stores_state_hidden" name="stores_data[state]" size="32" maxlength="64" value class="cm-state ty-input-text hidden">
+                      <select name="stores_data[state_hidden]" id="elm_stores_state" sub-id="elm_stores_state" 
+                      class="cm-object-selector cm-state select2-hidden-accessible" single data-ca-placeholder="Chọn Tỉnh/TP" data-ca-sub-placeholder="Chọn Quận/Huyện"
+                      data-ca-enable-search="true" data-ca-lose-on-select="true" data-ca-page-size="10" onchange="loadCheckoutSelect(this,'elm_stores_district','district','','');
+                      searchStores('state');" tabindex="-1" aria-hidden="true">
+                      <option value="null">- Chọn Tỉnh/TP -</option>
+                      <option value="001">TP HỒ CHÍ MINH</option>
+                      <option value="027">HÀ NỘI</option>
+                      <option value="021">ĐÀ NẴNG</option>
+                      </select>
+                      <span class="select2 select2-container select2-container--default select2-container--below" dir="ltr" style="width:275px;">
+                          <span class="selection">
+                              <span class="select2-selection select2-selection--single" role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="0"
+                              aria-labelledby="select2-elm_stores_state-container">
+                                  <!-- <span class="select2-selection_rendered" id="select2-elm_stores_state-container" title="TP HỒ CHÍ MINH">TP HỒ CHÍ MINH</span> -->
+                                  <span class="select2-selection_arrow" role="presentation">
+                                      <b role="presentation"></b>
+                                  </span>
+                              </span>
+                          </span>
+                          <span class="dropdown-wrapper" aria-hidden="true"></span>
+                      </span>
+                  </div>
+                  <div class="ty-control-group">
+                      <label for="elm_stores_district">Quận/Huyện:</label>
+                      <input type="hidden" id="elm_stores_district" value="0" name="stores_data[district]">
+                      <select id="elm_stores_district_hidden" name="stores_data[district_hidden]" class="cm-object-selector cm-district select2-hidden-accessible"
+                      sub-id="elm_stores_district" single data-ca-placeholder="Chọn Quận/Huyện" data-ca-sub-placeholder="Chọn Phường/Xã" data-ca-enable-search="true"
+                      data-ca-lose-on-select="true" data-ca-page-size="10" onchange="standardizeLocationCode(this);" tabindex="-1" aria-hidden="true">
+                      <option value="null">- Chọn Quận/Huyện</option>
+                  </select>
+                  <span class="select2 select2-container select2-container--default" dir="ltr" style="width:595px;">
+                      <span class="selection">
+                          <span class="select2-selection select2-selection--single" role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="0"
+                          aria-labelledby="select2-elm_stores_district_hidden-container">
+                          <!-- <span class="select2-selection_rendered" id="select2-elm_stores_district_hidden-container" title="- Chọn Quận/Huyện -">-Chọn Quận/Huyện -</span> -->
+                          <span class="select2-selection_arrow" role="presentation">
+                              <b role="presentation"></b>
+                          </span>
+                      </span>
+                      </span>
+                      <span class="dropdown-wrapper" aria-hidden="true"></span>
+                  </span>
+                  </div>
+              </div>
+              <div id="mp_stores_system_result">
+                  <div class="mp-stores vertical-stores-system">
+                      <h2 class="vertical-stores-title"> Danh sách các cửa hàng </h2>
+                      <input type="hidden" id="count" value="112">
+                      <div class="vertical-stores-container">
+                          <div class="-information" style="display:block;" data-state="001" data-district="CuChi">
+                              <span class="store-title" id="store_title1386" onclick="$('.srore-title').removeClass('show-info');$('.store-item').hide();
+                              $(this).toggleClass('show-info');$('#store_content1386').toggle();">
+                                  <i class="mp-sprite icon-stores">
+                                  </i>
+                                  <span class="store-title_container">
+                                       CH Diamond Satra Centre Mall Củ Chi 
+                                  </span>
+                              </span>
+                              <div class="store-item" id="store_content1386" data-key="1386" style="display: none;">
+                                  <input type="hidden" id="cdp_store_id1386" value="1386">
+                                  <input type="hidden" id="cdp_store_name1386" value="CH Diamond Satra Centre Mall Củ Chi">
+                                  <input type="hidden" id="cdp_store_phone1386" value="(028) 3339 4449">
+                                  <input type="hidden" id="cdp_store_address1386" value="1239 Tỉnh lộ 8, Ấp Thạnh An, Xã Trung An, Huyện Củ Chi, TP. Hồ Chí Minh">
+                                  <span class="close-store-info" onclick="$('#store_title1386').removeClass('show-info');$('#store_content1386').hide();">
+                                  </span>
+                                  <span class="store-name">CH Diamond Satra Centre Mall Củ Chi</span>
+                                  <span class="store-address">1239 Tỉnh lộ 8, Ấp Thạnh An, Xã Trung An, Huyện Củ Chi, TP. Hồ Chí Minh</span>
+                                  <span class="store-info business">
+                                      "Mặt hàng: Trang sức Bạc, Trang sức Vàng"
+                                  </span>
+                                  <span class="store-info phone">
+                                      "(028) 3339 4449"
+                                  </span>
+                                  <span class="store-info phone hotline">
+                                      <a href="tel:18001018" class="mp-hotline-header">
+                                          <span class="text-hotline">1800 10 18</span>
+                                      </a>
+                                      <span class="free">(Miễn phí và Ưu đãi thêm Online)</span>
+                                  </span>
+                                  <span class="store-info note">
+                                      "Hoạt động: Mở cửa: 07h00; Đóng cửa: 20h"
+                                  </span>
+                              </div>
+                          </div>
+                          <div class="-information" style="display:block;" data-district="BinhThanh" data-state="001">
+                              <span class="store-title" id="store_title1387" onclick="$('.store-title').removeClass('show-info');$('.store-item').hide();
+                              $(this).toggleClass('show-info');$('#store_content1387').toggle();">
+                                  <i class="mp-sprite icon-stores"></i>
+                                  <span class="store-title_container">
+                                      CH Diamond Satra Centre Mall Bình Thạnh
+                                  </span>
+                              </span>
+                              <div class="store-item" id="store_content1387" data-key="1387" style="display: none;">
+                                  <input type="hidden" id="cdp_store_id1387" value="1387">
+                                  <input type="hidden" id="cdp_store_name1387" value="CH Diamond Satra Centre Mall Bình Thạnh">
+                                  <input type="hidden" id="cdp_store_phone1387" value="(028) 3555 4449">
+                                  <input type="hidden" id="cdp_store_address1387" value="123 Nguyễn Thị Minh Khai, Quận Bình Thạnh, TP. Hồ Chí Minh">
+                                  <span class="close-store-info" onclick="$('#store_title1387').removeClass('show-info');$('#store_content1387').hide();"></span>
+                                  <span class="store-name">CH Diamond Satra Centre Mall Bình Thạnh</span>
+                                  <span class="store-address">123 Nguyễn Thị Minh Khai, Quận Bình Thạnh, TP. Hồ Chí Minh</span>
+                                  <span class="store-info business">Mặt hàng: Trang sức Bạc, Trang sức Vàng</span>
+                                  <span class="store-info phone">(028) 3555 4449</span>
+                                  <span class="store-info phone hotline">
+                                      <a href="tel:18001018" class="mp-hotline-header">
+                                          <span class="text-hotline">1800 10 18</span>
+                                      </a>
+                                      <span class="free">(Miễn phí và Ưu đãi thêm Online)</span>
+                                  </span>
+                                  <span class="store-info note">Hoạt động: Mở cửa: 08h00; Đóng cửa: 21h</span>
+                              </div>
+                          </div>
+              
+                          <!-- Cửa hàng 3 -->
+                          <div class="-information" style="display:block;" data-district="Quan7" data-state="001">
+                              <span class="store-title" id="store_title1388" onclick="$('.store-title').removeClass('show-info');$('.store-item').hide();
+                              $(this).toggleClass('show-info');$('#store_content1388').toggle();">
+                                  <i class="mp-sprite icon-stores"></i>
+                                  <span class="store-title_container">
+                                      CH Diamond Satra Centre Mall Quận 7
+                                  </span>
+                              </span>
+                              <div class="store-item" id="store_content1388" data-key="1388" style="display: none;">
+                                  <input type="hidden" id="cdp_store_id1388" value="1388">
+                                  <input type="hidden" id="cdp_store_name1388" value="CH Diamond Satra Centre Mall Quận 7">
+                                  <input type="hidden" id="cdp_store_phone1388" value="(028) 3777 4449">
+                                  <input type="hidden" id="cdp_store_address1388" value="235 Nguyễn Thị Thập, Quận 7, TP. Hồ Chí Minh">
+                                  <span class="close-store-info" onclick="$('#store_title1388').removeClass('show-info');$('#store_content1388').hide();"></span>
+                                  <span class="store-name">CH Diamond Satra Centre Mall Quận 7</span>
+                                  <span class="store-address">235 Nguyễn Thị Thập, Quận 7, TP. Hồ Chí Minh</span>
+                                  <span class="store-info business">Mặt hàng: Trang sức Bạc, Trang sức Vàng</span>
+                                  <span class="store-info phone">(028) 3777 4449</span>
+                                  <span class="store-info phone hotline">
+                                      <a href="tel:18001018" class="mp-hotline-header">
+                                          <span class="text-hotline">1800 10 18</span>
+                                      </a>
+                                      <span class="free">(Miễn phí và Ưu đãi thêm Online)</span>
+                                  </span>
+                                  <span class="store-info note">Hoạt động: Mở cửa: 08h00; Đóng cửa: 20h</span>
+                              </div>
+                          </div>
+                           <!-- Cửa hàng 4 -->
+                          <div class="-information" style="display:block;" data-district="HaDong" data-state="027" >
+                              <span class="store-title" id="store_title1389" onclick="$('.store-title').removeClass('show-info');$('.store-item').hide();
+                              $(this).toggleClass('show-info');$('#store_content1389').toggle();">
+                                  <i class="mp-sprite icon-stores"></i>
+                                  <span class="store-title_container">
+                                      CH Diamond Satra Centre Mall Hà Đông
+                                  </span>
+                              </span>
+                              <div class="store-item" id="store_content1389" data-key="1389" style="display: none;">
+                                  <input type="hidden" id="cdp_store_id1389" value="1389">
+                                  <input type="hidden" id="cdp_store_name1389" value="CH Diamond Satra Centre Mall Hà Đông">
+                                  <input type="hidden" id="cdp_store_phone1389" value="(024) 3339 4449">
+                                  <input type="hidden" id="cdp_store_address1389" value="12 Nguyễn Trãi, Quận Hà Đông, Hà Nội">
+                                  <span class="close-store-info" onclick="$('#store_title1389').removeClass('show-info');$('#store_content1389').hide();"></span>
+                                  <span class="store-name">CH Diamond Satra Centre Mall Hà Đông</span>
+                                  <span class="store-address">12 Nguyễn Trãi, Quận Hà Đông, Hà Nội</span>
+                                  <span class="store-info business">Mặt hàng: Trang sức Bạc, Trang sức Vàng</span>
+                                  <span class="store-info phone">(024) 3339 4449</span>
+                                  <span class="store-info phone hotline">
+                                      <a href="tel:18001018" class="mp-hotline-header">
+                                          <span class="text-hotline">1800 10 18</span>
+                                      </a>
+                                      <span class="free">(Miễn phí và Ưu đãi thêm Online)</span>
+                                  </span>
+                                  <span class="store-info note">Hoạt động: Mở cửa: 08h00; Đóng cửa: 20h</span>
+                              </div>
+                          </div>
+
+                          <!-- Cửa hàng 5 -->
+                          <div class="-information" style="display:block;" data-district="Đà Nẵng" data-state="021">
+                              <span class="store-title" id="store_title1390" onclick="$('.store-title').removeClass('show-info');$('.store-item').hide();
+                              $(this).toggleClass('show-info');$('#store_content1390').toggle();">
+                                  <i class="mp-sprite icon-stores"></i>
+                                  <span class="store-title_container">
+                                      CH Diamond Satra Centre Mall Đà Nẵng
+                                  </span>
+                              </span>
+                              <div class="store-item" id="store_content1390" data-key="1390" style="display: none;">
+                                  <input type="hidden" id="cdp_store_id1390" value="1390">
+                                  <input type="hidden" id="cdp_store_name1390" value="CH Diamond Satra Centre Mall Đà Nẵng">
+                                  <input type="hidden" id="cdp_store_phone1390" value="(0236) 3339 4449">
+                                  <input type="hidden" id="cdp_store_address1390" value="77 Nguyễn Văn Linh, Quận Hải Châu, Đà Nẵng">
+                                  <span class="close-store-info" onclick="$('#store_title1390').removeClass('show-info');$('#store_content1390').hide();"></span>
+                                  <span class="store-name">CH Diamond Satra Centre Mall Đà Nẵng</span>
+                                  <span class="store-address">77 Nguyễn Văn Linh, Quận Hải Châu, Đà Nẵng</span>
+                                  <span class="store-info business">Mặt hàng: Trang sức Bạc, Trang sức Vàng</span>
+                                  <span class="store-info phone">(0236) 3339 4449</span>
+                                  <span class="store-info phone hotline">
+                                      <a href="tel:18001018" class="mp-hotline-header">
+                                          <span class="text-hotline">1800 10 18</span>
+                                      </a>
+                                      <span class="free">(Miễn phí và Ưu đãi thêm Online)</span>
+                                  </span>
+                                  <span class="store-info note">Hoạt động: Mở cửa: 08h00; Đóng cửa: 20h</span>
+                              </div>
+                          </div>
+
+                          <!-- Cửa hàng 6 -->
+                          <div class="-information" style="display:block;" data-district="DongDa" data-state="027">
+                              <span class="store-title" id="store_title1391" onclick="$('.store-title').removeClass('show-info');$('.store-item').hide();
+                              $(this).toggleClass('show-info');$('#store_content1391').toggle();">
+                                  <i class="mp-sprite icon-stores"></i>
+                                  <span class="store-title_container">
+                                      CH Diamond Satra Centre Mall Đống Đa
+                                  </span>
+                              </span>
+                              <div class="store-item" id="store_content1391" data-key="1391" style="display: none;">
+                                  <input type="hidden" id="cdp_store_id1391" value="1391">
+                                  <input type="hidden" id="cdp_store_name1391" value="CH Diamond Satra Centre Mall Vũng Tàu">
+                                  <input type="hidden" id="cdp_store_phone1391" value="(0254) 3339 4449">
+                                  <input type="hidden" id="cdp_store_address1391" value="15 Trương Công Định, TP. Vũng Tàu">
+                                  <span class="close-store-info" onclick="$('#store_title1391').removeClass('show-info');$('#store_content1391').hide();"></span>
+                                  <span class="store-name">CH Diamond Satra Centre Mall Đống Đa</span>
+                                  <span class="store-address">Số 26, ngách 23, ngõ, 165 P.Thái Hà, Láng Hạ, Đống Đa</span>
+                                  <span class="store-info business">Mặt hàng: Trang sức Bạc, Trang sức Vàng</span>
+                                  <span class="store-info phone">(0254) 3339 4449</span>
+                                  <span class="store-info phone hotline">
+                                      <a href="tel:18001018" class="mp-hotline-header">
+                                          <span class="text-hotline">1800 10 18</span>
+                                      </a>
+                                      <span class="free">(Miễn phí và Ưu đãi thêm Online)</span>
+                                  </span>
+                                  <span class="store-info note">Hoạt động: Mở cửa: 08h00; Đóng cửa: 20h</span>
+                              </div>
+                          </div>
+
+                          <!-- Cửa hàng 7 -->
+                          <div class="-information" style="display:block;" data-district="HaiChau" data-state="021">
+                              <span class="store-title" id="store_title1392" onclick="$('.store-title').removeClass('show-info');$('.store-item').hide();
+                              $(this).toggleClass('show-info');$('#store_content1392').toggle();">
+                                  <i class="mp-sprite icon-stores"></i>
+                                  <span class="store-title_container">
+                                      CH Diamond Satra Centre Mall Hải Châu
+                                  </span>
+                              </span>
+                              <div class="store-item" id="store_content1392" data-key="1392" style="display: none;">
+                                  <input type="hidden" id="cdp_store_id1392" value="1392">
+                                  <input type="hidden" id="cdp_store_name1392" value="CH Diamond Satra Centre Mall Cần Thơ">
+                                  <input type="hidden" id="cdp_store_phone1392" value="(0292) 3339 4449">
+                                  <input type="hidden" id="cdp_store_address1392" value="23 Nguyễn Trãi, Quận Ninh Kiều, TP. Cần Thơ">
+                                  <span class="close-store-info" onclick="$('#store_title1392').removeClass('show-info');$('#store_content1392').hide();"></span>
+                                  <span class="store-name">CH Diamond Satra Centre Mall Hải Châu</span>
+                                  <span class="store-address">Hòa Thuận Tây, Hải Châu, Đà Nẵng</span>
+                                  <span class="store-info business">Mặt hàng: Trang sức Bạc, Trang sức Vàng</span>
+                                  <span class="store-info phone">(0292) 3339 4449</span>
+                                  <span class="store-info phone hotline">
+                                      <a href="tel:18001018" class="mp-hotline-header">
+                                          <span class="text-hotline">1800 10 18</span>
+                                      </a>
+                                      <span class="free">(Miễn phí và Ưu đãi thêm Online)</span>
+                                  </span>
+                                  <span class="store-info note">Hoạt động: Mở cửa: 08h00; Đóng cửa: 20h</span>
+                              </div>
+                          </div>
+
+                          <!-- Cửa hàng 8 -->
+                          <div class="-information" style="display:block;" data-district="ThanhKhe" data-state="021">
+                              <span class="store-title" id="store_title1393" onclick="$('.store-title').removeClass('show-info');$('.store-item').hide();
+                              $(this).toggleClass('show-info');$('#store_content1393').toggle();">
+                                  <i class="mp-sprite icon-stores"></i>
+                                  <span class="store-title_container">
+                                      CH Diamond Satra Centre Mall Thanh Khê
+                                  </span>
+                              </span>
+                              <div class="store-item" id="store_content1393" data-key="1393" style="display: none;">
+                                  <input type="hidden" id="cdp_store_id1393" value="1393">
+                                  <input type="hidden" id="cdp_store_name1393" value="CH Diamond Satra Centre Mall Quảng Ninh">
+                                  <input type="hidden" id="cdp_store_phone1393" value="(0203) 3339 4449">
+                                  <input type="hidden" id="cdp_store_address1393" value="56 Lê Thánh Tông, TP. Hạ Long, Quảng Ninh">
+                                  <span class="close-store-info" onclick="$('#store_title1393').removeClass('show-info');$('#store_content1393').hide();"></span>
+                                  <span class="store-name">CH Diamond Satra Centre Mall Thanh Khê</span>
+                                  <span class="store-address">478 Điện Biên Phủ, Thanh Khê Đông, Thanh Khê, Đà Nẵng</span>
+                                  <span class="store-info business">Mặt hàng: Trang sức Bạc, Trang sức Vàng</span>
+                                  <span class="store-info phone">(0203) 3339 4449</span>
+                                  <span class="store-info phone hotline">
+                                      <a href="tel:18001018" class="mp-hotline-header">
+                                          <span class="text-hotline">1800 10 18</span>
+                                      </a>
+                                      <span class="free">(Miễn phí và Ưu đãi thêm Online)</span>
+                                  </span>
+                                  <span class="store-info note">Hoạt động: Mở cửa: 08h00; Đóng cửa: 20h</span>
+                              </div>
+                          </div>
+
+                          <!-- Cửa hàng 9 -->
+                          <div class="-information" style="display:block;" data-district="HoanKiem" data-state="027">
+                              <span class="store-title" id="store_title1394" onclick="$('.store-title').removeClass('show-info');$('.store-item').hide();
+                              $(this).toggleClass('show-info');$('#store_content1394').toggle();">
+                                  <i class="mp-sprite icon-stores"></i>
+                                  <span class="store-title_container">
+                                      CH Diamond Satra Centre Mall Hoàn Kiếm
+                                  </span>
+                              </span>
+                              <div class="store-item" id="store_content1394" data-key="1394" style="display: none;">
+                                  <input type="hidden" id="cdp_store_id1394" value="1394">
+                                  <input type="hidden" id="cdp_store_name1394" value="CH Diamond Satra Centre Mall Hải Phòng">
+                                  <input type="hidden" id="cdp_store_phone1394" value="(0225) 3339 4449">
+                                  <input type="hidden" id="cdp_store_address1394" value="4 Trần Phú, Quận Ngô Quyền, Hải Phòng">
+                                  <span class="close-store-info" onclick="$('#store_title1394').removeClass('show-info');$('#store_content1394').hide();"></span>
+                                  <span class="store-name">CH Diamond Satra Centre Mall Hải Hoàn Kiếm</span>
+                                  <span class="store-address">1 Tràng Tiền, Phan Chu Trinh, Hoàn Kiếm, Hà Nội</span>
+                                  <span class="store-info business">Mặt hàng: Trang sức Bạc, Trang sức Vàng</span>
+                                  <span class="store-info phone">(0225) 3339 4449</span>
+                                  <span class="store-info phone hotline">
+                                      <a href="tel:18001018" class="mp-hotline-header">
+                                          <span class="text-hotline">1800 10 18</span>
+                                      </a>
+                                      <span class="free">(Miễn phí và Ưu đãi thêm Online)</span>
+                                  </span>
+                                  <span class="store-info note">Hoạt động: Mở cửa: 08h00; Đóng cửa: 20h</span>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+    <!-- End Main -->
+   <!-- Footer -->
+
+   <footer class="footer">
+    <hr />
+    <div class="container">
+      <!-- Logo -->
+      <img
+        src="{%static 'home/assets/img/img-main/logo-page.jpg' %}"
+        alt=""
+        class="logo-footer"
+      />
+      <div class="wrap-content">
+        <!-- Content Cty -->
+        <div class="content-footer">
+          <h4>©2017 Công Ty Cổ Phần Vàng Bạc Đá Quý</h4>
+          <p>
+            02 Võ Oanh, P.25, Q.Bình Thạnh, TP.Hồ Chí Minh <br />
+            ĐT: <span>028 9988 xxxx</span> - Fax: <span>028 3900 xxxx</span>
+          </p>
+          <p>
+            <span>Giấy chứng nhận đăng ký doanh nghiệp: 99999999</span> do Sở
+            Kế hoạch & Đầu tư TP.HCM cấp lần đầu ngày 02/01/2004. Ngành, nghề
+            kinh doanh
+          </p>
+          <p>
+            Tổng đài hỗ trợ (08:00-21:00, miễn phí gọi) <br />Gọi mua:
+            <span>1800545xxx </span> (phím 1) <br />Khiếu nại:
+            <span>1800545xxx</span> (phím 2)
+          </p>
+        </div>
+        <!-- Intro -->
+        <div class="intro-footer">
+          <span>VỀ D & C</span>
+          <a href="#">Tuyển Dụng</a>
+          <a href="{% url 'inspection_page' %}">Kiểm định kim cương</a>
+          <a href="{% url 'gift_page' %}">Quà tặng</a>
+        </div>
+        <!-- Dịch vụ, chính sách -->
+        <div class="use-footer">
+          <span>DỊCH VỤ KHÁCH HÀNG</span>
+          <a href="{% url 'size_page' %}">Hướng dẫn đo size trang sức</a>
+          <a href="{% url 'buybill_page' %}">Hướng dân mua và thanh toán</a>
+          <a href="{% url 'guide_page' %}">Cẩm nang sử dụng trang sức</a>
+          <a href="{% url 'faq_page' %}">Câu hỏi thường gặp</a>
+          <span>TỔNG HỢP CÁC CHÍNH SÁCH D&C</span>
+          <a href="{% url 'delivery_page' %}">Chính sách giao hàng</a>
+          <a href="{% url 'warranty_page' %}">Chính sách bảo hành</a>
+          <a href="{% url 'security_page' %}">Chính sách bảo mật thông tin</a>
+        </div>
+        <!-- Link social -->
+        <div class="social-footer">
+          <span>KẾT NỐI VỚI CHÚNG TÔI</span>
+          <div class="logo-social">
+            <a href="#"
+              ><img
+                src="https://cdn.pnj.io/images/image-update/footer/facebook.svg"
+                alt=""
+            /></a>
+            <a href="#"
+              ><img
+                src="https://cdn.pnj.io/images/image-update/footer/instagram.svg"
+                alt=""
+            /></a>
+            <a href="#"
+              ><img
+                src="https://cdn.pnj.io/images/image-update/footer/youtube.svg"
+                alt=""
+            /></a>
+            <a href="#"
+              ><img
+                src="https://cdn.pnj.io/images/image-update/footer/email.svg"
+                alt=""
+            /></a>
+          </div>
+        </div>
+        <!-- Khác -->
+        <div class="methor-pay">
+          <span>PHƯƠNG THỨC THANH TOÁN</span>
+          <div class="image-pay">
+            <img
+              src="https://www.pnj.com.vn/design/themes/pnjrovski/media/images/payments/visa.svg"
+              alt=""
+            />
+            <img
+              src="https://www.pnj.com.vn/design/themes/pnjrovski/media/images/payments/mastercard.svg"
+              alt=""
+            />
+            <img
+              src="https://www.pnj.com.vn/design/themes/pnjrovski/media/images/payments/jcb.svg"
+              alt=""
+            />
+            <img
+              src="https://www.pnj.com.vn/design/themes/pnjrovski/media/images/payments/thanhtoantienmat.svg"
+              alt=""
+            />
+          </div>
+        </div>
+        <div class="certi">
+          <span>CHỨNG NHẬN</span>
+          <img
+            src="https://cdn.pnj.io/images/image-update/op-da-thong-bao-bo-cong-thuong-183x60.png"
+            alt=""
+            class="certis"
+          />
+        </div>
+      </div>
+    </div>
+  </footer>
+    <script src="{% static 'home/assets/js/Diamond.js' %}"></script>
+    <script src="{% static 'home/assets/js/search.js' %}"></script>
+  </body>
+</html>
