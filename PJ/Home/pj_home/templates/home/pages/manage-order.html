@@ -36,6 +36,60 @@
    <title>Quản Lý Đơn Hàng</title>
   </head>
   <body>
+    <style>
+      .order-item {
+          display: block !important;
+          visibility: visible !important;
+          opacity: 1 !important;
+      }
+      
+      .btn-out {
+        background-color: #ff4d4d;
+        color: white;
+        border: none;
+        padding: 12px 24px;
+        font-size: 16px;
+        border-radius: 5px;
+        cursor: pointer;
+        position: relative;
+        overflow: hidden;
+        transition: background 0.3s;
+      }
+      
+      .btn-out::before {
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 300%;
+        height: 300%;
+        background: rgba(255, 255, 255, 0.2);
+        transition: width 0.5s, height 0.5s, top 0.5s, left 0.5s;
+        border-radius: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 0;
+      }
+      
+      .btn-out:hover::before {
+        width: 0%;
+        height: 0%;
+      }
+      .btn-out:hover {
+        background-color: #e60000;
+      }
+    </style>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        // Khởi tạo giỏ hàng và giao diện
+        updateCartCount();
+      });
+      // Cập nhật số lượng giỏ hàng
+      function updateCartCount() {
+        const cart = JSON.parse(localStorage.getItem("cart")) || [];
+        const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+        document.querySelector(".number-cart").textContent = totalItems;
+      }
+  </script>  
     <!-- Header -->
     <header class="header">
       <div class="container">
@@ -48,9 +102,15 @@
           ><img src="{%static 'home/assets/img/img-main/logo-page.jpg' %}" alt="" class="logo-header"
         /></a>
         <div class="left-info-shop">
-          <a href="{% url 'customer_page' %}" class="user-card"
-            ><i class="fa-solid fa-user"></i>Tài Khoản Của Tôi
-          </a>
+          {% if request.session.user_id %}
+        <a href="{% url 'customer_page' %}" class="user-card">
+            <i class="fa-solid fa-user"></i> {{ request.session.user_name }}
+        </a>
+      {% else %}
+        <a href="{% url 'login' %}" class="user-card">
+              <i class="fa-solid fa-user"></i> Đăng nhập
+        </a>
+      {% endif %}
           <a href="{% url 'cart_page' %}" class="cart-shop">
             <img
               style="width: 20px; height: auto"
@@ -524,7 +584,7 @@
             alt="Avatar"
             class="avatar"
           />
-          <h3>Tài khoản của<br /><span>Lê Tùng</span></h3>
+          <h3>Tài khoản của<br /><span>{{ request.session.user_name }}</span></h3>
         </div>
         <ul class="menu-sidebar">
           <li>
@@ -537,7 +597,10 @@
           <li><a href="{% url 'productview_page' %}">Sản phẩm bạn đã xem</a></li>
           <li><a href="{% url 'wishlist_page' %}">Sản phẩm yêu thích</a></li>
           <li><a href="{% url 'comments_page' %}">Nhận xét của tôi</a></li>
-          <li><a href="{% url 'home_page' %}">Đăng xuất</a></li>
+          <form action="{% url 'logout' %}" method="post">
+            {% csrf_token %}
+            <button type="submit" class="btn-out">Đăng xuất</button>
+          </form>
         </ul>
       </aside>
       <!-- Nội dung chính -->
@@ -565,7 +628,7 @@
 
           <!-- Order List -->
           <div class="order-content">
-            <div class="order-item" data-category="delivered">
+            <!-- <div class="order-item" data-category="delivered">
               <h4 class="status">Giao hàng thành công</h4>
               <div class="product-details">
                 <img
@@ -587,7 +650,6 @@
                 </div>
               </div>
             </div>
-
             <div class="order-item" data-category="processing">
               <h4 class="status">Đang xử lý</h4>
               <div class="product-details">
@@ -610,7 +672,6 @@
                 </div>
               </div>
             </div>
-
             <div class="order-item" data-category="cancelled">
               <h4 class="status">Đã hủy</h4>
               <div class="product-details">
@@ -654,13 +715,86 @@
                   <button class="btn details">Xem chi tiết</button>
                 </div>
               </div>
-            </div>
+            </div> -->
           </div>
         </div>
       </main>
     </div>
 
 <!-- End Main -->
+    <script>
+      // Hàm chuyển đổi trạng thái đơn hàng
+function getStatusText(status) {
+    const statusMap = {
+        "pending": "Đang xử lý",
+        "shipping": "Đang giao hàng",
+        "delivered": "Đã giao hàng",
+        "canceled": "Đã hủy"
+    };
+    return statusMap[status] || "Không xác định";
+}
+    document.addEventListener("DOMContentLoaded", async function () {
+    try {
+        let response = await fetch("/api/orders/");
+        let data = await response.json();
+
+        console.log("📦 Dữ liệu đơn hàng nhận được:", data.orders); // Kiểm tra dữ liệu
+
+        let orderContainer = document.querySelector(".order-content");
+        if (!orderContainer) {
+            console.error("❌ Không tìm thấy phần tử .order-content");
+        }
+        orderContainer.innerHTML = ""; // Xóa nội dung cũ
+
+        data.orders.forEach(order => {
+            console.log("🔹 OrderID:", order.OrderID); // Kiểm tra từng OrderID
+
+            let orderHTML = `
+                <div class="order-item" data-category="${order.status}">
+                    <h4 class="status">${getStatusText(order.status)}</h4>
+                    ${order.order_details.map(item => `
+                        <div class="product-details">
+                            <img src="${item.product_image}" alt="${item.product_name}" class="product-img" />
+                            <div class="product-info">
+                                <p class="product-name">${item.product_name}</p>
+                                <p class="shop-name">Cửa hàng</p>
+                            </div>
+                            <p class="product-price">${item.price} đ</p>
+                        </div>
+                    `).join("")}
+                    <div class="order-summary">
+                        <p>Tổng tiền: <span class="total-price">${order.total_amount} đ</span></p>
+                        <p>Ngày đặt: ${new Date(order.created_at).toLocaleDateString()}</p>
+                        <div class="order-buttons">
+                            <button class="btn buy-again">Mua lại</button>
+                            <button class="btn details" data-id="${order.OrderID}">Xem chi tiết</button>
+                        </div>
+                    </div>
+                </div>
+            `;
+            orderContainer.innerHTML += orderHTML;
+        });
+
+        // Bắt sự kiện click cho tất cả nút "Xem chi tiết"
+        document.querySelectorAll(".btn.details").forEach(button => {
+            button.addEventListener("click", function () {
+                let orderID = this.getAttribute("data-id");
+                console.log("🔍 Navigating to order:", orderID);
+                if (orderID) {
+                    window.location.href = `/manageorder/${orderID}`;
+                } else {
+                    console.error("⚠️ OrderID bị thiếu!");
+                }
+            });
+        });
+
+    } catch (error) {
+        console.error("Lỗi tải danh sách đơn hàng:", error);
+    }
+});
+
+
+    </script>
     <!-- End Main -->
      <!-- Footer -->
 

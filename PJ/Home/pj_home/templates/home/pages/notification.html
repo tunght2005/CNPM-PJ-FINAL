@@ -36,6 +36,18 @@
    <title>Thông báo của tôi</title>
   </head>
   <body>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        // Khởi tạo giỏ hàng và giao diện
+        updateCartCount();
+      });
+      // Cập nhật số lượng giỏ hàng
+      function updateCartCount() {
+        const cart = JSON.parse(localStorage.getItem("cart")) || [];
+        const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+        document.querySelector(".number-cart").textContent = totalItems;
+      }
+  </script> 
     <!-- Header -->
     <header class="header">
       <div class="container">
@@ -48,9 +60,15 @@
           ><img src="{%static 'home/assets/img/img-main/logo-page.jpg' %}" alt="" class="logo-header"
         /></a>
         <div class="left-info-shop">
-          <a href="{% url 'customer_page' %}" class="user-card"
-            ><i class="fa-solid fa-user"></i>Tài Khoản Của Tôi
-          </a>
+          {% if request.session.user_id %}
+        <a href="{% url 'customer_page' %}" class="user-card">
+            <i class="fa-solid fa-user"></i> {{ request.session.user_name }}
+        </a>
+      {% else %}
+        <a href="{% url 'login' %}" class="user-card">
+              <i class="fa-solid fa-user"></i> Đăng nhập
+        </a>
+      {% endif %}
           <a href="{% url 'cart_page' %}" class="cart-shop">
             <img
               style="width: 20px; height: auto"
@@ -523,7 +541,7 @@
           alt="Avatar"
           class="avatar"
         />
-        <h3>Tài khoản của<br /><span>Lê Tùng</span></h3>
+        <h3>Tài khoản của<br /><span>{{ request.session.user_name }}</span></h3>
       </div>
       <ul class="menu-sidebar">
         <li>
@@ -536,7 +554,10 @@
         <li><a href="{% url 'productview_page' %}">Sản phẩm bạn đã xem</a></li>
         <li><a href="{% url 'wishlist_page' %}">Sản phẩm yêu thích</a></li>
         <li><a href="{% url 'comments_page' %}">Nhận xét của tôi</a></li>
-        <li><a href="{% url 'home_page' %}">Đăng xuất</a></li>
+        <form action="{% url 'logout' %}" method="post">
+          {% csrf_token %}
+          <button type="submit" class="btn-out">Đăng xuất</button>
+        </form>
       </ul>
     </aside>
     <!-- Nội dung chính -->
@@ -544,176 +565,50 @@
       <h4>Thông báo của tôi</h4>
       <div id="notification"></div>
       <div class="table-notifi">
-        <table>
-          <thead>
-            <tr>
-              <th>Mã ĐH</th>
-              <th>Trạng Thái</th>
-              <th>Ngày Đặt Hàng</th>
-              <th>Ảnh Sản Phẩm</th>
-              <th>Thao Tác</th>
-            </tr>
-          </thead>
-          <div class="notifi-list">
-            <tbody>
-              <tr class="buttonA" data-target="1">
-                <td>#00123</td>
-                <td>Đang xử lý</td>
-                <td>15/12/2024</td>
-                <td>
-                  <img
-                    src="./assets/css/img/logo-page.jpg"
-                    alt="Sản phẩm 1"
-                  />
-                </td>
-                <td>
-                  <button class="button active" data-id="1">
-                    Đánh Dấu Đã Đọc
-                  </button>
-                  <button class="button delete">Xóa</button>
-                </td>
-              </tr>
-              <tr class="buttonA" data-target="1">
-                <td>#00123</td>
-                <td>Đang xử lý</td>
-                <td>15/12/2024</td>
-                <td>
-                  <img
-                    src="./assets/css/img/logo-page.jpg"
-                    alt="Sản phẩm 1"
-                  />
-                </td>
-                <td>
-                  <button class="button active" data-id="1">
-                    Đánh Dấu Đã Đọc
-                  </button>
-                  <button class="button delete">Xóa</button>
-                </td>
-              </tr>
-              <tr class="buttonA" data-target="1">
-                <td>#00123</td>
-                <td>Đang xử lý</td>
-                <td>15/12/2024</td>
-                <td>
-                  <img
-                    src="./assets/css/img/logo-page.jpg"
-                    alt="Sản phẩm 1"
-                  />
-                </td>
-                <td>
-                  <button class="button active" data-id="1">
-                    Đánh Dấu Đã Đọc
-                  </button>
-                  <button class="button delete">Xóa</button>
-                </td>
-              </tr>
-              <tr class="buttonA" data-target="1">
-                <td>#00123</td>
-                <td>Đang xử lý</td>
-                <td>15/12/2024</td>
-                <td>
-                  <img
-                    src="./assets/css/img/logo-page.jpg"
-                    alt="Sản phẩm 1"
-                  />
-                </td>
-                <td>
-                  <button class="button active" data-id="1">
-                    Đánh Dấu Đã Đọc
-                  </button>
-                  <button class="button delete">Xóa</button>
-                </td>
-              </tr>
-              <tr class="buttonA" data-target="1">
-                <td>#00123</td>
-                <td>Đang xử lý</td>
-                <td>15/12/2024</td>
-                <td>
-                  <img
-                    src="./assets/css/img/logo-page.jpg"
-                    alt="Sản phẩm 1"
-                  />
-                </td>
-                <td>
-                  <button class="button active" data-id="1">
-                    Đánh Dấu Đã Đọc
-                  </button>
-                  <button class="button delete">Xóa</button>
-                </td>
-              </tr>
-              <tr class="buttonA" data-target="2">
-                <td>#00124</td>
-                <td>Đã giao</td>
-                <td>15/12/2024</td>
-                <td>
-                  <img
-                    src="./assets/css/img/logo-page.jpg"
-                    alt="Sản phẩm 2"
-                  />
-                </td>
-                <td>
-                  <button class="button active" data-id="2">
-                    Đánh Dấu Đã Đọc
-                  </button>
-                  <button class="button delete">Xóa</button>
-                </td>
-              </tr>
-              <tr class="buttonA" data-target="3">
-                <td>#00125</td>
-                <td>Đang vận chuyển</td>
-                <td>15/12/2024</td>
-                <td>
-                  <img
-                    src="./assets/css/img/logo-page.jpg"
-                    alt="Sản phẩm 3"
-                  />
-                </td>
-                <td>
-                  <button class="button active" data-id="3">
-                    Đánh Dấu Đã Đọc
-                  </button>
-                  <button class="button delete">Xóa</button>
-                </td>
-              </tr>
-              <tr class="buttonA" data-target="3">
-                <td>#00125</td>
-                <td>Đang vận chuyển</td>
-                <td>15/12/2024</td>
-                <td>
-                  <img
-                    src="./assets/css/img/logo-page.jpg"
-                    alt="Sản phẩm 3"
-                  />
-                </td>
-                <td>
-                  <button class="button active" data-id="3">
-                    Đánh Dấu Đã Đọc
-                  </button>
-                  <button class="button delete">Xóa</button>
-                </td>
-              </tr>
-              <tr class="buttonA" data-target="3">
-                <td>#00125</td>
-                <td>Đang vận chuyển</td>
-                <td>15/12/2024</td>
-                <td>
-                  <img
-                    src="./assets/css/img/logo-page.jpg"
-                    alt="Sản phẩm 3"
-                  />
-                </td>
-                <td>
-                  <button class="button active" data-id="3">
-                    Đánh Dấu Đã Đọc
-                  </button>
-                  <button class="button delete">Xóa</button>
-                </td>
-              </tr>
-            </tbody>
-          </div>
-        </table>
+          <table>
+              <thead>
+                  <tr>
+                      <th>Mã ĐH</th>
+                      <th>Trạng Thái</th>
+                      <th>Ngày Đặt Hàng</th>
+                      <th>Tổng Tiền</th>
+                      <th>Ảnh Sản Phẩm</th>
+                      <th>Thao Tác</th>
+                  </tr>
+              </thead>
+              <tbody>
+                  {% for order in orders %}
+                  <tr id="row-{{ order.OrderID }}" class="{% if order.is_read %}read{% endif %}">
+                      <td>{{ order.OrderID }}</td>
+                      <td>{{ order.get_status_display }}</td>
+                      <td>{{ order.created_at|date:"d/m/Y" }}</td>
+                      <td>{{ order.total_amount }} VNĐ</td>
+                      <td>
+                          {% with order_detail=order.order_details.first %}
+                              {% if order_detail and order_detail.product.image %}
+                                  <img src="{{ MEDIA_URL }}{{ order_detail.product.image }}" alt="Sản phẩm" style="width: 50px; height: 50px;">
+                              {% else %}
+                                  Không có ảnh
+                              {% endif %}
+                          {% endwith %}
+                      </td>
+                      <td>
+                          <button class="button mark-read" data-id="{{ order.OrderID }}"
+                              {% if order.is_read %}disabled style="background-color: #6c757d;"{% endif %}>
+                              {% if order.is_read %}Đã Đọc{% else %}Đánh Dấu Đã Đọc{% endif %}
+                          </button>
+                          <button class="button delete" data-id="{{ order.OrderID }}">Xóa</button>
+                      </td>
+                  </tr>
+                  {% empty %}
+                  <tr>
+                      <td colspan="6">Không có thông báo nào.</td>
+                  </tr>
+                  {% endfor %}
+              </tbody>
+          </table>
       </div>
-    </main>
+  </main>
   </div>
 
 <!-- End Main -->
@@ -826,9 +721,46 @@
       </div>
     </div>
   </footer>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+        document.querySelectorAll(".mark-read").forEach(button => {
+            button.addEventListener("click", function () {
+                let notiId = this.getAttribute("data-id");
+                fetch(`/notifications/mark-read/${notiId}/`, { method: "POST", headers: { "X-CSRFToken": getCSRFToken() } })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.success) {
+                            let row = document.getElementById(`row-${notiId}`);
+                            row.classList.add("read");
+                            this.innerText = "Đã Đọc";
+                            this.disabled = true;
+                            this.style.backgroundColor = "#6c757d";
+                        }
+                    });
+            });
+        });
+    
+        document.querySelectorAll(".delete").forEach(button => {
+            button.addEventListener("click", function () {
+                let notiId = this.getAttribute("data-id");
+                fetch(`/notifications/delete/${notiId}/`, { method: "POST", headers: { "X-CSRFToken": getCSRFToken() } })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.success) {
+                            document.getElementById(`row-${notiId}`).remove();
+                        }
+                    });
+            });
+        });
+    
+        function getCSRFToken() {
+            return document.querySelector("[name=csrfmiddlewaretoken]").value;
+        }
+    });
+    </script>
     <script src="{% static 'home/assets/js/profile.js' %}"></script>
     <script src="{% static 'home/assets/js/search.js' %}"></script>
-    <script>
+    <!-- <script>
       // Thông báo
       document.addEventListener("DOMContentLoaded", function () {
         const deleteButtons = document.querySelectorAll(".button.delete");
@@ -865,6 +797,6 @@
           });
         });
       });
-    </script>
+    </script> -->
   </body>
 </html>

@@ -7,6 +7,9 @@ from django.contrib.auth import logout
 from django.contrib.sessions.models import Session
 from django.contrib.auth.decorators import login_required
 import bcrypt
+from django.urls import reverse
+
+from django.http import JsonResponse
 
 
 def register(request):
@@ -25,14 +28,60 @@ def register(request):
             return redirect('login')    
     return render(request, 'register.html', {'form': form})
 
+# def login(request):
+#     if request.session.get('user_id'):
+#         return redirect('home_page1')
+        
+#     if request.method == 'POST':
+#         email = request.POST.get('email')
+#         password = request.POST.get('password')
+        
+#         if not email or not password:
+#             messages.error(request, 'Vui lòng nhập đầy đủ email và mật khẩu')
+#             return render(request, 'login.html')
+
+#         try:
+#             user = User.objects.get(email=email)
+#             if not user.is_active:
+#                 messages.error(request, 'Tài khoản chưa được kích hoạt')
+#                 return render(request, 'login.html')
+                
+#             if bcrypt.checkpw(password.encode('utf-8'), user.password.encode('utf-8')):
+#                 # Lưu thông tin user vào session
+#                 request.session['user_id'] = user.UserID
+#                 request.session['user_email'] = user.email
+#                 request.session['user_name'] = user.username
+#                 request.session['user_role'] = user.role
+#                 # Kiểm tra session sau khi đăng nhập
+#                 print("Session user_id:", request.session.get('user_id'))
+#                 print("Session user_email:", request.session.get('user_email'))
+#                 print("Session user_name:", request.session.get('user_name'))
+#                 print("Session user_role:", request.session.get('user_role'))
+#                 messages.success(request, f'Chào mừng {user.username}!')
+                
+#                 # Điều hướng dựa trên role
+#                 if int(user.role) >= 5:  # Manager và Admin
+#                     return redirect('admin_dashboard')
+#                 elif int(user.role) == 4:  # Delivery Staff
+#                     return redirect('delivery_dashboard')
+#                 elif int(user.role) in [2, 3]:  # Sales và Staff
+#                     return redirect('staff_dashboard')
+#                 else:  # Customer và Guest
+#                     return redirect('customer_page')
+#             else:
+#                 messages.error(request, 'Email hoặc mật khẩu không đúng')
+#         except User.DoesNotExist:
+#             messages.error(request, 'Email hoặc mật khẩu không đúng')
+            
+#     return render(request, 'login.html')
 def login(request):
     if request.session.get('user_id'):
         return redirect('home_page1')
-        
+
     if request.method == 'POST':
         email = request.POST.get('email')
         password = request.POST.get('password')
-        
+
         if not email or not password:
             messages.error(request, 'Vui lòng nhập đầy đủ email và mật khẩu')
             return render(request, 'login.html')
@@ -42,51 +91,63 @@ def login(request):
             if not user.is_active:
                 messages.error(request, 'Tài khoản chưa được kích hoạt')
                 return render(request, 'login.html')
-                
+
             if bcrypt.checkpw(password.encode('utf-8'), user.password.encode('utf-8')):
-                # Lưu thông tin user vào session
-                request.session['user_id'] = user.UserID
+                # Đảm bảo session lưu đúng key
+                request.session['user_id'] = str(user.UserID)  # Chuyển thành chuỗi để tránh lỗi
                 request.session['user_email'] = user.email
                 request.session['user_name'] = user.username
-                request.session['user_role'] = user.role
-                
+                request.session['user_role'] = int(user.role)  # Đảm bảo role là số nguyên
+
+                # Debug session
+                print("Đăng nhập thành công! Session lưu:", request.session.items())
+
                 messages.success(request, f'Chào mừng {user.username}!')
                 
-                # Điều hướng dựa trên role
-                if int(user.role) >= 5:  # Manager và Admin
-                    return redirect('admin_dashboard')
+                # Điều hướng theo role
+                if int(user.role) == 6:  #Admin
+                    # return redirect('admin_dashboard')
+                   return redirect('quanly:admin_dashboard')
+                elif int(user.role) == 5:  # Manager
+                    return redirect('manager_dashboard')
                 elif int(user.role) == 4:  # Delivery Staff
                     return redirect('delivery_dashboard')
-                elif int(user.role) in [2, 3]:  # Sales và Staff
+                elif int(user.role) == 3:  # Sales và Staff
                     return redirect('staff_dashboard')
-                else:  # Customer và Guest
-                    return redirect('home_page1')
+                elif int(user.role) == 2:
+                    return redirect('home_page1') 
+                else:  #Guest
+                    return redirect('home_page')
+
             else:
                 messages.error(request, 'Email hoặc mật khẩu không đúng')
         except User.DoesNotExist:
             messages.error(request, 'Email hoặc mật khẩu không đúng')
-            
+
     return render(request, 'login.html')
 
 # def logout(request):
 #     request.session.flush()
 #     messages.success(request, 'Đăng xuất thành công!')
 #     return redirect('login')
+# def logout_view(request):
+#     logout(request)
+    
+#     # Xóa từng key trong session
+#     keys_to_delete = ['UserID', 'email', 'username', 'role']
+#     for key in keys_to_delete:
+#         if key in request.session:
+#             del request.session[key]
+    
+#     request.session.flush()  # Xóa hoàn toàn session
+#     request.session.clear()
+    
+#     messages.success(request, 'Đăng xuất thành công!')
+#     return redirect('home_page')
 def logout_view(request):
-    logout(request)
-    
-    # Xóa từng key trong session
-    keys_to_delete = ['UserID', 'email', 'username', 'role']
-    for key in keys_to_delete:
-        if key in request.session:
-            del request.session[key]
-    
-    request.session.flush()  # Xóa hoàn toàn session
-    request.session.clear()
-    
+    request.session.flush()  # Xóa toàn bộ session
     messages.success(request, 'Đăng xuất thành công!')
     return redirect('home_page')
-
 
 def forgot(request):
     if request.session.get('user_id'):
@@ -104,12 +165,12 @@ def forgot(request):
 # Admin Views
 @role_required([5, 6])
 def admin_dashboard(request):
-    return render(request, 'admin/dashboard.html')
+    return render(request, 'Admin/dashboard.html')
 
 @role_required([5, 6])
 def manage_users(request):
     users = User.objects.all()
-    return render(request, 'admin/users.html', {'users': users})
+    return render(request, 'Admin/users.html', {'users': users})
 
 # Staff Views
 @role_required([2, 3, 4, 5, 6])

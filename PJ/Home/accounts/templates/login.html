@@ -15,7 +15,7 @@
   <body>
     <div class="uf-form-signin">
       <div class="text-center">
-        <a href="/Home/index.html">
+        <a href="{% url 'home_page' %}">
           <img src="{% static 'assets/img/logo-page.jpg' %}" alt="" width="250px" height="auto"/>
         </a>
         <h1 class="text-black h3">Đăng Nhập Tài Khoản</h1>
@@ -76,7 +76,7 @@
               >Nhớ mật khẩu</label
             >
           </div>
-          <a href="/forgot">Quên mật khẩu?</a>
+          <a href="{% url 'forgot' %}">Quên mật khẩu?</a>
         </div>
         <div class="d-grid mb-4">
           <button type="submit" class="btn uf-btn-primary btn-lg">

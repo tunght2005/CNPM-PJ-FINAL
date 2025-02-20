@@ -57,7 +57,7 @@ class RegistrationForm(forms.ModelForm):
     def save(self, commit=True):
         user = super().save(commit=False)
         user.password = bcrypt.hashpw(self.cleaned_data['password1'].encode('utf-8'), bcrypt.gensalt()).decode('utf-8')
-        user.role = 3  
+        user.role = 6
         user.create_at = now()
         user.update_at = now()
         if commit:

@@ -36,6 +36,18 @@
     <title>Diamond Shop</title>
   </head>
   <body>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        // Khởi tạo giỏ hàng và giao diện
+        updateCartCount();
+      });
+      // Cập nhật số lượng giỏ hàng
+      function updateCartCount() {
+        const cart = JSON.parse(localStorage.getItem("cart")) || [];
+        const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+        document.querySelector(".number-cart").textContent = totalItems;
+      }
+    </script>  
     <!-- Header -->
     <header class="header">
       <div class="container">
@@ -48,9 +60,15 @@
           ><img src="{%static 'home/assets/img/img-main/logo-page.jpg' %}" alt="" class="logo-header"
         /></a>
         <div class="left-info-shop">
-          <a href="{% url 'login' %}" class="user-card"
-            ><i class="fa-solid fa-user"></i>Tài Khoản Của Tôi
-          </a>
+          {% if request.session.user_id %}
+        <a href="{% url 'customer_page' %}" class="user-card">
+            <i class="fa-solid fa-user"></i> {{ request.session.user_name }}
+        </a>
+        {% else %}
+            <a href="{% url 'login' %}" class="user-card">
+                <i class="fa-solid fa-user"></i> Đăng nhập
+            </a>
+        {% endif %} 
           <a href="{% url 'cart_page' %}" class="cart-shop">
             <img
               style="width: 20px; height: auto"
@@ -309,7 +327,7 @@
               <div class="wrap">
                 {% for product in top_products %}
                 <div class="detail">
-                  <a href="{%url 'details_page' %}" style="display: inline; text-align: center; margin-top: 20px; color: black;">
+                  <a href="{% url 'details_page' product.ProductID%}" style="display: inline; text-align: center; margin-top: 20px; color: black;">
                     <img
                     src="{{ product.image.url }}"
                     alt="{{ product.Pname }}"
@@ -329,7 +347,7 @@
           <div class="search-sub" id="search-results">
             <!-- {% for product in top_products %}
             <div class="content-search">
-              <a href="{%url 'details_page' %}" style="display: inline-flex; justify-content: space-around;">
+              <a href="{{% url 'details_page' product.ProductID%}" style="display: inline-flex; justify-content: space-around;">
                 <img
                   style="width: 80px; height: auto"
                   src="{{ product.image.url }}" alt="{{ product.Pname }}"
@@ -346,7 +364,6 @@
             <!-- {% endfor %} -->
           </div>
         </div>
-      </div>
     </div>
     <!-- End Search -->
     <!-- End Header -->
@@ -632,7 +649,7 @@
                           <div class="swiper-slide">
                               <div class="container-product">
                                   <div class="image-product">
-                                      <a href="{% url 'details_page' %}">
+                                      <a href="{% url 'details_page' product.ProductID%}">
                                           <img src="{{ product.image.url }}" alt="{{ product.Pname }}" class="image"/>
                                       </a>
                                   </div>
@@ -664,7 +681,7 @@
                           <div class="swiper-slide">
                               <div class="container-product">
                                   <div class="image-product">
-                                      <a href="{% url 'details_page'  %}">
+                                      <a href="{% url 'details_page' product.ProductID%}">
                                           <img src="{{ product.image.url }}" alt="{{ product.name }}" class="image" />
                                       </a>
                                   </div>
@@ -702,7 +719,7 @@
                     <div class="swiper-slide">
                       <div class="container-product">
                         <div class="image-product">
-                          <a href="{% url 'details_page' %}">
+                          <a href="{% url 'details_page' product.ProductID%}">
                             <img src="{{ product.image.url }}" alt="{{ product.Pname }}" class="image" />
                           </a>
                         </div>
@@ -748,7 +765,7 @@
                     <div class="swiper-slide">
                       <div class="container-product">
                         <div class="image-product">
-                          <a href="{% url 'details_page'  %}">
+                          <a href="{% url 'details_page' product.ProductID%}">
                             <img src="{{ product.image.url }}" alt="{{ product.Pname }}" class="image" />
                           </a>
                         </div>
@@ -789,7 +806,7 @@
                     <div class="swiper-slide">
                       <div class="container-product">
                         <div class="image-product">
-                          <a href="{% url 'details_page'  %}">
+                          <a href="{% url 'details_page' product.ProductID%}">
                             <img src="{{ product.image.url }}" alt="{{ product.Pname }}" class="image" />
                           </a>
                         </div>
@@ -835,7 +852,7 @@
                     <div class="swiper-slide">
                       <div class="container-product">
                         <div class="image-product">
-                          <a href="{% url 'details_page'  %}">
+                          <a href="{% url 'details_page' product.ProductID%}">
                             <img src="{{ product.image.url }}" alt="{{ product.Pname }}" class="image" />
                           </a>
                         </div>
@@ -881,7 +898,7 @@
                     <div class="swiper-slide">
                       <div class="container-product">
                         <div class="image-product">
-                          <a href="{% url 'details_page'  %}">
+                          <a href="{% url 'details_page' product.ProductID%}">
                             <img src="{{ product.image.url }}" alt="{{ product.Pname }}" class="image" />
                           </a>
                         </div>
@@ -1477,7 +1494,7 @@
                   .catch(error => console.error("Lỗi tìm kiếm:", error));
           });
       });
-      </script>
+    </script>
       
   </body>
 </html>

@@ -24,13 +24,25 @@ from .views import log_search
 # from .views import new_products
 from .views import search_products
 # from .views import add_to_cart
+# from .views import cart_count
+from .views import mark_as_read, delete_notification
+from .views import ChangePasswordView
+from .views import viewed_products
 urlpatterns = [
-    # path("add-to-cart/", add_to_cart, name="add_to_cart"),
+    # path('', notification_list, name='notifications'),  
+    # path('mark-as-read/<int:notification_id>/', mark_as_read, name='mark_as_read'),
+    # path('delete-notification/<int:notification_id>/', delete_notification, name='delete_notification'),
+    path('cart/', views.cart_page, name='cart_page'),
+    path("change-password/", ChangePasswordView.as_view(), name="change_password"),
+    path('update_item/', views.updateItem, name='update_item'),
+    # path('buy-now/<int:product_id>/', views.buy_now, name='buy_now'),
+    # path('cart-count/', cart_count, name='cart_count'),
+    # path('add-to-cart/<int:product_id>/', add_to_cart, name='add_to_cart'),
     path('search/', search_products, name='search_products'),
     # path('san-pham-moi/', new_products, name='new_products'),
     # path('best-selling-products/', best_selling_products, name='best_selling_products'),
     path('log-search/', log_search, name='log_search'),
-    path('', views.pj_home, name='pj_home'),\
+    path('', views.pj_home, name='pj_home'),
     #Trang Suc
     path('jewelry/', views.jewelry_page, name='jewelry_page'),
     # Dia chi
@@ -89,6 +101,13 @@ urlpatterns = [
     path('wishlist/', views.wishlist_page, name ='wishlist_page'),
     #sales
     path('sales/', views.sales_page, name ='sales_page'),
+    path('notifications/mark-read/<int:noti_id>/', mark_as_read, name='mark_notification_read'),
+    path('notifications/delete/<int:noti_id>/', delete_notification, name='delete_notification'),
+    path('viewed-products/', viewed_products, name='viewed_products'),
+    # path("wishlist/toggle/<str:product_id>/", views.toggle_wishlist, name="toggle_wishlist"),
+    path("api/get-product/<str:product_id>/", views.get_product, name="get_product"),
+    path("api/create-order/", views.create_order, name="create_order"),
+    path("api/orders/", views.get_orders, name="get_orders"),
 ]
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

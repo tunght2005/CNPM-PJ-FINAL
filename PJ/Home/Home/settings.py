@@ -40,6 +40,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'pj_home',
     'accounts',
+    'rest_framework',
+    'corsheaders',
+    'quanly',
 ]
 
 MIDDLEWARE = [
@@ -50,7 +53,12 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',  # Thêm dòng này
+    'django.middleware.common.CommonMiddleware',  # Thêm dòng này
+    'accounts.middleware.SessionCheckMiddleware',
 ]
+
+CORS_ALLOW_ALL_ORIGINS = True  # Cho phép mọi domain truy cập API
 
 ROOT_URLCONF = 'Home.urls'
 
@@ -87,9 +95,17 @@ DATABASES = {
     }
 }
 
-SESSION_ENGINE = 'django.contrib.sessions.backends.db'
-SESSION_COOKIE_AGE = 0  # Hết hạn session ngay khi đóng trình duyệt
-SESSION_EXPIRE_AT_BROWSER_CLOSE = True
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework.authentication.SessionAuthentication',
+        'rest_framework.authentication.BasicAuthentication',
+    ),
+}
+
+SESSION_ENGINE = "django.contrib.sessions.backends.db"  # Lưu session vào database
+SESSION_COOKIE_AGE = 86400  # Thời gian sống của session (tính bằng giây)
+SESSION_EXPIRE_AT_BROWSER_CLOSE = False  # Không xóa session khi đóng trình duyệt
+SESSION_SAVE_EVERY_REQUEST = True  # Lưu session sau mỗi request
 
 
 # Password validation
@@ -134,9 +150,17 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-
+# Cấu hình password hashers
+PASSWORD_HASHERS = [
+    'django.contrib.auth.hashers.PBKDF2PasswordHasher',
+    'django.contrib.auth.hashers.PBKDF2SHA1PasswordHasher',
+    'django.contrib.auth.hashers.Argon2PasswordHasher',
+    'django.contrib.auth.hashers.BCryptSHA256PasswordHasher',
+]
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 MEDIA_URL = '/media/'  # Đường dẫn URL cho ảnh
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')  # Thư mục lưu ảnh
+
+LOGIN_URL = 'login'  # URL của trang đăng nhập

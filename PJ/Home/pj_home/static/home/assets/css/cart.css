@@ -159,3 +159,115 @@ font-size: 30px;
 font-weight: 600;
 color: #0eaf2e;
 }
+
+/* Style chung cho bảng */
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  }
+  
+  /* Style header */
+  .table thead th {
+    background-color: #f8f9fa;
+    padding: 12px;
+    text-align: left;
+    border-bottom: 2px solid #dee2e6;
+  }
+  
+  /* Style hàng sản phẩm */
+  .table tbody td {
+    padding: 12px;
+    vertical-align: middle;
+    border-top: 1px solid #dee2e6;
+  }
+  
+  /* Hiệu ứng hover cho hàng */
+  .table tbody tr:hover {
+    background-color: #f8f9fa;
+  }
+  
+  /* Style ảnh sản phẩm */
+  .table tbody td img {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 4px;
+  }
+  
+  /* Style nút thanh toán */
+  #checkout {
+    padding: 10px 20px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  #checkout:hover {
+    background-color: #218838;
+  }
+  
+  /* Style tổng cộng */
+  #cart-total {
+    color: #dc3545;
+    font-size: 1.2em;
+    font-weight: bold;
+  }
+  .remove-item {
+    padding: 6px 12px;
+    background-color: #dc3545;
+    color: white;
+    border: 1px solid #dc3545;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  
+  .remove-item:hover {
+    background-color: #bb2d3b;
+    border-color: #b02a37;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  }
+  
+  .remove-item:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(220,53,69,0.25);
+  }
+
+
+  /* ... các style trước đó ... */
+
+/* Style thông báo */
+.notification {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: #28a745;
+    color: white;
+    padding: 15px 25px;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+    opacity: 0;
+    transform: translateY(-20px);
+    animation: slideIn 0.3s ease-out forwards;
+    z-index: 1000;
+  }
+  
+  @keyframes slideIn {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  .notification::before {
+    content: "✓";
+    font-size: 1.2em;
+  }

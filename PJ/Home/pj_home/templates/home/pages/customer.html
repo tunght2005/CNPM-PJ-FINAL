@@ -36,6 +36,18 @@
     <title>Thông tin tài khoản</title>
   </head>
   <body>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        // Khởi tạo giỏ hàng và giao diện
+        updateCartCount();
+      });
+      // Cập nhật số lượng giỏ hàng
+      function updateCartCount() {
+        const cart = JSON.parse(localStorage.getItem("cart")) || [];
+        const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+        document.querySelector(".number-cart").textContent = totalItems;
+      }
+  </script>  
     <!-- Header -->
     <header class="header">
       <div class="container">
@@ -48,9 +60,15 @@
           ><img src="{%static 'home/assets/img/img-main/logo-page.jpg' %}" alt="" class="logo-header"
         /></a>
         <div class="left-info-shop">
-          <a href="{% url 'customer_page' %}" class="user-card"
-            ><i class="fa-solid fa-user"></i>Tài Khoản Của Tôi
+          {% if request.session.user_id %}
+          <a href="{% url 'customer_page' %}" class="user-card">
+              <i class="fa-solid fa-user"></i> {{ request.session.user_name }}
           </a>
+          {% else %}
+              <a href="{% url 'login' %}" class="user-card">
+                  <i class="fa-solid fa-user"></i> Đăng nhập
+              </a>
+          {% endif %} 
           <a href="{% url 'cart_page' %}" class="cart-shop">
             <img
               style="width: 20px; height: auto"
@@ -519,12 +537,8 @@
       <!-- Sidebar -->
       <aside class="sidebar">
         <div class="profile">
-          <img
-            src="https://hoanghamobile.com/tin-tuc/wp-content/uploads/2024/07/anh-avatar-anime-5.jpg"
-            alt="Avatar"
-            class="avatar"
-          />
-          <h3>Tài khoản của<br /><span>Lê Tùng</span></h3>
+          <img id="avatar" src="{{ user.avatar.url }}" alt="avatar" style="width: 90px; height: 90px" />
+          <h3>Tài khoản của<br /><span>{{ request.session.user_name }}</span></h3>
         </div>
         <ul class="menu-sidebar">
           <li>
@@ -539,7 +553,7 @@
           <li><a href="{% url 'comments_page' %}">Nhận xét của tôi</a></li>
           <form action="{% url 'logout' %}" method="post">
             {% csrf_token %}
-            <button type="submit">Đăng xuất</button>
+            <button type="submit" class="btn-out">Đăng xuất</button>
           </form>
         </ul>
       </aside>
@@ -551,19 +565,15 @@
           <div class="form-avatar">
             <div class="box-avatar">
               <div class="avatar-view">
-                <img
-                  id="avatar"
-                  src="https://hoanghamobile.com/tin-tuc/wp-content/uploads/2024/07/anh-avatar-anime-5.jpg"
-                  alt="avatar"
-                  style="width: 70px; height: 70px"
-                />
-                <label for="avatar-input" class="update-avatar-btn">
+                <img id="avatar" src="{{ user.avatar.url }}" alt="avatar" style="width: 70px; height: 70px" />
+                <label for="avatar-input" class="update-avatar-btn" >
                   <i class="fa-solid fa-cloud-arrow-up"></i>
                 </label>
               </div>
               <input
                 type="file"
                 id="avatar-input"
+                name="avatar"
                 accept="image/*"
                 style="display: none"
               />
@@ -573,17 +583,11 @@
           <div class="form-name">
             <div class="form-group">
               <label>Họ & Tên:</label>
-              <input
-                class="input-name"
-                type="search"
-                placeholder="Thêm họ tên"
-                value="Lê Tùng"
-                name="fullName"
-              />
+              <input class="input-name" type="text" name="full_name" value="{{ user.full_name }}" placeholder="Thêm họ tên" />
             </div>
             <div class="form-group">
               <label>Nickname:</label>
-              <input type="text" placeholder="Thêm nickname" />
+              <input type="text" name="nickname" value="{{ user.nickname }}" placeholder="Thêm nickname" />
             </div>
           </div>
           <!-- Ngày sinh , Quốc tịch, Giới tính -->
@@ -625,13 +629,9 @@
             >
               <label>Giới tính</label>
               <div class="gender" style="margin-left: 20px">
-                <label><input type="radio" name="gender" checked /> Nam</label>
-                <label style="margin-left: 20px"
-                  ><input type="radio" name="gender" /> Nữ</label
-                >
-                <label style="margin-left: 20px"
-                  ><input type="radio" name="gender" /> Khác</label
-                >
+                <label><input type="radio" name="gender" value="Nam" {% if user.gender == 'Nam' %}checked{% endif %} /> Nam</label>
+                <label><input type="radio" name="gender" value="Nữ" {% if user.gender == 'Nữ' %}checked{% endif %} /> Nữ</label>
+                <label><input type="radio" name="gender" value="Khác" {% if user.gender == 'Khác' %}checked{% endif %} /> Khác</label>
               </div>
             </div>
             <div class="form-national">
@@ -671,13 +671,7 @@
               ></i
               ><span>Số điện thoại</span>
               <div class="info-1">
-                <span>0967907****</span>
-                <input
-                  type="tel"
-                  name="SĐT"
-                  id="phone-reset"
-                  placeholder="Nhập SĐT cần đổi"
-                />
+                <input type="tel" name="phone" value="{{ user.phone }}" placeholder="Nhập số điện thoại" />
                 <button class="update-btn">Cập nhật</button>
               </div>
             </div>
@@ -688,14 +682,8 @@
               ></i
               ><span>Địa chỉ Email</span>
               <div class="info-2">
-                <span>lat07***@gmail.com</span>
-                <input
-                  type="email"
-                  name="email"
-                  id="email-reset"
-                  placeholder="Nhập Email cần đổi"
-                />
-                <button class="update-btn">Cập nhật</button>
+                <input type="email" name="email" value="{{ user.email }}" placeholder="Nhập Email" />
+                <button type="submit" class="update-btn">Cập nhật</button>
               </div>
             </div>
           </div>
@@ -729,7 +717,6 @@
 
     <!-- End Main -->
     <!-- Footer -->
-
     <footer class="footer">
       <hr />
       <div class="container">

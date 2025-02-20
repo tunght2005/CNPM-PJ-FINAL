@@ -36,6 +36,55 @@
    <title>Sản phẩm đã xem</title>
   </head>
   <body>
+    <style>
+      
+      .btn-out {
+        background-color: #ff4d4d;
+        color: white;
+        border: none;
+        padding: 12px 24px;
+        font-size: 16px;
+        border-radius: 5px;
+        cursor: pointer;
+        position: relative;
+        overflow: hidden;
+        transition: background 0.3s;
+      }
+      
+      .btn-out::before {
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 300%;
+        height: 300%;
+        background: rgba(255, 255, 255, 0.2);
+        transition: width 0.5s, height 0.5s, top 0.5s, left 0.5s;
+        border-radius: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 0;
+      }
+      
+      .btn-out:hover::before {
+        width: 0%;
+        height: 0%;
+      }
+      .btn-out:hover {
+        background-color: #e60000;
+      }
+          </style>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        // Khởi tạo giỏ hàng và giao diện
+        updateCartCount();
+      });
+      // Cập nhật số lượng giỏ hàng
+      function updateCartCount() {
+        const cart = JSON.parse(localStorage.getItem("cart")) || [];
+        const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+        document.querySelector(".number-cart").textContent = totalItems;
+      }
+  </script> 
     <!-- Header -->
     <header class="header">
       <div class="container">
@@ -48,9 +97,15 @@
           ><img src="{%static 'home/assets/img/img-main/logo-page.jpg' %}" alt="" class="logo-header"
         /></a>
         <div class="left-info-shop">
-          <a href="{% url 'customer_page' %}" class="user-card"
-            ><i class="fa-solid fa-user"></i>Tài Khoản Của Tôi
-          </a>
+          {% if request.session.user_id %}
+        <a href="{% url 'customer_page' %}" class="user-card">
+            <i class="fa-solid fa-user"></i> {{ request.session.user_name }}
+        </a>
+      {% else %}
+        <a href="{% url 'login' %}" class="user-card">
+              <i class="fa-solid fa-user"></i> Đăng nhập
+        </a>
+      {% endif %} 
           <a href="{% url 'cart_page' %}" class="cart-shop">
             <img
               style="width: 20px; height: auto"
@@ -523,7 +578,7 @@
             alt="Avatar"
             class="avatar"
           />
-          <h3>Tài khoản của<br /><span>Lê Tùng</span></h3>
+          <h3>Tài khoản của<br /><span>{{ request.session.user_name }}</span></h3>
         </div>
         <ul class="menu-sidebar">
           <li>
@@ -536,283 +591,35 @@
           <li><a href="{% url 'productview_page' %}" class="active">Sản phẩm bạn đã xem</a></li>
           <li><a href="{% url 'wishlist_page' %}">Sản phẩm yêu thích</a></li>
           <li><a href="{% url 'comments_page' %}">Nhận xét của tôi</a></li>
-          <li><a href="{% url 'home_page' %}">Đăng xuất</a></li>
+          <form action="{% url 'logout' %}" method="post">
+            {% csrf_token %}
+            <button type="submit" class="btn-out">Đăng xuất</button>
+          </form>
         </ul>
       </aside>
       <!-- Nội dung chính -->
       <main class="content-profile">
         <h4>Sản phẩm đã xem</h4>
-        <!-- Sản phẩm đã xem -->
         <div class="container-view">
-          <div class="header-view">Sản phẩm đã xem</div>
-          <div class="product-list">
-            <div class="product">
-              <a href="#"
-                ><img
-                  src="./assets/css/img/logo-page.jpg"
-                  alt="Product Image"
-                />
-                <div class="product-info">
-                  <h3>Sản phẩm A</h3>
-                  <span>9.999.999đ</span>
-                </div></a
-              >
+            <div class="header-view">Sản phẩm đã xem</div>
+            <div class="product-list">
+                {% for viewed in viewed_products %}
+                <div class="product">
+                    <a href="{% url 'details_page' viewed.product.id %}">
+                        <img src="{{ viewed.product.image.url }}" alt="Product Image" />
+                        <div class="product-info">
+                            <h3>{{ viewed.product.name }}</h3>
+                            <span>{{ viewed.product.price }}đ</span>
+                        </div>
+                    </a>
+                </div>
+                {% empty %}
+                <p>Chưa có sản phẩm nào được xem gần đây.</p>
+                {% endfor %}
             </div>
-            <div class="product">
-              <a href="#"
-                ><img
-                  src="./assets/css/img/logo-page.jpg"
-                  alt="Product Image"
-                />
-                <div class="product-info">
-                  <h3>Sản phẩm A</h3>
-                  <span>9.999.999đ</span>
-                </div></a
-              >
-            </div>
-            <div class="product">
-              <a href="#"
-                ><img
-                  src="./assets/css/img/logo-page.jpg"
-                  alt="Product Image"
-                />
-                <div class="product-info">
-                  <h3>Sản phẩm A</h3>
-                  <span>9.999.999đ</span>
-                </div></a
-              >
-            </div>
-            <div class="product">
-              <a href="#"
-                ><img
-                  src="./assets/css/img/logo-page.jpg"
-                  alt="Product Image"
-                />
-                <div class="product-info">
-                  <h3>Sản phẩm A</h3>
-                  <span>9.999.999đ</span>
-                </div></a
-              >
-            </div>
-            <div class="product">
-              <a href="#"
-                ><img
-                  src="./assets/css/img/logo-page.jpg"
-                  alt="Product Image"
-                />
-                <div class="product-info">
-                  <h3>Sản phẩm A</h3>
-                  <span>9.999.999đ</span>
-                </div></a
-              >
-            </div>
-            <div class="product">
-              <a href="#"
-                ><img
-                  src="./assets/css/img/logo-page.jpg"
-                  alt="Product Image"
-                />
-                <div class="product-info">
-                  <h3>Sản phẩm A</h3>
-                  <span>9.999.999đ</span>
-                </div></a
-              >
-            </div>
-            <div class="product">
-              <a href="#"
-                ><img
-                  src="./assets/css/img/logo-page.jpg"
-                  alt="Product Image"
-                />
-                <div class="product-info">
-                  <h3>Sản phẩm A</h3>
-                  <span>9.999.999đ</span>
-                </div></a
-              >
-            </div>
-            <div class="product">
-              <a href="#"
-                ><img
-                  src="./assets/css/img/logo-page.jpg"
-                  alt="Product Image"
-                />
-                <div class="product-info">
-                  <h3>Sản phẩm A</h3>
-                  <span>9.999.999đ</span>
-                </div></a
-              >
-            </div>
-            <div class="product">
-              <a href="#"
-                ><img
-                  src="./assets/css/img/logo-page.jpg"
-                  alt="Product Image"
-                />
-                <div class="product-info">
-                  <h3>Sản phẩm A</h3>
-                  <span>9.999.999đ</span>
-                </div></a
-              >
-            </div>
-            <div class="product">
-              <a href="#"
-                ><img
-                  src="./assets/css/img/logo-page.jpg"
-                  alt="Product Image"
-                />
-                <div class="product-info">
-                  <h3>Sản phẩm A</h3>
-                  <span>9.999.999đ</span>
-                </div></a
-              >
-            </div>
-            <div class="product">
-              <a href="#"
-                ><img
-                  src="./assets/css/img/logo-page.jpg"
-                  alt="Product Image"
-                />
-                <div class="product-info">
-                  <h3>Sản phẩm A</h3>
-                  <span>9.999.999đ</span>
-                </div></a
-              >
-            </div>
-            <div class="product">
-              <a href="#"
-                ><img
-                  src="./assets/css/img/logo-page.jpg"
-                  alt="Product Image"
-                />
-                <div class="product-info">
-                  <h3>Sản phẩm A</h3>
-                  <span>9.999.999đ</span>
-                </div></a
-              >
-            </div>
-            <div class="product">
-              <a href="#"
-                ><img
-                  src="./assets/css/img/logo-page.jpg"
-                  alt="Product Image"
-                />
-                <div class="product-info">
-                  <h3>Sản phẩm A</h3>
-                  <span>9.999.999đ</span>
-                </div></a
-              >
-            </div>
-            <div class="product">
-              <a href="#"
-                ><img
-                  src="./assets/css/img/logo-page.jpg"
-                  alt="Product Image"
-                />
-                <div class="product-info">
-                  <h3>Sản phẩm A</h3>
-                  <span>9.999.999đ</span>
-                </div></a
-              >
-            </div>
-            <div class="product">
-              <a href="#"
-                ><img
-                  src="./assets/css/img/logo-page.jpg"
-                  alt="Product Image"
-                />
-                <div class="product-info">
-                  <h3>Sản phẩm A</h3>
-                  <span>9.999.999đ</span>
-                </div></a
-              >
-            </div>
-            <div class="product">
-              <a href="#"
-                ><img
-                  src="./assets/css/img/logo-page.jpg"
-                  alt="Product Image"
-                />
-                <div class="product-info">
-                  <h3>Sản phẩm A</h3>
-                  <span>9.999.999đ</span>
-                </div></a
-              >
-            </div>
-            <div class="product">
-              <a href="#"
-                ><img
-                  src="./assets/css/img/logo-page.jpg"
-                  alt="Product Image"
-                />
-                <div class="product-info">
-                  <h3>Sản phẩm A</h3>
-                  <span>9.999.999đ</span>
-                </div></a
-              >
-            </div>
-            <div class="product">
-              <a href="#"
-                ><img
-                  src="./assets/css/img/logo-page.jpg"
-                  alt="Product Image"
-                />
-                <div class="product-info">
-                  <h3>Sản phẩm A</h3>
-                  <span>9.999.999đ</span>
-                </div></a
-              >
-            </div>
-            <div class="product">
-              <a href="#"
-                ><img
-                  src="./assets/css/img/logo-page.jpg"
-                  alt="Product Image"
-                />
-                <div class="product-info">
-                  <h3>Sản phẩm A</h3>
-                  <span>9.999.999đ</span>
-                </div></a
-              >
-            </div>
-            <div class="product">
-              <a href="#"
-                ><img
-                  src="./assets/css/img/logo-page.jpg"
-                  alt="Product Image"
-                />
-                <div class="product-info">
-                  <h3>Sản phẩm A</h3>
-                  <span>9.999.999đ</span>
-                </div></a
-              >
-            </div>
-            <div class="product">
-              <a href="#"
-                ><img
-                  src="./assets/css/img/logo-page.jpg"
-                  alt="Product Image"
-                />
-                <div class="product-info">
-                  <h3>Sản phẩm A</h3>
-                  <span>9.999.999đ</span>
-                </div></a
-              >
-            </div>
-            <div class="product">
-              <a href="#"
-                ><img
-                  src="./assets/css/img/logo-page.jpg"
-                  alt="Product Image"
-                />
-                <div class="product-info">
-                  <h3>Sản phẩm A</h3>
-                  <span>9.999.999đ</span>
-                </div></a
-              >
-            </div>
-          </div>
         </div>
-      </main>
+    </main>
+    
     </div>
 
 <!-- End Main -->

@@ -36,6 +36,55 @@
     <title>Sản phẩm yêu thích</title>
   </head>
   <body>
+    <style>
+      
+      .btn-out {
+        background-color: #ff4d4d;
+        color: white;
+        border: none;
+        padding: 12px 24px;
+        font-size: 16px;
+        border-radius: 5px;
+        cursor: pointer;
+        position: relative;
+        overflow: hidden;
+        transition: background 0.3s;
+      }
+      
+      .btn-out::before {
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 300%;
+        height: 300%;
+        background: rgba(255, 255, 255, 0.2);
+        transition: width 0.5s, height 0.5s, top 0.5s, left 0.5s;
+        border-radius: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 0;
+      }
+      
+      .btn-out:hover::before {
+        width: 0%;
+        height: 0%;
+      }
+      .btn-out:hover {
+        background-color: #e60000;
+      }
+          </style>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        // Khởi tạo giỏ hàng và giao diện
+        updateCartCount();
+      });
+      // Cập nhật số lượng giỏ hàng
+      function updateCartCount() {
+        const cart = JSON.parse(localStorage.getItem("cart")) || [];
+        const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+        document.querySelector(".number-cart").textContent = totalItems;
+      }
+  </script>  
      <!-- Header -->
      <header class="header">
       <div class="container">
@@ -48,9 +97,15 @@
           ><img src="{%static 'home/assets/img/img-main/logo-page.jpg' %}" alt="" class="logo-header"
         /></a>
         <div class="left-info-shop">
-          <a href="{% url 'customer_page' %}" class="user-card"
-            ><i class="fa-solid fa-user"></i>Tài Khoản Của Tôi
-          </a>
+          {% if request.session.user_id %}
+        <a href="{% url 'customer_page' %}" class="user-card">
+            <i class="fa-solid fa-user"></i> {{ request.session.user_name }}
+        </a>
+      {% else %}
+        <a href="{% url 'login' %}" class="user-card">
+              <i class="fa-solid fa-user"></i> Đăng nhập
+        </a>
+      {% endif %} 
           <a href="{% url 'cart_page' %}" class="cart-shop">
             <img
               style="width: 20px; height: auto"
@@ -523,7 +578,7 @@
         alt="Avatar"
         class="avatar"
       />
-      <h3>Tài khoản của<br /><span>Lê Tùng</span></h3>
+      <h3>Tài khoản của<br /><span>{{ request.session.user_name }}</span></h3>
     </div>
     <ul class="menu-sidebar">
       <li>
@@ -536,97 +591,20 @@
       <li><a href="{% url 'productview_page' %}">Sản phẩm bạn đã xem</a></li>
       <li><a href="{% url 'wishlist_page' %}" class="active">Sản phẩm yêu thích</a></li>
       <li><a href="{% url 'comments_page' %}">Nhận xét của tôi</a></li>
-      <li><a href="{% url 'home_page' %}">Đăng xuất</a></li>
+      <form action="{% url 'logout' %}" method="post">
+        {% csrf_token %}
+        <button type="submit" class="btn-out">Đăng xuất</button>
+      </form>
     </ul>
   </aside>
   <!-- Nội dung chính -->
   <main class="content-profile">
-    <h4>Sản phẩm yêu thích</h4>
-    <!-- Sản phẩm yêu thích -->
     <div class="container-list">
-      <div class="header-list">Sản phẩm yêu thích</div>
-      <div class="product-list">
-        <div class="product">
-          <img src="./assets/css/img/logo-page.jpg" alt="Product Image" />
-          <div class="product-info">
-            <h3>Sản phẩm Yêu Thích 1</h3>
-            <p>Mô tả ngắn về sản phẩm</p>
-          </div>
-          <button class="btn">Xóa khỏi yêu thích</button>
+        <div class="header-list">Sản phẩm yêu thích</div>
+        <div class="product-list">
+  
+            
         </div>
-        <div class="product">
-          <img src="./assets/css/img/logo-page.jpg" alt="Product Image" />
-          <div class="product-info">
-            <h3>Sản phẩm Yêu Thích 2</h3>
-            <p>Mô tả ngắn về sản phẩm</p>
-          </div>
-          <button class="btn">Xóa khỏi yêu thích</button>
-        </div>
-        <div class="product">
-          <img src="./assets/css/img/logo-page.jpg" alt="Product Image" />
-          <div class="product-info">
-            <h3>Sản phẩm Yêu Thích 2</h3>
-            <p>Mô tả ngắn về sản phẩm</p>
-          </div>
-          <button class="btn">Xóa khỏi yêu thích</button>
-        </div>
-        <div class="product">
-          <img src="./assets/css/img/logo-page.jpg" alt="Product Image" />
-          <div class="product-info">
-            <h3>Sản phẩm Yêu Thích 2</h3>
-            <p>Mô tả ngắn về sản phẩm</p>
-          </div>
-          <button class="btn">Xóa khỏi yêu thích</button>
-        </div>
-        <div class="product">
-          <img src="./assets/css/img/logo-page.jpg" alt="Product Image" />
-          <div class="product-info">
-            <h3>Sản phẩm Yêu Thích 2</h3>
-            <p>Mô tả ngắn về sản phẩm</p>
-          </div>
-          <button class="btn">Xóa khỏi yêu thích</button>
-        </div>
-        <div class="product">
-          <img src="./assets/css/img/logo-page.jpg" alt="Product Image" />
-          <div class="product-info">
-            <h3>Sản phẩm Yêu Thích 2</h3>
-            <p>Mô tả ngắn về sản phẩm</p>
-          </div>
-          <button class="btn">Xóa khỏi yêu thích</button>
-        </div>
-        <div class="product">
-          <img src="./assets/css/img/logo-page.jpg" alt="Product Image" />
-          <div class="product-info">
-            <h3>Sản phẩm Yêu Thích 2</h3>
-            <p>Mô tả ngắn về sản phẩm</p>
-          </div>
-          <button class="btn">Xóa khỏi yêu thích</button>
-        </div>
-        <div class="product">
-          <img src="./assets/css/img/logo-page.jpg" alt="Product Image" />
-          <div class="product-info">
-            <h3>Sản phẩm Yêu Thích 2</h3>
-            <p>Mô tả ngắn về sản phẩm</p>
-          </div>
-          <button class="btn">Xóa khỏi yêu thích</button>
-        </div>
-        <div class="product">
-          <img src="./assets/css/img/logo-page.jpg" alt="Product Image" />
-          <div class="product-info">
-            <h3>Sản phẩm Yêu Thích 2</h3>
-            <p>Mô tả ngắn về sản phẩm</p>
-          </div>
-          <button class="btn">Xóa khỏi yêu thích</button>
-        </div>
-        <div class="product">
-          <img src="./assets/css/img/logo-page.jpg" alt="Product Image" />
-          <div class="product-info">
-            <h3>Sản phẩm Yêu Thích 2</h3>
-            <p>Mô tả ngắn về sản phẩm</p>
-          </div>
-          <button class="btn">Xóa khỏi yêu thích</button>
-        </div>
-      </div>
     </div>
   </main>
 </div>
@@ -634,7 +612,66 @@
 <!-- End Main -->
     <!-- End Main -->
      <!-- Footer -->
+     <script>
+   document.addEventListener("DOMContentLoaded", function () {
+    const wishlistContainer = document.getElementById("wishlist-container");
 
+    // Kiểm tra xem container có tồn tại không
+    if (!wishlistContainer) {
+        console.error("Lỗi: Không tìm thấy #wishlist-container trong HTML");
+        return;
+    }
+
+    let wishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
+    console.log("Wishlist từ LocalStorage:", wishlist);
+
+    if (wishlist.length === 0) {
+        wishlistContainer.innerHTML = "<p>Chưa có sản phẩm yêu thích nào.</p>";
+        return;
+    }
+
+    wishlist.forEach(productId => {
+        console.log(`Đang gọi API: /api/get-product/${productId}/`);
+
+        fetch(`/api/get-product/${productId}/`)
+            .then(response => response.json())
+            .then(product => {
+                console.log("Dữ liệu từ API:", product);
+
+                if (product.error) {
+                    console.error(`Lỗi API: ${product.error}`);
+                    return;
+                }
+
+                // Kiểm tra dữ liệu trả về từ API
+                if (!product.Pname || !product.image || !product.price) {
+                    console.error("Dữ liệu sản phẩm không đầy đủ:", product);
+                    return;
+                }
+
+                // Tạo HTML cho sản phẩm
+                const productHTML = `
+                    <div class="product" data-product-id="${product.ProductID}">
+                        <img src="${product.image}" alt="${product.Pname}" />
+                        <div class="product-info">
+                            <h3>${product.Pname}</h3>
+                            <p>${product.descPr || "Không có mô tả"}</p>
+                            <span>${product.price}đ</span>
+                        </div>
+                        <button class="btn remove-wishlist" data-id="${product.ProductID}">
+                            Xóa khỏi yêu thích
+                        </button>
+                    </div>
+                `;
+
+                // Thêm sản phẩm vào container
+                wishlistContainer.innerHTML += productHTML;
+            })
+            .catch(error => console.error("Lỗi khi lấy sản phẩm:", error));
+    });
+});
+
+      </script>
      <footer class="footer">
       <hr />
       <div class="container">

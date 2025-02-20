@@ -912,3 +912,39 @@
   height: auto;
 }
 /* End Footer */
+
+
+.btn-out {
+  background-color: #ff4d4d;
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  font-size: 16px;
+  border-radius: 5px;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  transition: background 0.3s;
+}
+
+.btn-out::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 300%;
+  height: 300%;
+  background: rgba(255, 255, 255, 0.2);
+  transition: width 0.5s, height 0.5s, top 0.5s, left 0.5s;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 0;
+}
+
+.btn-out:hover::before {
+  width: 0%;
+  height: 0%;
+}
+.btn-out:hover {
+  background-color: #e60000;
+}

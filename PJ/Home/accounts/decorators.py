@@ -7,7 +7,7 @@ def role_required(allowed_roles=[]):
     def decorator(view_func):
         @wraps(view_func)
         def wrapper(request, *args, **kwargs):
-            if not request.session.get('user_id'):
+            if not request.session.get('UserID'):
                 messages.error(request, 'Vui lòng đăng nhập để tiếp tục')
                 return redirect('login')
             
