@@ -25,7 +25,6 @@ from .views import log_search
 from .views import search_products
 # from .views import add_to_cart
 # from .views import cart_count
-from .views import mark_as_read, delete_notification
 from .views import ChangePasswordView
 from .views import viewed_products
 urlpatterns = [
@@ -101,13 +100,15 @@ urlpatterns = [
     path('wishlist/', views.wishlist_page, name ='wishlist_page'),
     #sales
     path('sales/', views.sales_page, name ='sales_page'),
-    path('notifications/mark-read/<int:noti_id>/', mark_as_read, name='mark_notification_read'),
-    path('notifications/delete/<int:noti_id>/', delete_notification, name='delete_notification'),
+    path("api/orders/<str:order_id>/mark-read/", views.mark_order_read, name="mark_order_read"),
+    path("api/orders/<str:order_id>/delete/", views.delete_order, name="delete_order"),
+    path("api/order_notifi/", views.get_notifications, name="get_notifications"),
     path('viewed-products/', viewed_products, name='viewed_products'),
     # path("wishlist/toggle/<str:product_id>/", views.toggle_wishlist, name="toggle_wishlist"),
     path("api/get-product/<str:product_id>/", views.get_product, name="get_product"),
     path("api/create-order/", views.create_order, name="create_order"),
     path("api/orders/", views.get_orders, name="get_orders"),
 ]
+
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -93,7 +93,7 @@
       <hr />
       <ul class="app-menu">
         <li>
-          <a class="app-menu__item" href="{%url 'quanly:admin_dashboard'%}"
+          <a class="app-menu__item active" href="{%url 'quanly:admin_dashboard'%}"
             ><i class="app-menu__icon bx bx-tachometer"></i
             ><span class="app-menu__label">Bảng điều khiển</span></a
           >
@@ -111,7 +111,7 @@
           >
         </li>
         <li>
-          <a class="app-menu__item active" href="{%url 'quanly:product_management'%}"
+          <a class="app-menu__item" href="{%url 'quanly:product_management'%}"
             ><i class="app-menu__icon bx bx-purchase-tag-alt"></i
             ><span class="app-menu__label">Quản lý sản phẩm</span></a
           >
@@ -123,13 +123,13 @@
           >
         </li>
         <li>
-          <a class="app-menu__item" href="#"
+          <a class="app-menu__item" href="{%url 'quanly:ban_management'%}"
             ><i class="app-menu__icon bx bx-run"></i
             ><span class="app-menu__label">Quản lý nội bộ </span></a
           >
         </li>
         <li>
-          <a class="app-menu__item" href="table-data-money.html"
+          <a class="app-menu__item" href="{%url 'quanly:money_management'%}"
             ><i class="app-menu__icon bx bx-dollar"></i
             ><span class="app-menu__label">Bảng kê lương</span></a
           >
@@ -250,25 +250,36 @@
                   </tr>
                 </thead>
                 <tbody>
+                  {% for product in products %}
                   <tr>
                     <td width="10">
                       <input type="checkbox" name="check1" value="1" />
                     </td>
-                    <td>71304032</td>
-                    <td>Dây chuyền ngọc bích</td>
+                    <td>{{ product.ProductID }}</td>
+                    <td>{{ product.Pname }}</td>
                     <td>
-                      <img src="/img-sanpham/cera.jpg" alt="" width="100px;" />
+                      {% if product.image %}
+                        <img src="{{ product.image.url }}" alt="{{ product.Pname }}" width="100px;" />
+                      {% else %}
+                        <span>No image</span>
+                      {% endif %}
                     </td>
-                    <td>46</td>
-                    <td><span class="badge bg-success">Còn hàng</span></td>
-                    <td>20.790.000 đ</td>
-                    <td>Dây chuyền</td>
+                    <td>{{ product.stock }}</td>
+                    <td>
+                      {% if product.stock > 0 %}
+                        <span class="badge bg-success">Còn hàng</span>
+                      {% else %}
+                        <span class="badge bg-danger">Hết hàng</span>
+                      {% endif %}
+                    </td>
+                    <td>{{ product.price }} đ</td>
+                    <td>{{ product.category }}</td>
                     <td>
                       <button
                         class="btn btn-primary btn-sm trash"
                         type="button"
                         title="Xóa"
-                        onclick="myFunction(this)"
+                        data-id="{{ product.ProductID }}"
                       >
                         <i class="fas fa-trash-alt"></i>
                       </button>
@@ -279,45 +290,13 @@
                         id="show-emp"
                         data-toggle="modal"
                         data-target="#ModalUP"
+                        data-id="{{ product.ProductID }}"
                       >
                         <i class="fas fa-edit"></i>
                       </button>
                     </td>
                   </tr>
-                  <tr>
-                    <td width="10">
-                      <input type="checkbox" name="check1" value="1" />
-                    </td>
-                    <td>83826226</td>
-                    <td>Vòng tay đích kim cương</td>
-                    <td>
-                      <img src="/img-sanpham/tu.jpg" alt="" width="100px;" />
-                    </td>
-                    <td>0</td>
-                    <td><span class="badge bg-danger">Hét hàng</span></td>
-                    <td>2.450.000 đ</td>
-                    <td>Vòng tay</td>
-                    <td>
-                      <button
-                        class="btn btn-primary btn-sm trash"
-                        type="button"
-                        title="Xóa"
-                        onclick="myFunction(this)"
-                      >
-                        <i class="fas fa-trash-alt"></i>
-                      </button>
-                      <button
-                        class="btn btn-primary btn-sm edit"
-                        type="button"
-                        title="Sửa"
-                        id="show-emp"
-                        data-toggle="modal"
-                        data-target="#ModalUP"
-                      >
-                        <i class="fas fa-edit"></i>
-                      </button>
-                    </td>
-                  </tr>
+                  {% endfor %}
                 </tbody>
               </table>
             </div>
@@ -337,93 +316,6 @@
       </div> -->
     </main>
 
-    <!--
-  MODAL
--->
-    <div
-      class="modal fade"
-      id="ModalUP"
-      tabindex="-1"
-      role="dialog"
-      aria-hidden="true"
-      data-backdrop="static"
-      data-keyboard="false"
-    >
-      <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-          <div class="modal-body">
-            <div class="row">
-              <div class="form-group col-md-12">
-                <span class="thong-tin-thanh-toan">
-                  <h5>Chỉnh sửa thông tin sản phẩm cơ bản</h5>
-                </span>
-              </div>
-            </div>
-            <div class="row">
-              <div class="form-group col-md-6">
-                <label class="control-label">Mã sản phẩm </label>
-                <input class="form-control" type="number" value="71309005" />
-              </div>
-              <div class="form-group col-md-6">
-                <label class="control-label">Tên sản phẩm</label>
-                <input
-                  class="form-control"
-                  type="text"
-                  required
-                  value="Dây chuyền...."
-                />
-              </div>
-              <!-- Ảnh -->
-              <div class="form-group col-md-6">
-                <label class="control-label">Ảnh sản phẩm</label>
-                <input class="form-control" type="file" required />
-              </div>
-              <div class="form-group col-md-6">
-                <label class="control-label">Số lượng</label>
-                <input class="form-control" type="number" required value="20" />
-              </div>
-              <div class="form-group col-md-6">
-                <label for="exampleSelect1" class="control-label"
-                  >Tình trạng sản phẩm</label
-                >
-                <select class="form-control" id="exampleSelect1">
-                  <option>Còn hàng</option>
-                  <option>Hết hàng</option>
-                  <option>Đang nhập hàng</option>
-                </select>
-              </div>
-              <div class="form-group col-md-6">
-                <label class="control-label">Giá bán</label>
-                <input class="form-control" type="text" value="5.600.000" />
-              </div>
-              <div class="form-group col-md-6">
-                <label for="exampleSelect1" class="control-label"
-                  >Danh mục</label
-                >
-                <select class="form-control" id="exampleSelect1">
-                  <option>Dây chuyền</option>
-                  <option>Vòng cổ</option>
-                  <option>Vòng tay</option>
-                </select>
-              </div>
-            </div>
-            <br />
-            <a href="#" style="float: right; font-weight: 600; color: #ea0000"
-              >Chỉnh sửa sản phẩm nâng cao</a
-            >
-            <br />
-            <br />
-            <button class="btn btn-save" type="button">Lưu lại</button>
-            <a class="btn btn-cancel" data-dismiss="modal" href="#">Hủy bỏ</a>
-            <br />
-          </div>
-          <div class="modal-footer"></div>
-        </div>
-      </div>
-    </div>
-    <!--
-MODAL
--->
 
     <!-- Essential javascripts for application to work-->
     <script src="../../assets/css/img/js/jquery-3.2.1.min.js"></script>
@@ -514,5 +406,61 @@ MODAL
         e.stopImmediatePropagation();
       });
     </script>
+    <script>
+function getCookie(name) {
+    let cookieValue = null;
+    if (document.cookie && document.cookie !== '') {
+        const cookies = document.cookie.split(';');
+        for (let i = 0; i < cookies.length; i++) {
+            const cookie = cookies[i].trim();
+            if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                break;
+            }
+        }
+    }
+    return cookieValue;
+}
+
+jQuery(function () {
+    jQuery(".trash").click(function () {
+        const productId = $(this).data('id');
+        console.log("ProductID to delete:", productId);
+        
+        swal({
+            title: "Cảnh báo",
+            text: "Bạn có chắc chắn muốn xóa sản phẩm này?",
+            icon: "warning",
+            buttons: ["Hủy bỏ", "Đồng ý"],
+            dangerMode: true,
+        }).then((willDelete) => {
+            if (willDelete) {
+                $.ajax({
+                    url: `{% url 'quanly:delete_product' '0' %}`.replace('0', productId),
+                    type: 'POST',
+                    headers: {
+                        'X-CSRFToken': getCookie('csrftoken')
+                    },
+                    success: function(response) {
+                        if (response.status === 'success') {
+                            swal("Thành công!", response.message, "success")
+                            .then(() => {
+                                location.reload();
+                            });
+                        } else {
+                            swal("Lỗi!", response.message, "error");
+                        }
+                    },
+                    error: function(xhr, status, error) {
+                        console.error("Error:", error);
+                        console.error("Response:", xhr.responseText);
+                        swal("Lỗi!", "Không thể xóa sản phẩm", "error");
+                    }
+                });
+            }
+        });
+    });
+});
+</script>
   </body>
 </html>

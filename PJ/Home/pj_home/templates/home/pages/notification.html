@@ -48,6 +48,25 @@
         document.querySelector(".number-cart").textContent = totalItems;
       }
   </script> 
+   <!-- Các thẻ meta và link khác -->
+   <style>
+    .table-notifi table th:last-child,
+    .table-notifi table td:last-child {
+        width: 150px;
+        min-width: 150px;
+    }
+
+    .button {
+        padding: 5px 10px;
+        font-size: 12px;
+        margin: 2px;
+    }
+
+    .table-notifi table td:last-child {
+        text-align: center;
+        white-space: nowrap;
+    }
+</style>
     <!-- Header -->
     <header class="header">
       <div class="container">
@@ -582,7 +601,7 @@
       </ul>
     </aside>
     <!-- Nội dung chính -->
-    <main class="content-profile">
+  <main class="content-profile">
       <h4>Thông báo của tôi</h4>
       <div id="notification"></div>
       <div class="table-notifi">
@@ -598,34 +617,7 @@
                   </tr>
               </thead>
               <tbody>
-                  {% for order in orders %}
-                  <tr id="row-{{ order.OrderID }}" class="{% if order.is_read %}read{% endif %}">
-                      <td>{{ order.OrderID }}</td>
-                      <td>{{ order.get_status_display }}</td>
-                      <td>{{ order.created_at|date:"d/m/Y" }}</td>
-                      <td>{{ order.total_amount }} VNĐ</td>
-                      <td>
-                          {% with order_detail=order.order_details.first %}
-                              {% if order_detail and order_detail.product.image %}
-                                  <img src="{{ MEDIA_URL }}{{ order_detail.product.image }}" alt="Sản phẩm" style="width: 50px; height: 50px;">
-                              {% else %}
-                                  Không có ảnh
-                              {% endif %}
-                          {% endwith %}
-                      </td>
-                      <td>
-                          <button class="button mark-read" data-id="{{ order.OrderID }}"
-                              {% if order.is_read %}disabled style="background-color: #6c757d;"{% endif %}>
-                              {% if order.is_read %}Đã Đọc{% else %}Đánh Dấu Đã Đọc{% endif %}
-                          </button>
-                          <button class="button delete" data-id="{{ order.OrderID }}">Xóa</button>
-                      </td>
-                  </tr>
-                  {% empty %}
-                  <tr>
-                      <td colspan="6">Không có thông báo nào.</td>
-                  </tr>
-                  {% endfor %}
+                <tr><td colspan="6">Đang tải dữ liệu...</td></tr>
               </tbody>
           </table>
       </div>
@@ -743,41 +735,150 @@
     </div>
   </footer>
   <script>
-    document.addEventListener("DOMContentLoaded", function () {
-        document.querySelectorAll(".mark-read").forEach(button => {
-            button.addEventListener("click", function () {
-                let notiId = this.getAttribute("data-id");
-                fetch(`/notifications/mark-read/${notiId}/`, { method: "POST", headers: { "X-CSRFToken": getCSRFToken() } })
-                    .then(response => response.json())
-                    .then(data => {
-                        if (data.success) {
-                            let row = document.getElementById(`row-${notiId}`);
-                            row.classList.add("read");
-                            this.innerText = "Đã Đọc";
-                            this.disabled = true;
-                            this.style.backgroundColor = "#6c757d";
-                        }
-                    });
-            });
-        });
-    
-        document.querySelectorAll(".delete").forEach(button => {
-            button.addEventListener("click", function () {
-                let notiId = this.getAttribute("data-id");
-                fetch(`/notifications/delete/${notiId}/`, { method: "POST", headers: { "X-CSRFToken": getCSRFToken() } })
-                    .then(response => response.json())
-                    .then(data => {
-                        if (data.success) {
-                            document.getElementById(`row-${notiId}`).remove();
-                        }
-                    });
-            });
-        });
-    
-        function getCSRFToken() {
-            return document.querySelector("[name=csrfmiddlewaretoken]").value;
+    function formatDate(dateString) {
+    const date = new Date(dateString);
+    const day = date.getDate().toString().padStart(2, '0');
+    const month = (date.getMonth() + 1).toString().padStart(2, '0');
+    const year = date.getFullYear();
+    return `${day}/${month}/${year}`;
+}
+   async function fetchOrders() {
+    try {
+        let response = await fetch("/api/orders/");
+        let data = await response.json();
+        
+        let tableBody = document.querySelector(".table-notifi tbody");
+        tableBody.innerHTML = "";
+
+        if (!data.orders || data.orders.length === 0) {
+            tableBody.innerHTML = "<tr><td colspan='6'>Không có thông báo nào.</td></tr>";
+            return;
         }
+
+        data.orders.forEach(order => {
+            const orderImage = order.order_details && order.order_details[0] ? 
+                order.order_details[0].product_image : 
+                'https://via.placeholder.com/50';
+
+            const orderId = order.OrderID || order.order_id || 'N/A';
+            // Sử dụng hàm formatDate cho ngày tháng
+            const formattedDate = formatDate(order.created_at);
+
+            let row = document.createElement("tr");
+            row.id = `row-${orderId}`;
+            row.className = order.is_read ? "read" : "";
+
+            row.innerHTML = `
+                <td>${orderId}</td>
+                <td>${order.status || 'Không xác định'}</td>
+                <td>${formattedDate}</td>
+                <td>${order.total_amount || '0 VNĐ'} VNĐ</td>
+                <td>
+                    <img src="${orderImage}" 
+                         alt="Sản phẩm" 
+                         style="width: 50px; height: 50px;" 
+                         onerror="this.src='https://via.placeholder.com/50'">
+                </td>
+                <td>
+                    <button class="button mark-read" data-id="${orderId}" 
+                        ${order.is_read ? "disabled style='background-color: #6c757d;'" : ""}>
+                        ${order.is_read ? "Đã Đọc" : "Đã Đọc Tin"}
+                    </button>
+                    <button class="button delete" data-id="${orderId}">Xóa</button>
+                </td>
+            `;
+
+            tableBody.appendChild(row);
+        });
+
+        addButtonEvents();
+
+    } catch (error) {
+        console.error("Lỗi khi tải dữ liệu:", error);
+        let tableBody = document.querySelector(".table-notifi tbody");
+        tableBody.innerHTML = "<tr><td colspan='6'>Đã xảy ra lỗi khi tải dữ liệu.</td></tr>";
+    }
+}
+
+function addButtonEvents() {
+    // Xử lý nút "Đánh dấu đã đọc"
+    document.querySelectorAll(".mark-read").forEach(button => {
+        button.addEventListener("click", async () => {
+            try {
+                const orderId = button.dataset.id;
+                const response = await fetch(`/api/orders/read/${orderId}/`, {
+                    method: "POST",
+                    headers: {
+                        "X-CSRFToken": getCSRFToken(),
+                        "Content-Type": "application/json"
+                    }
+                });
+
+                if (response.ok) {
+                    button.disabled = true;
+                    button.style.backgroundColor = "#6c757d";
+                    button.textContent = "Đã Đọc";
+                    document.getElementById(`row-${orderId}`).classList.add("read");
+                    showNotification("Đã đánh dấu là đã đọc", "#28a745");
+                }
+            } catch (error) {
+                console.error("Lỗi khi đánh dấu đã đọc:", error);
+                showNotification("Có lỗi xảy ra", "#dc3545");
+            }
+        });
     });
+
+    // Xử lý nút "Xóa"
+    document.querySelectorAll(".delete").forEach(button => {
+        button.addEventListener("click", async () => {
+            try {
+                const orderId = button.dataset.id;
+                if (!confirm("Bạn có chắc chắn muốn xóa thông báo này?")) return;
+
+                const response = await fetch(`/api/orders/delete/${orderId}/`, {
+                    method: "DELETE",
+                    headers: {
+                        "X-CSRFToken": getCSRFToken()
+                    }
+                });
+
+                if (response.ok) {
+                    document.getElementById(`row-${orderId}`).remove();
+                    showNotification("Đã xóa thông báo", "#28a745");
+                }
+            } catch (error) {
+                console.error("Lỗi khi xóa:", error);
+                showNotification("Có lỗi xảy ra", "#dc3545");
+            }
+        });
+    });
+}
+
+function showNotification(message, backgroundColor = "#28a745") {
+    const notification = document.getElementById("notification");
+    notification.textContent = message;
+    notification.style.backgroundColor = backgroundColor;
+    notification.style.display = "block";
+    setTimeout(() => {
+        notification.style.display = "none";
+    }, 3000);
+}
+
+function getCSRFToken() {
+    const cookies = document.cookie.split(';');
+    for (let cookie of cookies) {
+        const [name, value] = cookie.trim().split('=');
+        if (name === 'csrftoken') return value;
+    }
+    return '';
+}
+
+// Khởi tạo khi trang tải xong
+document.addEventListener("DOMContentLoaded", () => {
+    fetchOrders();
+    // Cập nhật mỗi 30 giây
+    setInterval(fetchOrders, 30000);
+});
     </script>
     <script src="{% static 'home/assets/js/profile.js' %}"></script>
     <script src="{% static 'home/assets/js/search.js' %}"></script>

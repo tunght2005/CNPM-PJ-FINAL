@@ -6,7 +6,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <!-- Main CSS-->
-    <link rel="stylesheet" type="text/css" href="../../assets/css/main.css" />
+     {%load static%}
+    <link rel="stylesheet" type="text/css" href="{% static '/assets/css/main.css' %}" />
     <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css"
@@ -56,6 +57,7 @@
   </head>
 
   <body onload="time()" class="app sidebar-mini rtl">
+    {% csrf_token %}
     <!-- Navbar-->
     <header class="app-header">
       <!-- Sidebar toggle button--><a
@@ -68,7 +70,7 @@
       <ul class="app-nav">
         <!-- User Menu-->
         <li>
-          <a class="app-nav__item" href="/Home/index.html"
+          <a class="app-nav__item" href="{%url 'pj_home'%}"
             ><i class="bx bx-log-out bx-rotate-180"></i>
           </a>
         </li>
@@ -85,70 +87,70 @@
           alt="User Image"
         />
         <div>
-          <p class="app-sidebar__user-name"><b>Văn Tùng</b></p>
+          <p class="app-sidebar__user-name"><b>Delivery Staff</b></p>
           <p class="app-sidebar__user-designation">Chào mừng bạn trở lại</p>
         </div>
       </div>
       <hr />
-       <!-- Menu Sidebar -->
-       <ul class="app-menu">
+      <!-- Menu Sidebar -->
+      <ul class="app-menu">
         <li>
-          <a class="app-menu__item" href="./deliveryStaff.html"
+          <a class="app-menu__item active" href="{%url 'quanly:delivery_staff_dashboard'%}"
             ><i class="app-menu__icon bx bx-tachometer"></i
             ><span class="app-menu__label">Bảng điều khiển</span></a
           >
         </li>
         <li>
-          <a class="app-menu__item bg-secondary active" href="Block.html"
+          <a class="app-menu__item bg-secondary active" href="{%url 'quanly:block'%}"
             ><i class="app-menu__icon bx bx-id-card"></i>
             <span class="app-menu__label">Quản lý nhân viên</span><i class='bx bx-lock'></i></a
           >
         </li>
         <li>
-          <a class="app-menu__item bg-secondary active" href="Block.html"
+          <a class="app-menu__item bg-secondary active" href="{%url 'quanly:block'%}"
             ><i class="app-menu__icon bx bx-user-voice"></i
             ><span class="app-menu__label">Quản lý khách hàng</span><i class='bx bx-lock'></i></a
           >
         </li>
         <li>
-          <a class="app-menu__item bg-secondary active" href="Block.html"
+          <a class="app-menu__item bg-secondary active" href="{%url 'quanly:block'%}"
             ><i class="app-menu__icon bx bx-purchase-tag-alt"></i
             ><span class="app-menu__label">Quản lý sản phẩm</span><i class='bx bx-lock'></i></a
           >
         </li>
         <li>
-          <a class="app-menu__item active" href="table-data-oder.html"
+          <a class="app-menu__item" href="{%url 'quanly:order_management'%}"
             ><i class="app-menu__icon bx bx-task"></i
             ><span class="app-menu__label">Quản lý đơn hàng</span></a
           >
         </li>
         <li>
-          <a class="app-menu__item bg-secondary active" href="Block.html"
+          <a class="app-menu__item bg-secondary active" href="{%url 'quanly:block'%}"
             ><i class="app-menu__icon bx bx-run"></i
             ><span class="app-menu__label">Quản lý nội bộ </span><i class='bx bx-lock'></i></a
           >
         </li>
         <li>
-          <a class="app-menu__item bg-secondary active" href="Block.html"
+          <a class="app-menu__item bg-secondary active" href="{%url 'quanly:block'%}"
             ><i class="app-menu__icon bx bx-dollar"></i
             ><span class="app-menu__label">Bảng kê lương</span
             ><i class='bx bx-lock'></i
           ></a>
         </li>
         <li>
-          <a class="app-menu__item bg-secondary active" href="Block.html"
+          <a class="app-menu__item bg-secondary active" href="{%url 'quanly:block'%}"
             ><i class="app-menu__icon bx bx-news"></i
             ><span class="app-menu__label">Bảng tin tức</span><i class='bx bx-lock'></i></a
           >
         </li>
         <li>
-          <a class="app-menu__item bg-secondary active" href="Block.html"
+          <a class="app-menu__item bg-secondary active" href="{%url 'quanly:block'%}"
             ><i class="app-menu__icon bx bx-pie-chart-alt-2"></i
             ><span class="app-menu__label">Báo cáo doanh thu</span><i class='bx bx-lock'></i></a
           >
         </li>
         <li>
-          <a class="app-menu__item bg-secondary active" href="Block.html"
+          <a class="app-menu__item bg-secondary active" href="{%url 'quanly:block'%}"
             ><i class="app-menu__icon bx bx-support"></i
             ><span class="app-menu__label"
               >Trung Tâm Dịch Vụ <br />Khách Hàng</span
@@ -174,7 +176,7 @@
           >
         </li>
         <li>
-          <a class="app-menu__item bg-secondary active"  href="Block.html"
+          <a class="app-menu__item bg-secondary active"  href="{%url 'quanly:block'%}"
             ><i class="app-menu__icon bx bx-calendar-check"></i
             ><span class="app-menu__label">Lịch công tác </span><i class='bx bx-lock'></i></a
           >
@@ -204,7 +206,7 @@
                 <div class="col-sm-2">
                   <a
                     class="btn btn-add btn-sm"
-                    href="form-add-don-hang.html"
+                    href="{%url 'quanly:add_order'%}"
                     title="Thêm"
                     ><i class="fas fa-plus"></i> Tạo mới đơn hàng</a
                   >
@@ -242,7 +244,6 @@
                   <tr>
                     <th width="10"><input type="checkbox" id="all" /></th>
                     <th>ID đơn hàng</th>
-                    <th>Khách hàng</th>
                     <th>Đơn hàng</th>
                     <th>Số lượng</th>
                     <th>Tổng tiền</th>
@@ -251,116 +252,42 @@
                   </tr>
                 </thead>
                 <tbody>
+                  {% for order in orders %}
                   <tr>
                     <td width="10">
-                      <input type="checkbox" name="check1" value="1" />
+                      <input type="checkbox" name="check1" value="{{ order.id }}" />
                     </td>
-                    <td>MT9835</td>
-                    <td>Đặng Hoàng Phúc</td>
-                    <td>Kim cương dolia 1.5 carat, màu trắng, đẹp, giá rẻ</td>
-                    <td>3</td>
-                    <td>40.650.000 đ</td>
-                    <td><span class="badge bg-success">Hoàn thành</span></td>
+                    <td>{{ order.OrderID }}</td>
                     <td>
-                      <button
-                        class="btn btn-primary btn-sm trash"
-                        type="button"
-                        title="Xóa"
-                      >
-                        <i class="fas fa-trash-alt"></i>
-                      </button>
-                      <button
-                        class="btn btn-primary btn-sm edit"
-                        type="button"
-                        title="Sửa"
-                      >
-                        <i class="fa fa-edit"></i>
-                      </button>
+                        {% for item in order.orderdetail_set.all %}
+                            {{ item.product.Pname }}{% if not forloop.last %}, {% endif %}
+                        {% endfor %}
                     </td>
+                    <td>{{ order.total_quantity }}</td>
+                    <td>{{ order.total_amount|floatformat:0}} đ</td>
+                    <td>
+                      {% if order.status == 'delivered' %}
+                        <span class="badge bg-success">Hoàn thành</span>
+                      {% elif order.status == 'pending' %}
+                        <span class="badge bg-info">Đang xữ lí</span>
+                      {% elif order.status == 'shipping' %}
+                        <span class="badge bg-warning">Đang giao hàng</span>
+                      {% elif order.status == 'cancelled' %}
+                        <span class="badge bg-danger">Đã hủy</span>
+                      {% endif %}
+                    </td>
+                    <td>
+                      <button class="btn btn-primary btn-sm trash" type="button" title="Xóa" 
+                              data-id="{{ order.OrderID }}">
+                          <i class="fas fa-trash-alt"></i>
+                      </button>
+                      <button class="btn btn-primary btn-sm edit" type="button" title="Sửa" 
+                              data-id="{{ order.OrderID }}" data-status="{{ order.status }}">
+                          <i class="fa fa-edit"></i>
+                      </button>
+                  </td>
                   </tr>
-                  <tr>
-                    <td width="10">
-                      <input type="checkbox" name="check1" value="1" />
-                    </td>
-                    <td>ER3835</td>
-                    <td>Nguyễn Thị Mỹ Yến</td>
-                    <td>Nhẫn vàng 18k</td>
-                    <td>1</td>
-                    <td>16.770.000 đ</td>
-                    <td><span class="badge bg-info">Chờ thanh toán</span></td>
-                    <td>
-                      <button
-                        class="btn btn-primary btn-sm trash"
-                        type="button"
-                        title="Xóa"
-                      >
-                        <i class="fas fa-trash-alt"></i>
-                      </button>
-                      <button
-                        class="btn btn-primary btn-sm edit"
-                        type="button"
-                        title="Sửa"
-                      >
-                        <i class="fa fa-edit"></i>
-                      </button>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td width="10">
-                      <input type="checkbox" name="check1" value="1" />
-                    </td>
-                    <td>AL3947</td>
-                    <td>Phạm Thị Ngọc</td>
-                    <td>Vòng kim cô</td>
-                    <td>2</td>
-                    <td>19.770.000 đ</td>
-                    <td>
-                      <span class="badge bg-warning">Đang giao hàng</span>
-                    </td>
-                    <td>
-                      <button
-                        class="btn btn-primary btn-sm trash"
-                        type="button"
-                        title="Xóa"
-                      >
-                        <i class="fas fa-trash-alt"></i>
-                      </button>
-                      <button
-                        class="btn btn-primary btn-sm edit"
-                        type="button"
-                        title="Sửa"
-                      >
-                        <i class="fa fa-edit"></i>
-                      </button>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td width="10">
-                      <input type="checkbox" name="check1" value="1" />
-                    </td>
-                    <td>QY8723</td>
-                    <td>Ngô Thái An</td>
-                    <td>Chuỗi ngọc kim cương</td>
-                    <td>1</td>
-                    <td>14.500.000 đ</td>
-                    <td><span class="badge bg-danger">Đã hủy</span></td>
-                    <td>
-                      <button
-                        class="btn btn-primary btn-sm trash"
-                        type="button"
-                        title="Xóa"
-                      >
-                        <i class="fas fa-trash-alt"></i>
-                      </button>
-                      <button
-                        class="btn btn-primary btn-sm edit"
-                        type="button"
-                        title="Sửa"
-                      >
-                        <i class="fa fa-edit"></i>
-                      </button>
-                    </td>
-                  </tr>
+                  {% endfor %}
                 </tbody>
               </table>
             </div>
@@ -403,32 +330,135 @@
       $("#sampleTable").DataTable();
     </script>
     <script>
-      function deleteRow(r) {
-        var i = r.parentNode.parentNode.rowIndex;
-        document.getElementById("myTable").deleteRow(i);
-      }
-      jQuery(function () {
-        jQuery(".trash").click(function () {
+      // Delete order
+      jQuery(".trash").click(function () {
+          const orderId = $(this).data('id');
           swal({
-            title: "Cảnh báo",
-
-            text: "Bạn có chắc chắn là muốn xóa đơn hàng này?",
-            buttons: ["Hủy bỏ", "Đồng ý"],
+              title: "Cảnh báo",
+              text: "Bạn có chắc chắn muốn xóa đơn hàng này?",
+              buttons: ["Hủy bỏ", "Đồng ý"],
           }).then((willDelete) => {
-            if (willDelete) {
-              swal("Đã xóa thành công.!", {});
-            }
+              if (willDelete) {
+                  $.ajax({
+                      url: `/quanly/order/delete/${orderId}/`,
+                      type: 'POST',
+                      headers: {
+                          'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value
+                      },
+                      success: function(response) {
+                          swal("Đã xóa thành công!", {
+                              icon: "success",
+                          }).then(() => {
+                              location.reload();
+                          });
+                      },
+                      error: function(xhr, errmsg, err) {
+                          swal("Lỗi!", "Không thể xóa đơn hàng.", "error");
+                      }
+                  });
+              }
           });
-        });
       });
-      oTable = $("#sampleTable").dataTable();
-      $("#all").click(function (e) {
-        $("#sampleTable tbody :checkbox").prop(
-          "checked",
-          $(this).is(":checked")
-        );
-        e.stopImmediatePropagation();
-      });
+  
+      // Edit order status
+      // Edit order status
+jQuery(".edit").click(function () {
+    const orderId = $(this).data('id');
+    const currentStatus = $(this).data('status');
+    
+    swal({
+        title: "Cập nhật trạng thái",
+        text: "Chọn trạng thái mới cho đơn hàng",
+        content: {
+            element: "select",
+            attributes: {
+                className: "form-control",
+                innerHTML: `
+                    <option value="pending" ${currentStatus === 'pending' ? 'selected' : ''}>Đang xử lý</option>
+                    <option value="shipping" ${currentStatus === 'shipping' ? 'selected' : ''}>Đang giao hàng</option>
+                    <option value="delivered" ${currentStatus === 'delivered' ? 'selected' : ''}>Hoàn thành</option>
+                    <option value="cancelled" ${currentStatus === 'cancelled' ? 'selected' : ''}>Đã hủy</option>
+                `
+            }
+        },
+        buttons: {
+            cancel: {
+                text: "Hủy bỏ",
+                value: null,
+                visible: true,
+                className: "btn btn-secondary",
+                closeModal: true,
+            },
+            confirm: {
+                text: "Cập nhật",
+                value: true,
+                visible: true,
+                className: "btn btn-primary",
+                closeModal: false
+            }
+        },
+    }).then((value) => {
+        if (value) {
+            const newStatus = document.querySelector(".swal-content select").value;
+            $.ajax({
+                url: `/quanly/order/update-status/${orderId}/`,
+                type: 'POST',
+                data: {
+                    status: newStatus
+                },
+                headers: {
+                    'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value
+                },
+                success: function(response) {
+                    swal({
+                        title: "Thành công!",
+                        text: "Đã cập nhật trạng thái đơn hàng.",
+                        icon: "success",
+                        button: "Đóng",
+                    }).then(() => {
+                        location.reload();
+                    });
+                },
+                error: function(xhr, errmsg, err) {
+                    swal({
+                        title: "Lỗi!",
+                        text: "Không thể cập nhật trạng thái đơn hàng.",
+                        icon: "error",
+                        button: "Đóng",
+                    });
+                }
+            });
+        }
+    });
+});
+  </script>
+    <script>
+      // function deleteRow(r) {
+      //   var i = r.parentNode.parentNode.rowIndex;
+      //   document.getElementById("myTable").deleteRow(i);
+      // }
+      // jQuery(function () {
+      //   jQuery(".trash").click(function () {
+      //     swal({
+      //       title: "Cảnh báo",
+
+      //       text: "Bạn có chắc chắn là muốn xóa đơn hàng này?",
+      //       buttons: ["Hủy bỏ", "Đồng ý"],
+      //     }).then((willDelete) => {
+      //       if (willDelete) {
+      //         swal("Đã xóa thành công.!", {});
+      //       }
+      //     });
+      //   });
+      // });
+      // oTable = $("#sampleTable").dataTable();
+      // $("#all").click(function (e) {
+      //   $("#sampleTable tbody :checkbox").prop(
+      //     "checked",
+      //     $(this).is(":checked")
+      //   );
+      //   e.stopImmediatePropagation();
+      // });
 
       //EXCEL
       // $(document).ready(function () {

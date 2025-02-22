@@ -683,6 +683,8 @@
 
 .container-sidebar .sidebar .menu-sidebar {
   list-style: none;
+  width: 200px;
+  line-height: 0.8;
 }
 
 .container-sidebar .sidebar .menu-sidebar li {

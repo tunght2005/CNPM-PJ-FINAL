@@ -1,4 +1,3 @@
-from django.shortcuts import render, get_object_or_404
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 import json
@@ -7,6 +6,7 @@ from django.contrib.auth.models import User
 from django.shortcuts import redirect
 from django.contrib import messages
 import uuid
+from django.shortcuts import render, get_object_or_404, redirect
 
 #product
 from .models import Product, Cart, CartItem, Order, OrderDetail, Customer
@@ -388,32 +388,59 @@ class ChangePasswordView(APIView):
 
         return Response({"message": "Đổi mật khẩu thành công"}, status=status.HTTP_200_OK)
 
-from .models import Notification, Order
-def my_notifications(request):
-    user = request.user
-    if user.is_authenticated:
-        notifications = Notification.objects.filter(order__customer__user=user).order_by('-created_at')
-    else:
-        notifications = Notification.objects.none()  # Không có thông báo nếu chưa đăng nhập
+from django.http import JsonResponse
+from django.shortcuts import get_object_or_404
+from .models import Order, Notification
 
-    return render(request, 'notifications.html', {'notifications': notifications})
+def get_notifications(request):
+    """Lấy danh sách đơn hàng mới chưa đọc"""
+    orders = Order.objects.filter(is_read=False).order_by("-created_at")
+    data = [
+        {
+            "order_id": order.OrderID,
+            "status": order.get_status_display(),
+            "created_at": order.created_at.strftime("%d/%m/%Y"),
+            "total_amount": f"{order.total_amount} VNĐ",
+            "image": order.orderdetail_set.first().product.image.url if order.orderdetail_set.exists() else None,
+            "is_read": order.is_read,
+            "order_details": [
+                {
+                    "product_name": detail.product.Pname,
+                    "product_image": detail.product.image.url if detail.product.image else None,
+                    "price": detail.price,
+                }
+                for detail in order.orderdetail_set.all()
+            ]
+        }
+        for order in orders
+    ]
+    return JsonResponse({"orders": data})
+
 
 @csrf_exempt
-def mark_as_read(request, noti_id):
-    if request.method == "POST" and request.user.is_authenticated:
-        notification = get_object_or_404(Notification, id=noti_id, order__customer__user=request.user)
-        notification.is_read = True
-        notification.save()
-        return JsonResponse({"success": True})
-    return JsonResponse({"success": False}, status=400)
+def mark_order_read(request, order_id):
+    """Đánh dấu đơn hàng là đã đọc"""
+    if request.method != "POST":
+        return JsonResponse({"error": "Phương thức không hợp lệ"}, status=400)
+
+    order = get_object_or_404(Order, OrderID=order_id)
+    order.is_read = True
+    order.save()
+    return JsonResponse({"message": "Đánh dấu đã đọc thành công", "order_id": order.OrderID})
 
 @csrf_exempt
-def delete_notification(request, noti_id):
-    if request.method == "POST" and request.user.is_authenticated:
-        notification = get_object_or_404(Notification, id=noti_id, order__customer__user=request.user)
-        notification.delete()
-        return JsonResponse({"success": True})
-    return JsonResponse({"success": False}, status=400)
+def delete_order(request, order_id):
+    """Xóa đơn hàng và thông báo liên quan"""
+    if request.method == "DELETE":
+        order = get_object_or_404(Order, OrderID=order_id)
+        order.delete()
+
+        # Xóa tất cả các thông báo liên quan đến đơn hàng
+        Notification.objects.filter(order=order).delete()
+
+        return JsonResponse({"message": "Đơn hàng đã được xóa thành công"})
+    
+    return JsonResponse({"error": "Phương thức không hợp lệ"}, status=400)
 
 from .models import ViewedProduct
 from django.shortcuts import render

@@ -101,6 +101,16 @@ REST_FRAMEWORK = {
         'rest_framework.authentication.BasicAuthentication',
     ),
 }
+# REST_FRAMEWORK = {
+#     'DEFAULT_AUTHENTICATION_CLASSES': [
+#         'rest_framework.authentication.SessionAuthentication',  # Để dùng session
+#         'rest_framework.authentication.TokenAuthentication',  # Để dùng token
+#     ],
+#     'DEFAULT_PERMISSION_CLASSES': [
+#         'rest_framework.permissions.IsAuthenticated',  # Chỉ cho phép user đã login
+#     ]
+# }
+
 
 SESSION_ENGINE = "django.contrib.sessions.backends.db"  # Lưu session vào database
 SESSION_COOKIE_AGE = 86400  # Thời gian sống của session (tính bằng giây)

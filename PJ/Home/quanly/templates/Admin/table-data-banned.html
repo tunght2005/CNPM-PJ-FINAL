@@ -6,7 +6,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <!-- Main CSS-->
-    <link rel="stylesheet" type="text/css" href="../../assets/css/main.css" />
+     {%link static%}
+    <link rel="stylesheet" type="text/css" href="{%static '/assets/css/main.css'%}" />
     <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css"
@@ -68,7 +69,7 @@
       <ul class="app-nav">
         <!-- User Menu-->
         <li>
-          <a class="app-nav__item" href="/Home/index.html"
+          <a class="app-nav__item" href="{%url 'pj_home'%}"
             ><i class="bx bx-log-out bx-rotate-180"></i>
           </a>
         </li>
@@ -85,51 +86,50 @@
           alt="User Image"
         />
         <div>
-          <p class="app-sidebar__user-name"><b>Văn Tùng</b></p>
+          <p class="app-sidebar__user-name"><b>Admin</b></p>
           <p class="app-sidebar__user-designation">Chào mừng bạn trở lại</p>
         </div>
       </div>
       <hr />
-      <!-- Menu sidebar -->
       <ul class="app-menu">
         <li>
-          <a class="app-menu__item" href="admin.html"
+          <a class="app-menu__item active" href="{%url 'quanly:admin_dashboard'%}"
             ><i class="app-menu__icon bx bx-tachometer"></i
             ><span class="app-menu__label">Bảng điều khiển</span></a
           >
         </li>
         <li>
-          <a class="app-menu__item" href="table-data-table.html"
+          <a class="app-menu__item" href="{% url 'quanly:employee_management' %}"
             ><i class="app-menu__icon bx bx-id-card"></i>
             <span class="app-menu__label">Quản lý nhân viên</span></a
           >
         </li>
         <li>
-          <a class="app-menu__item" href="page-customer.html"
+          <a class="app-menu__item" href="{% url 'quanly:customer_management' %}"
             ><i class="app-menu__icon bx bx-user-voice"></i
             ><span class="app-menu__label">Quản lý khách hàng</span></a
           >
         </li>
         <li>
-          <a class="app-menu__item" href="table-data-product.html"
+          <a class="app-menu__item" href="{%url 'quanly:product_management'%}"
             ><i class="app-menu__icon bx bx-purchase-tag-alt"></i
             ><span class="app-menu__label">Quản lý sản phẩm</span></a
           >
         </li>
         <li>
-          <a class="app-menu__item" href="table-data-oder.html"
+          <a class="app-menu__item" href="{%url 'quanly:order_management'%}"
             ><i class="app-menu__icon bx bx-task"></i
             ><span class="app-menu__label">Quản lý đơn hàng</span></a
           >
         </li>
         <li>
-          <a class="app-menu__item active" href="table-data-banned.html"
+          <a class="app-menu__item" href="{%url 'quanly:ban_management'%}"
             ><i class="app-menu__icon bx bx-run"></i
             ><span class="app-menu__label">Quản lý nội bộ </span></a
           >
         </li>
         <li>
-          <a class="app-menu__item" href="table-data-money.html"
+          <a class="app-menu__item" href="{%url 'quanly:money_management'%}"
             ><i class="app-menu__icon bx bx-dollar"></i
             ><span class="app-menu__label">Bảng kê lương</span></a
           >

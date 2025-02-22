@@ -106,13 +106,42 @@ class Order(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
     is_read = models.BooleanField(default=False)
     guest = models.BooleanField(default=True)  # 🔥 Đánh dấu đơn hàng của khách vãng lai
+    def save(self, *args, **kwargs):
+        """Tạo thông báo khi trạng thái đơn hàng thay đổi"""
+        if self.pk:  # Kiểm tra nếu đơn hàng đã tồn tại trong DB
+            try:
+                old_order = Order.objects.get(pk=self.pk)
+                if old_order.status != self.status:  # Nếu trạng thái thay đổi, tạo thông báo
+                    Notification.objects.create(
+                        order=self,
+                        status=self.get_notification_status(),
+                        is_read=False
+                    )
+            except Order.DoesNotExist:
+                pass  # Nếu đơn hàng chưa tồn tại, bỏ qua lỗi
+        super().save(*args, **kwargs)  # Gọi phương thức gốc để lưu đơn hàng
+
+
+    def get_notification_status(self):
+        """Trả về nội dung thông báo theo trạng thái đơn hàng"""
+        status_dict = {
+            'pending': "Đơn hàng mới",
+            'shipping': "Đang vận chuyển",
+            'delivered': "Đã giao hàng thành công",
+        }
+        return status_dict.get(self.status, "Trạng thái không xác định")
+
+    def __str__(self):
+        return f"Order {self.OrderID} - {self.status}"
     def __str__(self):
         return f"Order {self.OrderID} - {self.status}"
 
     @property
     def get_cart_items(self):
         return sum(item.quantity for item in self.order_details.all())
-
+    @property
+    def total_quantity(self):
+        return sum(detail.quantity for detail in self.orderdetail_set.all())
     @property
     def get_cart_total(self):
         return sum(item.get_total for item in self.order_details.all())

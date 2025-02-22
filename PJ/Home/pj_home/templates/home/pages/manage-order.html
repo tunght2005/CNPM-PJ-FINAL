@@ -631,8 +631,7 @@
           <!-- Tabs -->
           <div class="tabs">
             <button class="tab active" data-tab="all">Tất cả đơn</button>
-            <button class="tab" data-tab="pending">Chờ thanh toán</button>
-            <button class="tab" data-tab="processing">Đang xử lý</button>
+            <button class="tab" data-tab="pending">Đang xữ lí</button>
             <button class="tab" data-tab="shipping">Đang vận chuyển</button>
             <button class="tab" data-tab="delivered">Đã giao</button>
             <button class="tab" data-tab="cancelled">Đã hủy</button>
@@ -743,7 +742,7 @@
     </div>
 
 <!-- End Main -->
-    <script>
+    <!-- <script>
       // Hàm chuyển đổi trạng thái đơn hàng
 function getStatusText(status) {
     const statusMap = {
@@ -815,6 +814,108 @@ function getStatusText(status) {
 });
 
 
+    </script> -->
+    <script>
+           // Hàm chuyển đổi trạng thái đơn hàng
+function getStatusText(status) {
+    const statusMap = {
+        "pending": "Đang xử lý",
+        "shipping": "Đang giao hàng",
+        "delivered": "Đã giao hàng",
+        "canceled": "Đã hủy"
+    };
+    return statusMap[status] || "Không xác định";
+}
+      document.addEventListener("DOMContentLoaded", async function () {
+    const tabs = document.querySelectorAll(".tab");
+    const searchInput = document.getElementById("searchInput");
+    const searchBtn = document.getElementById("searchBtn");
+    const orderContainer = document.querySelector(".order-content");
+
+    try {
+        let response = await fetch("/api/orders/");
+        let data = await response.json();
+        let orders = data.orders;
+
+        console.log("📦 Dữ liệu đơn hàng nhận được:", orders);
+
+        function renderOrders(filteredOrders) {
+            orderContainer.innerHTML = ""; // Xóa danh sách cũ
+            filteredOrders.forEach(order => {
+                let orderHTML = `
+                    <div class="order-item" data-category="${order.status}">
+                        <h4 class="status">${getStatusText(order.status)}</h4>
+                        ${order.order_details.map(item => `
+                            <div class="product-details">
+                                <img src="${item.product_image}" alt="${item.product_name}" class="product-img" />
+                                <div class="product-info">
+                                    <p class="product-name">${item.product_name}</p>
+                                    <p class="shop-name">Cửa hàng</p>
+                                </div>
+                                <p class="product-price">${item.price} đ</p>
+                            </div>
+                        `).join("")}
+                        <div class="order-summary">
+                            <p>Tổng tiền: <span class="total-price">${order.total_amount} đ</span></p>
+                            <p>Ngày đặt: ${new Date(order.created_at).toLocaleDateString()}</p>
+                            <div class="order-buttons">
+                                <button class="btn buy-again">Mua lại</button>
+                                <button class="btn details" data-id="${order.OrderID}">Xem chi tiết</button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                orderContainer.innerHTML += orderHTML;
+            });
+
+            // Bắt sự kiện click cho nút "Xem chi tiết"
+            document.querySelectorAll(".btn.details").forEach(button => {
+                button.addEventListener("click", function () {
+                    let orderID = this.getAttribute("data-id");
+                    if (orderID) {
+                        window.location.href = `/manageorder/${orderID}`;
+                    }
+                });
+            });
+        }
+
+        function filterOrders() {
+            const searchText = searchInput.value.toLowerCase().trim();
+            const activeTab = document.querySelector(".tab.active").getAttribute("data-tab");
+
+            const filteredOrders = orders.filter(order => {
+                const matchesTab = activeTab === "all" || order.status === activeTab;
+                const matchesSearch = searchText === "" ||
+                    order.OrderID.toLowerCase().includes(searchText) ||
+                    order.order_details.some(item =>
+                        item.product_name.toLowerCase().includes(searchText)
+                    );
+                return matchesTab && matchesSearch;
+            });
+
+            renderOrders(filteredOrders);
+        }
+
+        // Xử lý click vào tab
+        tabs.forEach(tab => {
+            tab.addEventListener("click", function () {
+                tabs.forEach(t => t.classList.remove("active"));
+                tab.classList.add("active");
+                filterOrders();
+            });
+        });
+
+        // Xử lý tìm kiếm
+        searchBtn.addEventListener("click", filterOrders);
+        searchInput.addEventListener("input", filterOrders);
+
+        // Hiển thị tất cả đơn hàng ban đầu
+        renderOrders(orders);
+
+    } catch (error) {
+        console.error("Lỗi tải danh sách đơn hàng:", error);
+    }
+});
     </script>
     <!-- End Main -->
      <!-- Footer -->
