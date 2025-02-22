@@ -6,7 +6,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <!-- Main CSS-->
-    <link rel="stylesheet" type="text/css" href="../../assets/css/main.css" />
+     {%load static%}
+    <link rel="stylesheet" type="text/css" href="{%static '/assets/css/main.css'%}" />
     <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css"
@@ -67,7 +68,7 @@
       <ul class="app-nav">
         <!-- User Menu-->
         <li>
-          <a class="app-nav__item" href="../../../Home/index.html"
+          <a class="app-nav__item" href="{%url 'pj_home'%}"
             ><i class="bx bx-log-out bx-rotate-180"></i>
           </a>
         </li>

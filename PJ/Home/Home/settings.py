@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-9g&7pd*##j$+8zagc&&y#q9j99&ri1wwl6%k*i@3t%l52p@ks*
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
+ALLOWED_HOSTS = ['localhost', '127.0.0.1']
 
 
 # Application definition
@@ -126,7 +126,7 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-AUTH_USER_MODEL = "pj_home.User"
+# AUTH_USER_MODEL = "pj_home.User"
 
 # Internationalization
 # https://docs.djangoproject.com/en/5.1/topics/i18n/

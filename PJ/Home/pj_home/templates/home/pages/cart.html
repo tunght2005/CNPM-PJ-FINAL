@@ -37,6 +37,13 @@
     <title>Cart</title>
   </head>
   <body>
+    {% if request.user.is_authenticated %}
+    <div id="user-data" 
+         data-user-id="{{ request.user.id }}"
+         data-username="{{ request.user.username }}"
+         style="display:none;">
+    </div>
+    {% endif %}
     <style>
       /* Style chung cho bảng */
     .table {
@@ -514,7 +521,7 @@
             <div class="content-search">
               <img
                 style="width: 80px; height: auto"
-                src="https://cdn.pnj.io/images/thumbnails/485/485/detailed/204/sp-gmdd00w000634-mat-day-chuyen-kim-cuong-vang-trang-14k-pnj-chu-a-1.png"
+                src="https://cdn.pnj.io/images/thumbnails/485/485/detailed/204/sp-gmdd00w000634-mat-day-chuyen-kim-cương-vang-trang-14k-pnj-chu-a-1.png"
                 alt=""
               />
               <div class="title-product">
@@ -528,7 +535,7 @@
             <div class="content-search">
               <img
                 style="width: 80px; height: auto"
-                src="https://cdn.pnj.io/images/thumbnails/485/485/detailed/204/sp-gmdd00w000634-mat-day-chuyen-kim-cuong-vang-trang-14k-pnj-chu-a-1.png"
+                src="https://cdn.pnj.io/images/thumbnails/485/485/detailed/204/sp-gmdd00w000634-mat-day-chuyen-kim-cương-vang-trang-14k-pnj-chu-a-1.png"
                 alt=""
               />
               <div class="title-product">
@@ -542,7 +549,7 @@
             <div class="content-search">
               <img
                 style="width: 80px; height: auto"
-                src="https://cdn.pnj.io/images/thumbnails/485/485/detailed/204/sp-gmdd00w000634-mat-day-chuyen-kim-cuong-vang-trang-14k-pnj-chu-a-1.png"
+                src="https://cdn.pnj.io/images/thumbnails/485/485/detailed/204/sp-gmdd00w000634-mat-day-chuyen-kim-cương-vang-trang-14k-pnj-chu-a-1.png"
                 alt=""
               />
               <div class="title-product">
@@ -556,7 +563,7 @@
             <div class="content-search">
               <img
                 style="width: 80px; height: auto"
-                src="https://cdn.pnj.io/images/thumbnails/485/485/detailed/204/sp-gmdd00w000634-mat-day-chuyen-kim-cuong-vang-trang-14k-pnj-chu-a-1.png"
+                src="https://cdn.pnj.io/images/thumbnails/485/485/detailed/204/sp-gmdd00w000634-mat-day-chuyen-kim-cương-vang-trang-14k-pnj-chu-a-1.png"
                 alt=""
               />
               <div class="title-product">
@@ -570,7 +577,7 @@
             <div class="content-search">
               <img
                 style="width: 80px; height: auto"
-                src="https://cdn.pnj.io/images/thumbnails/485/485/detailed/204/sp-gmdd00w000634-mat-day-chuyen-kim-cuong-vang-trang-14k-pnj-chu-a-1.png"
+                src="https://cdn.pnj.io/images/thumbnails/485/485/detailed/204/sp-gmdd00w000634-mat-day-chuyen-kim-cương-vang-trang-14k-pnj-chu-a-1.png"
                 alt=""
               />
               <div class="title-product">
@@ -584,7 +591,7 @@
             <div class="content-search">
               <img
                 style="width: 80px; height: auto"
-                src="https://cdn.pnj.io/images/thumbnails/485/485/detailed/204/sp-gmdd00w000634-mat-day-chuyen-kim-cuong-vang-trang-14k-pnj-chu-a-1.png"
+                src="https://cdn.pnj.io/images/thumbnails/485/485/detailed/204/sp-gmdd00w000634-mat-day-chuyen-kim-cương-vang-trang-14k-pnj-chu-a-1.png"
                 alt=""
               />
               <div class="title-product">
@@ -598,7 +605,7 @@
             <div class="content-search">
               <img
                 style="width: 80px; height: auto"
-                src="https://cdn.pnj.io/images/thumbnails/485/485/detailed/204/sp-gmdd00w000634-mat-day-chuyen-kim-cuong-vang-trang-14k-pnj-chu-a-1.png"
+                src="https://cdn.pnj.io/images/thumbnails/485/485/detailed/204/sp-gmdd00w000634-mat-day-chuyen-kim-cương-vang-trang-14k-pnj-chu-a-1.png"
                 alt=""
               />
               <div class="title-product">
@@ -612,7 +619,7 @@
             <div class="content-search">
               <img
                 style="width: 80px; height: auto"
-                src="https://cdn.pnj.io/images/thumbnails/485/485/detailed/204/sp-gmdd00w000634-mat-day-chuyen-kim-cuong-vang-trang-14k-pnj-chu-a-1.png"
+                src="https://cdn.pnj.io/images/thumbnails/485/485/detailed/204/sp-gmdd00w000634-mat-day-chuyen-kim-cương-vang-trang-14k-pnj-chu-a-1.png"
                 alt=""
               />
               <div class="title-product">
@@ -676,6 +683,7 @@
       </div> -->
       <!-- Neu thanh toan ma duoc vao database thi chuyen qua trang cart-finish va nguoc lai la thanh toan that bai -->
       <!-- <button class="btn-continue">Tiếp tục</button> -->
+       {%csrf_token%}
       <input type="hidden" name="csrfmiddlewaretoken" value="{{ csrf_token }}">
       <table class="table">
         <thead>
@@ -849,76 +857,49 @@
     </script>
     <!-- Thanh toan -->
     <!-- <input type="hidden" id="customer-id" value="{{ user.CustomerID }}"> -->
+<script>
+  document.getElementById("checkout").addEventListener("click", async function() {
+    try {
+      const cart = JSON.parse(localStorage.getItem("cart")) || [];
 
-    <script>
-document.getElementById("checkout").addEventListener("click", async function () {
-    let cartItems = [];
-
-    document.querySelectorAll("#cart-items tr").forEach(row => {
-    let productIdElement = row.querySelector("input.quantity");
-    let priceElement = row.querySelector(".price");
-
-    if (!productIdElement || !priceElement) {
-        console.error("❌ Lỗi: Không tìm thấy dữ liệu sản phẩm trong hàng này!", row);
+      if (cart.length === 0) {
+        alert('Giỏ hàng trống!');
         return;
-    }
+      }
 
-    let productId = productIdElement.dataset.id;  // Lấy product_id từ data-id
-    let quantity = parseInt(productIdElement.value || "0");
-    let price = parseFloat(priceElement.textContent.trim());
-
-    if (!productId || isNaN(quantity) || isNaN(price)) {
-        console.error("❌ Lỗi: Số lượng hoặc giá không hợp lệ!", { productId, quantity, price });
-        return;
-    }
-
-    cartItems.push({ product_id: productId, quantity: quantity, price: price });
-});
-
-function getCSRFToken() {
-    let csrfToken = document.querySelector('input[name="csrfmiddlewaretoken"]');
-    return csrfToken ? csrfToken.value : "";
-}
-
-    console.log("📌 Dữ liệu gửi đi:", cartItems);
-
-    if (cartItems.length === 0) {
-        alert("Giỏ hàng trống, không thể thanh toán!");
-        return;
-    }
-
-    fetch("/api/create-order/", {
-        method: "POST",
+      const response = await fetch('/cart/create-order/', {
+        method: 'POST',
         headers: {
-            "Content-Type": "application/json",
-            "X-CSRFToken": getCSRFToken() // ✅ Fix lỗi CSRF Token
+          'Content-Type': 'application/json',
+          'X-CSRFToken': document.querySelector('[name="csrfmiddlewaretoken"]').value
         },
-        body: JSON.stringify({
-        customer_id: "1a81f1",  // 👈 Đảm bảo có giá trị hợp lệ
-        cart_items: cartItems
-    })
-    })
-    .then(response => response.json())
-    .then(data => {
-        console.log("📌 Server Response:", data);
+        body: JSON.stringify({ cart: cart })
+      });
 
-        if (data.status === "success") {
-            // ✅ Xóa giỏ hàng khỏi localStorage hoặc sessionStorage
-            localStorage.removeItem("cart");
-            sessionStorage.removeItem("cart");
+      if (!response.ok) {
+        const errorText = await response.text();
+        console.error('Lỗi từ server:', errorText);
+        throw new Error(`Lỗi từ server: ${response.status} - ${errorText}`);
+      }
 
-            // ✅ Làm trống giao diện giỏ hàng
-            document.getElementById("cart-items").innerHTML = "";
+      const data = await response.json();
+      console.log("Server response:", data);
 
-            // ✅ Chuyển hướng sang trang hoàn tất đơn hàng
-            window.location.href = "/cartfinish/";
-        } else {
-            alert("⚠️ Đã có lỗi xảy ra: " + data.message);
-        }
-    })
-    .catch(error => console.error("Lỗi:", error));
-});
-    </script>
+      if (data.status === 'success') {
+        localStorage.removeItem('cart');
+        alert('Đặt hàng thành công!');
+        window.location.href = '/cartfinish/';
+      } else {
+        alert(data.message || 'Có lỗi xảy ra!');
+      }
+
+    } catch (error) {
+      console.error('Error:', error);
+      alert('Có lỗi xảy ra khi xử lý đơn hàng!');
+    }
+  });
+</script>
+
      <!-- End -->
     <footer class="footer">
       <hr />

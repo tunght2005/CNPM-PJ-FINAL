@@ -8,9 +8,13 @@ from django.dispatch import receiver
 from django.contrib.auth.models import User
 
 
-@receiver(post_save, sender=User)
+# @receiver(post_save, sender=User)
+# def create_customer(sender, instance, created, **kwargs):
+#     if created:  # Chỉ tạo khi user mới được tạo
+#         Customer.objects.create(user=instance)
+@receiver(post_save, sender='pj_home.User')
 def create_customer(sender, instance, created, **kwargs):
-    if created:  # Chỉ tạo khi user mới được tạo
+    if created and instance.role == 2:  # Only create Customer for role=2 (Customer)
         Customer.objects.create(user=instance)
 # Hàm sinh ID ngẫu nhiên (6 ký tự)
 import uuid
@@ -19,7 +23,7 @@ def generate_id():
     return str(uuid.uuid4())[:6] 
 
 class User(AbstractUser):
-    pass
+    #pass
     UserID = models.CharField(primary_key=True, max_length=6, default=generate_id, editable=False, unique=True)
     ROLE_CHOICES = [
         (1, 'Guest'),
@@ -45,7 +49,7 @@ class User(AbstractUser):
     email = models.EmailField(unique=True)
     phone = models.CharField(max_length=15)
     address = models.TextField()
-    role = models.IntegerField(choices=ROLE_CHOICES, default=2) #customer
+    role = models.IntegerField(choices=ROLE_CHOICES, default=2)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     # Thêm related_name để tránh xung đột với auth.User
@@ -87,9 +91,11 @@ class Product(models.Model):
         return self.Pname
 
 class Customer(models.Model):
-    CustomerID = models.CharField(primary_key=True, max_length=6, default=generate_id, editable=False, unique=True)
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
     size_ni = models.CharField(max_length=50)
+    
+    def __str__(self):
+        return self.user.username
 
 class Order(models.Model):
     STATUS_CHOICES = [
@@ -99,7 +105,11 @@ class Order(models.Model):
         ('canceled', 'Đã hủy'),
     ]
     OrderID = models.CharField(primary_key=True, max_length=6, default=generate_id, editable=False, unique=True)
-    customer = models.ForeignKey(Customer, on_delete=models.CASCADE)
+    customer = models.ForeignKey(
+        Customer, 
+        on_delete=models.CASCADE,
+        to_field='user'  # Thay đổi để tham chiếu đến trường user (là primary key của Customer)
+    )
     status = models.CharField(max_length=50,choices=STATUS_CHOICES, default='pending')
     total_amount = models.DecimalField(max_digits=10, decimal_places=2)
     created_at = models.DateTimeField(auto_now_add=True)
@@ -139,15 +149,20 @@ class OrderDetail(models.Model):
         return self.price * self.quantity  # ✅ Không cần truy xuất product.price
 class Cart(models.Model):
     CartID = models.CharField(primary_key=True, max_length=6, default=generate_id, editable=False, unique=True)
-    customer = models.ForeignKey(User, on_delete=models.CASCADE)  # Liên kết với User
+    # Thay đổi từ User sang Customer
+    customer = models.ForeignKey(
+        Customer, 
+        on_delete=models.CASCADE,
+        to_field='user'  # Tham chiếu đến trường user của Customer
+    )
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
     def total_price(self):
-        return sum(item.total_price() for item in self.cart_items.all())  # Tính tổng tiền giỏ hàng
+        return sum(item.total_price() for item in self.cart_items.all())
 
     def __str__(self):
-        return f"Giỏ hàng của {self.customer.username} - ID {self.CartID}"
+        return f"Giỏ hàng của {self.customer.user.username} - ID {self.CartID}"
 
 class CartItem(models.Model):
     cart = models.ForeignKey(Cart, on_delete=models.CASCADE, related_name="cart_items")  # Mỗi giỏ có nhiều sản phẩm
@@ -161,7 +176,11 @@ class CartItem(models.Model):
         return f"{self.quantity} x {self.product.Pname}"
 
 class Feedback(models.Model):
-    customer = models.ForeignKey(Customer, on_delete=models.CASCADE)
+    customer = models.ForeignKey(
+        Customer, 
+        on_delete=models.CASCADE,
+        to_field='user'
+    )
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
     rating = models.IntegerField()
     comment = models.TextField()
@@ -192,11 +211,11 @@ class Warranty(models.Model):
     ]
     warrantyID = models.CharField(primary_key=True, max_length=6, default=generate_id, editable=False)
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
-    customer = models.ForeignKey(
-        Customer,
-        on_delete=models.CASCADE,
-        to_field='CustomerID'
-    )
+    # customer = models.ForeignKey(
+    #     Customer,
+    #     on_delete=models.CASCADE,
+    #     to_field='CustomerID'
+    # )
     start_date = models.DateField()
     end_date = models.DateField()
     status = models.CharField(max_length=20, choices=STATUS_CHOICES, default='active')
@@ -206,7 +225,11 @@ class Warranty(models.Model):
 
 class Point(models.Model):
     pointID = models.CharField(primary_key=True, max_length=6, default=generate_id, editable=False, unique=True)
-    customer = models.ForeignKey(Customer, on_delete=models.CASCADE)
+    customer = models.ForeignKey(
+        Customer, 
+        on_delete=models.CASCADE,
+        to_field='user'
+    )
     exchange_point = models.IntegerField()
     point_used = models.IntegerField()
     created_at = models.DateTimeField(auto_now_add=True)
@@ -231,7 +254,11 @@ class Desc(models.Model):
 class Wishlist(models.Model):
     wishlistID = models.CharField(primary_key=True, max_length=6, default=generate_id, editable=False, unique=True)
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
-    customer = models.ForeignKey(Customer, on_delete=models.CASCADE)
+    customer = models.ForeignKey(
+        Customer, 
+        on_delete=models.CASCADE,
+        to_field='user'
+    )
 
 class Notification(models.Model):
     notificationID = models.CharField(primary_key=True, max_length=6, default=generate_id, editable=False, unique=True)

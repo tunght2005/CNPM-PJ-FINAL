@@ -1,40 +1,40 @@
 from django.db import models
-from pj_home.models import User, Product
+from pj_home.models import User
 import uuid
 
 def generate_id():
     return str(uuid.uuid4())[:6]
-# class Product(models.Model):
-#     ProductID = models.CharField(primary_key=True, max_length=6, default=generate_id, editable=False, unique=True)
-#     Pname = models.CharField(max_length=255)
-#     descPr = models.TextField()
-#     carat_weight = models.FloatField()
-#     origin = models.CharField(max_length=255)
-#     clarity = models.CharField(max_length=255)
-#     category = models.CharField(max_length=255,choices=[
-#         ('kim_cuong', 'Kim Cương'),
-#         ('vang', 'Vàng'),
-#         ('bac', 'Bạc'),
-#         ('day_chuyen', 'Dây chuyền'),
-#         ('nhan', 'Nhẫn'),
-#         ('vong', 'Vòng'),
-#         ('bong_tai', 'Bông tai'),
-#         ('lac_tay', 'Lắc tay'),
-#         ('dong_ho', 'Đồng hồ'),
-#         ('trang_suc_cuoi', 'Trang sức cưới'),
-#     ])
-#     cut = models.CharField(max_length=255)
-#     price = models.DecimalField(max_digits=10, decimal_places=2)
-#     stock = models.IntegerField(default=0) # Thêm số lượng tồn kho
-#     image = models.ImageField(upload_to='products/')
-#     color = models.CharField(max_length=255)
-#     price_sale = models.DecimalField(max_digits=10, decimal_places=2)
-#     created_at = models.DateTimeField(auto_now_add=True)
-#     updated_at = models.DateTimeField(auto_now=True)
-#     search_count = models.IntegerField(default=0)  # Thêm trường theo dõi số lượt tìm kiếm
-#     sold_count = models.IntegerField(default=0)  # Thêm số lượng đã bán
-#     def __str__(self):
-#         return self.Pname
+class Product(models.Model):
+    ProductID = models.CharField(primary_key=True, max_length=6, default=generate_id, editable=False, unique=True)
+    Pname = models.CharField(max_length=255)
+    descPr = models.TextField()
+    carat_weight = models.FloatField()
+    origin = models.CharField(max_length=255)
+    clarity = models.CharField(max_length=255)
+    category = models.CharField(max_length=255,choices=[
+        ('kim_cuong', 'Kim Cương'),
+        ('vang', 'Vàng'),
+        ('bac', 'Bạc'),
+        ('day_chuyen', 'Dây chuyền'),
+        ('nhan', 'Nhẫn'),
+        ('vong', 'Vòng'),
+        ('bong_tai', 'Bông tai'),
+        ('lac_tay', 'Lắc tay'),
+        ('dong_ho', 'Đồng hồ'),
+        ('trang_suc_cuoi', 'Trang sức cưới'),
+    ])
+    cut = models.CharField(max_length=255)
+    price = models.DecimalField(max_digits=10, decimal_places=2)
+    stock = models.IntegerField(default=0) # Thêm số lượng tồn kho
+    image = models.ImageField(upload_to='products/')
+    color = models.CharField(max_length=255)
+    price_sale = models.DecimalField(max_digits=10, decimal_places=2)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+    search_count = models.IntegerField(default=0)  # Thêm trường theo dõi số lượt tìm kiếm
+    sold_count = models.IntegerField(default=0)  # Thêm số lượng đã bán
+    def __str__(self):
+        return self.Pname
 
 
 # class Employee(models.Model):

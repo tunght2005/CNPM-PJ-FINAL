@@ -45,7 +45,7 @@ homeButton.addEventListener('click', (e) => {
   e.preventDefault();
   
   // Chuyển hướng đến trang chủ
-  window.location.href = 'index.html'; // Đảm bảo rằng đây là đường dẫn chính xác
+  window.location.href = 'pj_home'; // Đảm bảo rằng đây là đường dẫn chính xác
 });
 
 // Sự kiện khi nhấn vào "Trang Sức Cưới"
@@ -54,27 +54,26 @@ jewelryPageButton.addEventListener('click', (e) => {
   e.preventDefault();
   
   // Chuyển hướng đến trang Trang Sức Cưới
-  window.location.href = 'webding.html'; // Đảm bảo rằng đây là đường dẫn chính xác
+  window.location.href = 'wedding_page'; // Đảm bảo rằng đây là đường dẫn chính xác
 });
 
 var arrTSC = [
-  { loaiTS: 'Nhẫn', hinh: '../assets/img/image/images.jpg', TenSP: 'Nhẫn vàng 18k D&C 1010CGHSK298', GT: 'Sang trọng và quý phái', MT: 'Hẹn Hò', KC: 'Không Đính Kim Cương', CL: 'Vàng 18K', GT: '17,999,000đ' },
-  { loaiTS: 'Vòng Tay', hinh: '../assets/img/image/images(4).jpg', TenSP: 'Vòng tay vàng 18k BTK901', GT: 'Kỷ Niệm', MT: 'Kỷ Niệm', KC: 'Đính Kim Cương', CL: 'Vàng 18K', GT: '25,499,000đ' },
-  { loaiTS: 'Dây Chuyền', hinh: '../assets/img/image/images(10).jpg', TenSP: 'Dây chuyền vàng 24k DC102', GT: 'Kết Hôn', MT: 'Kết Hôn', KC: 'Không Đính Kim Cương', CL: 'Vàng 24K', GT: '30,999,000đ' },
-  { loaiTS: 'Bông Tai', hinh: '../assets/img/image/image(7).jpg', TenSP: 'Bông tai vàng 18k BT105', GT: 'Phong cách hiện đại', MT: 'Hẹn Hò', KC: 'Đính Đá Màu', CL: 'Vàng 18K', GT: '12,999,000đ' },
-  { loaiTS: 'Kiềng', hinh: '../assets/img/image/image(13).jpg', TenSP: 'Kiềng vàng 24k KG204', GT: 'Cầu Hôn', MT: 'Cầu Hôn', KC: 'Không Đính Kim Cương', CL: 'Vàng 24K', GT: '45,999,000đ' },
-  { loaiTS: 'Nhẫn', hinh: '../assets/img/image/images(2).jpg', TenSP: 'Nhẫn cưới vàng 18k NC101', GT: 'Tinh tế và đẳng cấp', MT: 'Kết Hôn', KC: 'Đính Kim Cương', CL: 'Vàng 18K', GT: '22,999,000đ' },
-  { loaiTS: 'Vòng Tay', hinh: '../assets/img/image/image(5).jpg', TenSP: 'Vòng tay bạc BTK902', GT: 'Đơn giản và thanh thoát', MT: 'Hẹn Hò', KC: 'Đính Đá Màu', CL: 'Vàng 18K', GT: '15,499,000đ' },
-  { loaiTS: 'Dây Chuyền', hinh: '../assets/img/image/images(11).jpg', TenSP: 'Dây chuyền vàng 18k DC103', GT: 'Kỷ Niệm', MT: 'Kỷ Niệm', KC: 'Đính Kim Cương', CL: 'Vàng 18K', GT: '35,999,000đ' },
-  { loaiTS: 'Bông Tai', hinh: '../assets/img/image/image(8).jpg', TenSP: 'Bông tai vàng 24k BT106', GT: 'Cầu Hôn', MT: 'Cầu Hôn', KC: 'Không Đính Kim Cương', CL: 'Vàng 24K', GT: '18,999,000đ' },
-  { loaiTS: 'Kiềng', hinh: '../assets/img/image/image(14).jpg', TenSP: 'Kiềng vàng 18k KG205', GT: 'Hẹn Hò', MT: 'Hẹn Hò', KC: 'Đính Kim Cương', CL: 'Vàng 18K', GT: '50,999,000đ' },
-  { loaiTS: 'Nhẫn', hinh: '../assets/img/image/images(3).jpg', TenSP: 'Nhẫn bạc D&C 1010', GT: 'Kỷ Niệm', MT: 'Kỷ Niệm', KC: 'Không Đính Kim Cương', CL: 'Vàng 18K', GT: '9,999,000đ' },
-  { loaiTS: 'Vòng Tay', hinh: '../assets/img/image/th1.jpg', TenSP: 'Vòng tay vàng 18k BTK903', GT: 'Cầu Hôn', MT: 'Cầu Hôn', KC: 'Đính Kim Cương', CL: 'Vàng 18K', GT: '28,499,000đ' },
-  { loaiTS: 'Dây Chuyền', hinh: '../assets/img/image/image(12).jpg', TenSP: 'Dây chuyền vàng 18k DC104', GT: 'Kết Hôn', MT: 'Kết Hôn', KC: 'Đính Đá Màu', CL: 'Vàng 18K', GT: '20,999,000đ' },
-  { loaiTS: 'Bông Tai', hinh: '../assets/img/image/image(9).jpg', TenSP: 'Bông tai vàng 24k BT107', GT: 'Kỷ Niệm', MT: 'Kỷ Niệm', KC: 'Đính Kim Cương', CL: 'Vàng 24K', GT: '25,999,000đ' },
-  { loaiTS: 'Kiềng', hinh: '../assets/img/image/image(15).jpg', TenSP: 'Kiềng vàng 18k KG206', GT: 'Kỷ Niệm', MT: 'Kỷ Niệm', KC: 'Không Đính Kim Cương', CL: 'Vàng 18K', GT: '40,999,000đ' }
+  { loaiTS: 'Nhẫn', hinh: '/static/home/assets/img/image/images.jpg', TenSP: 'Nhẫn vàng 18k D&C 1010CGHSK298', GT: 'Sang trọng và quý phái', MT: 'Hẹn Hò', KC: 'Không Đính Kim Cương', CL: 'Vàng 18K', Gia: '17,999,000đ' },
+  { loaiTS: 'Vòng Tay', hinh: '/static/home/assets/img/image/images(4).jpg', TenSP: 'Vòng tay vàng 18k BTK901', GT: 'Kỷ Niệm', MT: 'Kỷ Niệm', KC: 'Đính Kim Cương', CL: 'Vàng 18K', Gia: '25,499,000đ' },
+  { loaiTS: 'Dây Chuyền', hinh: '/static/home/assets/img/image/images(10).jpg', TenSP: 'Dây chuyền vàng 24k DC102', GT: 'Kết Hôn', MT: 'Kết Hôn', KC: 'Không Đính Kim Cương', CL: 'Vàng 24K', Gia: '30,999,000đ' },
+  { loaiTS: 'Bông Tai', hinh: '/static/home/assets/img/image/image(7).jpg', TenSP: 'Bông tai vàng 18k BT105', GT: 'Phong cách hiện đại', MT: 'Hẹn Hò', KC: 'Đính Đá Màu', CL: 'Vàng 18K', Gia: '12,999,000đ' },
+  { loaiTS: 'Kiềng', hinh: '/static/home/assets/img/image/image(13).jpg', TenSP: 'Kiềng vàng 24k KG204', GT: 'Cầu Hôn', MT: 'Cầu Hôn', KC: 'Không Đính Kim Cương', CL: 'Vàng 24K', Gia: '45,999,000đ' },
+  { loaiTS: 'Nhẫn', hinh: '/static/home/assets/img/image/images(2).jpg', TenSP: 'Nhẫn cưới vàng 18k NC101', GT: 'Tinh tế và đẳng cấp', MT: 'Kết Hôn', KC: 'Đính Kim Cương', CL: 'Vàng 18K', Gia: '22,999,000đ' },
+  { loaiTS: 'Vòng Tay', hinh: '/static/home/assets/img/image/image(5).jpg', TenSP: 'Vòng tay bạc BTK902', GT: 'Đơn giản và thanh thoát', MT: 'Hẹn Hò', KC: 'Đính Đá Màu', CL: 'Vàng 18K', Gia: '15,499,000đ' },
+  { loaiTS: 'Dây Chuyền', hinh: '/static/home/assets/img/image/images(11).jpg', TenSP: 'Dây chuyền vàng 18k DC103', GT: 'Kỷ Niệm', MT: 'Kỷ Niệm', KC: 'Đính Kim Cương', CL: 'Vàng 18K', Gia: '35,999,000đ' },
+  { loaiTS: 'Bông Tai', hinh: '/static/home/assets/img/image/image(8).jpg', TenSP: 'Bông tai vàng 24k BT106', GT: 'Cầu Hôn', MT: 'Cầu Hôn', KC: 'Không Đính Kim Cương', CL: 'Vàng 24K', Gia: '18,999,000đ' },
+  { loaiTS: 'Kiềng', hinh: '/static/home/assets/img/image/image(14).jpg', TenSP: 'Kiềng vàng 18k KG205', GT: 'Hẹn Hò', MT: 'Hẹn Hò', KC: 'Đính Kim Cương', CL: 'Vàng 18K', Gia: '50,999,000đ' },
+  { loaiTS: 'Nhẫn', hinh: '/static/home/assets/img/image/images(3).jpg', TenSP: 'Nhẫn bạc D&C 1010', GT: 'Kỷ Niệm', MT: 'Kỷ Niệm', KC: 'Không Đính Kim Cương', CL: 'Vàng 18K', Gia: '9,999,000đ' },
+  { loaiTS: 'Vòng Tay', hinh: '/static/home/assets/img/image/th1.jpg', TenSP: 'Vòng tay vàng 18k BTK903', GT: 'Cầu Hôn', MT: 'Cầu Hôn', KC: 'Đính Kim Cương', CL: 'Vàng 18K', Gia: '28,499,000đ' },
+  { loaiTS: 'Dây Chuyền', hinh: '/static/home/assets/img/image/image(12).jpg', TenSP: 'Dây chuyền vàng 18k DC104', GT: 'Kết Hôn', MT: 'Kết Hôn', KC: 'Đính Đá Màu', CL: 'Vàng 18K', Gia: '20,999,000đ' },
+  { loaiTS: 'Bông Tai', hinh: '/static/home/assets/img/image/image(9).jpg', TenSP: 'Bông tai vàng 24k BT107', GT: 'Kỷ Niệm', MT: 'Kỷ Niệm', KC: 'Đính Kim Cương', CL: 'Vàng 24K', Gia: '25,999,000đ' },
+  { loaiTS: 'Kiềng', hinh: '/static/home/assets/img/image/image(15).jpg', TenSP: 'Kiềng vàng 18k KG206', GT: 'Kỷ Niệm', MT: 'Kỷ Niệm', KC: 'Không Đính Kim Cương', CL: 'Vàng 18K', Gia: '40,999,000đ' }
 ];
-
 
 
 

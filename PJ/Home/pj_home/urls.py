@@ -106,7 +106,7 @@ urlpatterns = [
     path('viewed-products/', viewed_products, name='viewed_products'),
     # path("wishlist/toggle/<str:product_id>/", views.toggle_wishlist, name="toggle_wishlist"),
     path("api/get-product/<str:product_id>/", views.get_product, name="get_product"),
-    path("api/create-order/", views.create_order, name="create_order"),
+    path("cart/create-order/", views.create_order, name="create_order"),
     path("api/orders/", views.get_orders, name="get_orders"),
 ]
 if settings.DEBUG:

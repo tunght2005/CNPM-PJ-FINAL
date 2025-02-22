@@ -591,6 +591,27 @@
           <li><a href="{% url 'productview_page' %}" class="active">Sản phẩm bạn đã xem</a></li>
           <li><a href="{% url 'wishlist_page' %}">Sản phẩm yêu thích</a></li>
           <li><a href="{% url 'comments_page' %}">Nhận xét của tôi</a></li>
+          {% if request.session.user_role == 6  %}
+          <li>
+              <a href="{% url 'quanly:admin_dashboard' %}" class="admin-btn">
+                  <i class="fa-solid fa-user-shield"></i> Trang QT | Admin
+              </a>
+          </li>
+          {% endif %}
+          {% if request.session.user_role == 5  %}
+          <li>
+              <a href="{% url 'quanly:manager_dashboard' %}" class="admin-btn">
+                  <i class="fa-solid fa-user-shield"></i> Trang QT | Manager
+              </a>
+          </li>
+          {% endif %}
+          {% if request.session.user_role == 4  %}
+          <li>
+              <a href="{% url 'quanly:delivery_staff_dashboard' %}" class="admin-btn">
+                  <i class="fa-solid fa-user-shield"></i> Trang QT | Delivery
+              </a>
+          </li>
+          {% endif %}
           <form action="{% url 'logout' %}" method="post">
             {% csrf_token %}
             <button type="submit" class="btn-out">Đăng xuất</button>

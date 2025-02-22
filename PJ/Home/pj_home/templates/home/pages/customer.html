@@ -34,7 +34,6 @@
    <link rel="manifest" href="{% static 'home/favicon_io/site.webmanifest' %}" />
    <!-- End -->
     <title>Thông tin tài khoản</title>
-    
   </head>
   <body>
     <script>
@@ -48,29 +47,7 @@
         const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
         document.querySelector(".number-cart").textContent = totalItems;
       }
-  </script>
-  {% comment %} <style>
-  .admin-btn {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    padding: 10px 15px;
-    margin-top: 10px;
-    background-color: #4CAF50;
-    color: white;
-    border-radius: 5px;
-    text-decoration: none;
-    transition: background-color 0.3s;
-}
-
-.admin-btn:hover {
-    background-color: #45a049;
-}
-
-.admin-btn i {
-    font-size: 16px;
-}
-</style> {% endcomment %}
+  </script>  
     <!-- Header -->
     <header class="header">
       <div class="container">
@@ -577,21 +554,21 @@
           {% if request.session.user_role == 6  %}
           <li>
               <a href="{% url 'quanly:admin_dashboard' %}" class="admin-btn">
-                  <i class="fa-solid fa-user-shield"></i> Trang Quản Trị
+                  <i class="fa-solid fa-user-shield"></i> Trang QT | Admin
               </a>
           </li>
           {% endif %}
           {% if request.session.user_role == 5  %}
           <li>
               <a href="{% url 'quanly:manager_dashboard' %}" class="admin-btn">
-                  <i class="fa-solid fa-user-shield"></i> Trang Quản Trị
+                  <i class="fa-solid fa-user-shield"></i> Trang QT | Manager
               </a>
           </li>
           {% endif %}
           {% if request.session.user_role == 4  %}
           <li>
               <a href="{% url 'quanly:delivery_staff_dashboard' %}" class="admin-btn">
-                  <i class="fa-solid fa-user-shield"></i> Trang Quản Trị
+                  <i class="fa-solid fa-user-shield"></i> Trang QT | Delivery
               </a>
           </li>
           {% endif %}

@@ -6,7 +6,6 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.shortcuts import redirect
 from django.contrib import messages
-from accounts.decorators import role_required
 import uuid
 
 #product
@@ -61,8 +60,6 @@ from .models import Product, Cart, CartItem, Order, OrderDetail, Customer
 
 #     # Chuyển hướng đến trang giỏ hàng
 #     return redirect('cart_page')
-
-@role_required ([6])
 def updateItem(request):
     data = json.loads(request.body)
     product_id = data['productId']
@@ -85,7 +82,6 @@ def updateItem(request):
     return JsonResponse('Item was added', safe=False)
 #feedback
 # Ham tinh luot tim kiem
-
 def log_search(request):
     query = request.GET.get('q', '').strip()
 
@@ -491,91 +487,187 @@ def get_product(request, product_id):
     except Product.DoesNotExist:
         return JsonResponse({"error": "Sản phẩm không tồn tại"}, status=404)
 
-
-# @csrf_exempt  
+# @csrf_exempt
+# @login_required
 # def create_order(request):
 #     if request.method == "POST":
 #         try:
+#             print(f"👤 User authenticated: {request.user.is_authenticated}")
+#             print(f"👤 Username: {request.user.username}")
+            
+#             # Kiểm tra và tạo Customer nếu chưa có
+#             customer, created = Customer.objects.get_or_create(
+#                 user=request.user,
+#                 defaults={'user': request.user}
+#             )
+            
 #             data = json.loads(request.body)
-#             print("📌 Dữ liệu nhận được:", data)  # Debug dữ liệu JSON
+#             print(f"📦 Request data: {data}")
+            
+#             cart_items = data.get("cart_items", [])
+#             if not cart_items:
+#                 return JsonResponse({
+#                     "status": "error", 
+#                     "message": "Giỏ hàng trống!"
+#                 }, status=400)
 
-#             if "cart_items" not in data or not isinstance(data["cart_items"], list):
-#                 return JsonResponse({"status": "error", "message": "Thiếu hoặc sai định dạng cart_items!"}, status=400)
+#             # Tạo order mới
+#             order = Order.objects.create(
+#                 customer=customer,
+#                 total_amount=0,
+#                 status="pending"
+#             )
 
-#             for item in data["cart_items"]:
-#                 print("📌 Item:", item)  # Debug từng sản phẩm
+#             total_amount = 0
+#             for item in cart_items:
+#                 try:
+#                     product = Product.objects.get(ProductID=item["product_id"])
+#                     quantity = int(item["quantity"])
+#                     price = float(item["price"])
 
-#                 product_id = item.get("product_id")
-#                 quantity = item.get("quantity")
-#                 price = item.get("price")
+#                     OrderDetail.objects.create(
+#                         order=order,
+#                         product=product,
+#                         quantity=quantity,
+#                         price=price
+#                     )
+                    
+#                     total_amount += quantity * price
+#                 except Product.DoesNotExist:
+#                     order.delete()
+#                     return JsonResponse({
+#                         "status": "error",
+#                         "message": f"Sản phẩm không tồn tại: {item['product_id']}"
+#                     }, status=404)
+#                 except Exception as e:
+#                     order.delete()
+#                     print(f"❌ Lỗi khi xử lý item: {str(e)}")
+#                     return JsonResponse({
+#                         "status": "error",
+#                         "message": "Lỗi khi xử lý đơn hàng"
+#                     }, status=500)
 
-#                 if product_id is None or quantity is None or price is None:
-#                     return JsonResponse({"status": "error", "message": f"Sản phẩm không hợp lệ: {item}"}, status=400)
+#             order.total_amount = total_amount
+#             order.save()
 
-#             return JsonResponse({"status": "success", "message": "Dữ liệu hợp lệ!"})
+#             return JsonResponse({
+#                 "status": "success",
+#                 "message": "Đặt hàng thành công!",
+#                 "order_id": order.id
+#             })
 
 #         except json.JSONDecodeError:
-#             return JsonResponse({"status": "error", "message": "Dữ liệu JSON không hợp lệ!"}, status=400)
+#             return JsonResponse({
+#                 "status": "error",
+#                 "message": "Dữ liệu không hợp lệ!"
+#             }, status=400)
+#         except Exception as e:
+#             print(f"❌ Lỗi: {str(e)}")
+#             return JsonResponse({
+#                 "status": "error",
+#                 "message": "Lỗi hệ thống"
+#             }, status=500)
+
+#     return JsonResponse({
+#         "status": "error",
+#         "message": "Phương thức không được hỗ trợ"
+#     }, status=405)
 
 @csrf_exempt
+@login_required
 def create_order(request):
     if request.method == "POST":
         try:
             data = json.loads(request.body)
-            print("📌 Dữ liệu nhận được:", data)  # Debug dữ liệu JSON
+            cart = data.get('cart', [])
 
-            customer_id = data.get("customer_id")  # 🔥 Lấy customer_id từ request
-            if not customer_id:
-                return JsonResponse({"status": "error", "message": "Thiếu customer_id!"}, status=400)
+            if not cart:
+                return JsonResponse({
+                    "status": "error",
+                    "message": "Giỏ hàng trống!"
+                }, status=400)
 
+            # Lấy hoặc tạo customer
             try:
-                customer = Customer.objects.get(CustomerID=customer_id)  # 🔍 Tìm khách hàng trong DB
+                customer = Customer.objects.get(user=request.user)
             except Customer.DoesNotExist:
-                return JsonResponse({"status": "error", "message": "Khách hàng không tồn tại!"}, status=404)
-
-            # Kiểm tra giỏ hàng
-            cart_items = data.get("cart_items", [])
-            if not cart_items:
-                return JsonResponse({"status": "error", "message": "Giỏ hàng trống!"}, status=400)
-
+                return JsonResponse({
+                    "status": "error",
+                    "message": "Không tìm thấy thông tin khách hàng!"
+                }, status=404)
+            
             # Tạo đơn hàng mới
             order = Order.objects.create(
                 customer=customer,
-                total_amount=0,  # Tổng tiền sẽ cập nhật sau
-                status="pending",
-                guest=False  # Không phải khách vãng lai
+                status='pending',
+                total_amount=0,
+                guest=False  # Đánh dấu là khách đã đăng nhập
             )
 
             total_amount = 0
-            for item in cart_items:
-                product_id = item.get("product_id")
-                quantity = item.get("quantity")
-                price = item.get("price")
+            for item in cart:
+                try:
+                    product = Product.objects.get(ProductID=item['product_id'])
+                    quantity = int(item['quantity'])
+                    price = float(item['price'])
 
-                if not product_id or not quantity or not price:
-                    return JsonResponse({"status": "error", "message": "Dữ liệu sản phẩm không hợp lệ!"}, status=400)
+                    # Kiểm tra số lượng tồn kho
+                    # if product.stock < quantity:
+                    #     order.delete()
+                    #     return JsonResponse({
+                    #         "status": "error",
+                    #         "message": f"Sản phẩm {product.Pname} chỉ còn {product.stock} trong kho"
+                    #     }, status=400)
 
-                product = Product.objects.get(pk=product_id)
+                    # Tạo chi tiết đơn hàng
+                    OrderDetail.objects.create(
+                        order=order,
+                        product=product,
+                        quantity=quantity,
+                        price=price
+                    )
 
-                order_detail = OrderDetail.objects.create(
-                    order=order,
-                    product=product,
-                    quantity=quantity,
-                    price=price
-                )
+                    # Cập nhật số lượng tồn và số lượng đã bán
+                    # product.stock -= quantity
+                    # product.sold_count += quantity
+                    # product.save()
 
-                total_amount += order_detail.get_total
+                    total_amount += quantity * price
 
-            # Cập nhật tổng tiền
+                except Product.DoesNotExist:
+                    order.delete()
+                    return JsonResponse({
+                        "status": "error",
+                        "message": f"Không tìm thấy sản phẩm: {item['product_id']}"
+                    }, status=404)
+
+            # Cập nhật tổng tiền đơn hàng
             order.total_amount = total_amount
             order.save()
 
-            return JsonResponse({"status": "success", "message": "Đơn hàng đã được tạo!", "order_id": order.OrderID})
+            return JsonResponse({
+                "status": "success",
+                "message": "Đặt hàng thành công!",
+                "order_id": order.OrderID
+            })
 
         except json.JSONDecodeError:
-            return JsonResponse({"status": "error", "message": "Dữ liệu JSON không hợp lệ!"}, status=400)
+            return JsonResponse({
+                "status": "error", 
+                "message": "Dữ liệu không hợp lệ!"
+            }, status=400)
+        
         except Exception as e:
-            return JsonResponse({"status": "error", "message": f"Lỗi hệ thống: {str(e)}"}, status=500)
+            print(e)
+            return JsonResponse({
+                "status": "error",
+                "message": str(e)
+            }, status=500)
+
+    return JsonResponse({
+        "status": "error",
+        "message": "Phương thức không được hỗ trợ"
+    }, status=405)
 
 from django.contrib.auth.signals import user_logged_in
 from django.dispatch import receiver

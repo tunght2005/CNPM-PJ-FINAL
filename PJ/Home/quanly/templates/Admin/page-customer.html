@@ -55,6 +55,7 @@
     <link rel="manifest" href="/favicon_io/site.webmanifest" />
   </head>
   <body onload="time()" class="app sidebar-mini rtl">
+    {%csrf_token%}
     <!-- Navbar-->
     <header class="app-header">
       <!-- Sidebar toggle button--><a
@@ -121,13 +122,13 @@
           >
         </li>
         <li>
-          <a class="app-menu__item" href="#"
+          <a class="app-menu__item" href="{%url 'quanly:ban_management'%}"
             ><i class="app-menu__icon bx bx-run"></i
             ><span class="app-menu__label">Quản lý nội bộ </span></a
           >
         </li>
         <li>
-          <a class="app-menu__item" href="table-data-money.html"
+          <a class="app-menu__item" href="{%url 'quanly:money_management'%}"
             ><i class="app-menu__icon bx bx-dollar"></i
             ><span class="app-menu__label">Bảng kê lương</span></a
           >
@@ -237,23 +238,28 @@
                   </tr>
                 </thead>
                 <tbody>
+                  {% for customer in customers %}
                   <tr>
                     <td width="10">
                       <input type="checkbox" name="check1" value="1" />
                     </td>
-                    <td>71309005</td>
-                    <td>Lê Văn A</td>
-                    <td>admin@gmail.com</td>
-                    <td>123456</td>
-                    <td>099999999</td>
-                    <td>HCM</td>
-                    <td><span class="badge bg-success">Customer</span></td>
+                    <td>{{ customer.UserID }}</td>
+                    <td>{{ customer.username }}</td>
+                    <td>{{ customer.email }}</td>
+                    <td>01231231313</td> 
+                    <td>{{ customer.phone }}</td>
+                    <td>{{ customer.address }}</td>
+                    <td>
+                      {% if customer.role == 2 %}
+                        <span class="badge bg-success">Customer</span>
+                      {% endif %}
+                    </td>
                     <td>
                       <button
                         class="btn btn-primary btn-sm trash"
                         type="button"
                         title="Xóa"
-                        onclick="myFunction(this)"
+                        data-id="{{ customer.UserID }}"
                       >
                         <i class="fas fa-trash-alt"></i>
                       </button>
@@ -264,203 +270,13 @@
                         id="show-emp"
                         data-toggle="modal"
                         data-target="#ModalUP"
+                        data-id="{{ customer.UserID }}"
                       >
                         <i class="fas fa-edit"></i>
                       </button>
                     </td>
                   </tr>
-                  <tr>
-                    <td width="10">
-                      <input type="checkbox" name="check1" value="1" />
-                    </td>
-                    <td>71309005</td>
-                    <td>Lê Văn A</td>
-                    <td>admin@gmail.com</td>
-                    <td>123456</td>
-                    <td>099999999</td>
-                    <td>HCM</td>
-                    <td><span class="badge bg-success">Customer</span></td>
-                    <td>
-                      <button
-                        class="btn btn-primary btn-sm trash"
-                        type="button"
-                        title="Xóa"
-                        onclick="myFunction(this)"
-                      >
-                        <i class="fas fa-trash-alt"></i>
-                      </button>
-                      <button
-                        class="btn btn-primary btn-sm edit"
-                        type="button"
-                        title="Sửa"
-                        id="show-emp"
-                        data-toggle="modal"
-                        data-target="#ModalUP"
-                      >
-                        <i class="fas fa-edit"></i>
-                      </button>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td width="10">
-                      <input type="checkbox" name="check1" value="1" />
-                    </td>
-                    <td>71309005</td>
-                    <td>Lê Văn A</td>
-                    <td>admin@gmail.com</td>
-                    <td>123456</td>
-                    <td>099999999</td>
-                    <td>HCM</td>
-                    <td><span class="badge bg-success">Customer</span></td>
-                    <td>
-                      <button
-                        class="btn btn-primary btn-sm trash"
-                        type="button"
-                        title="Xóa"
-                        onclick="myFunction(this)"
-                      >
-                        <i class="fas fa-trash-alt"></i>
-                      </button>
-                      <button
-                        class="btn btn-primary btn-sm edit"
-                        type="button"
-                        title="Sửa"
-                        id="show-emp"
-                        data-toggle="modal"
-                        data-target="#ModalUP"
-                      >
-                        <i class="fas fa-edit"></i>
-                      </button>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td width="10">
-                      <input type="checkbox" name="check1" value="1" />
-                    </td>
-                    <td>71309005</td>
-                    <td>Lê Văn A</td>
-                    <td>admin@gmail.com</td>
-                    <td>123456</td>
-                    <td>099999999</td>
-                    <td>HCM</td>
-                    <td><span class="badge bg-success">Customer</span></td>
-                    <td>
-                      <button
-                        class="btn btn-primary btn-sm trash"
-                        type="button"
-                        title="Xóa"
-                        onclick="myFunction(this)"
-                      >
-                        <i class="fas fa-trash-alt"></i>
-                      </button>
-                      <button
-                        class="btn btn-primary btn-sm edit"
-                        type="button"
-                        title="Sửa"
-                        id="show-emp"
-                        data-toggle="modal"
-                        data-target="#ModalUP"
-                      >
-                        <i class="fas fa-edit"></i>
-                      </button>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td width="10">
-                      <input type="checkbox" name="check1" value="1" />
-                    </td>
-                    <td>71309005</td>
-                    <td>Lê Văn A</td>
-                    <td>admin@gmail.com</td>
-                    <td>123456</td>
-                    <td>099999999</td>
-                    <td>HCM</td>
-                    <td><span class="badge bg-success">Customer</span></td>
-                    <td>
-                      <button
-                        class="btn btn-primary btn-sm trash"
-                        type="button"
-                        title="Xóa"
-                        onclick="myFunction(this)"
-                      >
-                        <i class="fas fa-trash-alt"></i>
-                      </button>
-                      <button
-                        class="btn btn-primary btn-sm edit"
-                        type="button"
-                        title="Sửa"
-                        id="show-emp"
-                        data-toggle="modal"
-                        data-target="#ModalUP"
-                      >
-                        <i class="fas fa-edit"></i>
-                      </button>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td width="10">
-                      <input type="checkbox" name="check1" value="1" />
-                    </td>
-                    <td>71309005</td>
-                    <td>Lê Văn A</td>
-                    <td>admin@gmail.com</td>
-                    <td>123456</td>
-                    <td>099999999</td>
-                    <td>HCM</td>
-                    <td><span class="badge bg-success">Customer</span></td>
-                    <td>
-                      <button
-                        class="btn btn-primary btn-sm trash"
-                        type="button"
-                        title="Xóa"
-                        onclick="myFunction(this)"
-                      >
-                        <i class="fas fa-trash-alt"></i>
-                      </button>
-                      <button
-                        class="btn btn-primary btn-sm edit"
-                        type="button"
-                        title="Sửa"
-                        id="show-emp"
-                        data-toggle="modal"
-                        data-target="#ModalUP"
-                      >
-                        <i class="fas fa-edit"></i>
-                      </button>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td width="10">
-                      <input type="checkbox" name="check1" value="1" />
-                    </td>
-                    <td>71309005</td>
-                    <td>Lê Văn A</td>
-                    <td>admin@gmail.com</td>
-                    <td>123456</td>
-                    <td>099999999</td>
-                    <td>HCM</td>
-                    <td><span class="badge bg-success">Customer</span></td>
-                    <td>
-                      <button
-                        class="btn btn-primary btn-sm trash"
-                        type="button"
-                        title="Xóa"
-                        onclick="myFunction(this)"
-                      >
-                        <i class="fas fa-trash-alt"></i>
-                      </button>
-                      <button
-                        class="btn btn-primary btn-sm edit"
-                        type="button"
-                        title="Sửa"
-                        id="show-emp"
-                        data-toggle="modal"
-                        data-target="#ModalUP"
-                      >
-                        <i class="fas fa-edit"></i>
-                      </button>
-                    </td>
-                  </tr>
+                  {% endfor %}
                 </tbody>
               </table>
             </div>
@@ -682,5 +498,64 @@
         $("#ModalUP").modal({ backdrop: false, keyboard: false });
       });
     </script>
+    <script>
+// Add getCookie function before the jQuery code
+function getCookie(name) {
+    let cookieValue = null;
+    if (document.cookie && document.cookie !== '') {
+        const cookies = document.cookie.split(';');
+        for (let i = 0; i < cookies.length; i++) {
+            const cookie = cookies[i].trim();
+            if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                break;
+            }
+        }
+    }
+    return cookieValue;
+}
+
+// Your existing jQuery code
+jQuery(function () {
+    jQuery(".trash").click(function () {
+        const userId = $(this).data('id');
+        console.log("UserID to delete:", userId);
+        
+        swal({
+            title: "Cảnh báo",
+            text: "Bạn có chắc chắn muốn xóa khách hàng này?",
+            icon: "warning",
+            buttons: ["Hủy bỏ", "Đồng ý"],
+            dangerMode: true,
+        }).then((willDelete) => {
+            if (willDelete) {
+                $.ajax({
+                    // Sửa URL để match với urls.py
+                    url: `{% url 'quanly:delete_customer' '0' %}`.replace('0', userId),
+                    type: 'POST',
+                    headers: {
+                        'X-CSRFToken': getCookie('csrftoken')
+                    },
+                    success: function(response) {
+                        if (response.status === 'success') {
+                            swal("Thành công!", response.message, "success")
+                            .then(() => {
+                                location.reload();
+                            });
+                        } else {
+                            swal("Lỗi!", response.message, "error");
+                        }
+                    },
+                    error: function(xhr, status, error) {
+                        console.error("Error:", error);
+                        console.error("Response:", xhr.responseText);
+                        swal("Lỗi!", "Không thể xóa khách hàng", "error");
+                    }
+                });
+            }
+        });
+    });
+});
+</script>
   </body>
 </html>

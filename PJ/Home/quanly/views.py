@@ -2,11 +2,16 @@ from django.shortcuts import render, redirect
 from django.contrib import messages
 from accounts.decorators import role_required
 from .models import User
+from .models import Product
 from pj_home.models import *
 from .forms import AddProductForm
 from .forms import AddEmployeeForm
 from .forms import AddCustomerForm
 from .forms import AddEmployeeForm
+from django.contrib.auth.hashers import make_password, check_password
+from django.http import JsonResponse
+from django.views.decorators.http import require_POST
+#from .forms import AddOrderForm
 
 
 #ADMIN
@@ -26,15 +31,20 @@ def admin_dashboard(request):
 #Api
 @role_required([6, 5])  #Admin
 def employee_management(request):
-    employees = User.objects.filter(role__in=[2,3,4])  # Sales, Staff, Delivery
+    # Lấy nhân viên có role là 3 (SaleStaff) và 4 (Delivery Staff)
+    employees = User.objects.filter(role__in=[3, 4]).select_related('employee')
     user_role = request.session.get('user_role')
+    
+    context = {
+        'employees': employees
+    }
     
     if user_role == 6:  # Admin
         template = 'Admin/table-data-table.html'
     elif user_role == 5:  # Manager
         template = 'Manager/table-data-table.html'
     
-    return render(request, template, {'employees': employees})
+    return render(request, template, context)
 
 @role_required([6, 5])  # Chỉ admin mới có quyền thêm nhân viên
 def add_employee(request):
@@ -70,6 +80,10 @@ def product_management(request):
     products = Product.objects.all()
     user_role = request.session.get('user_role')
     
+    context = {
+        'products': products
+    }
+
     if user_role == 6:  # Admin
         template = 'Admin/table-data-product.html'
     elif user_role == 5:  # Manager
@@ -106,7 +120,7 @@ def add_product(request):
 #Api
 @role_required([5, 6])  # Manager và Admin   
 def customer_management(request):
-    customers = User.objects.filter(role=1)  # Role 1 là khách hàng
+    customers = User.objects.filter(role=2)  # Role 2 là khách hàng
     user_role = request.session.get('user_role')
     
     if user_role == 6:  # Admin
@@ -141,6 +155,83 @@ def add_customer(request):
     
     return render(request, template, {'form': form})
 
+@require_POST
+@role_required([5, 6])  # Chỉ Manager và Admin có quyền xóa
+def delete_customer(request, user_id):
+    try:
+        # Lấy user với role=2 (customer) và UserID tương ứng
+        customer = User.objects.get(UserID=user_id, role=2)
+        username = customer.username  # Lưu tên trước khi xóa
+        
+        # Xóa user và các bản ghi liên quan
+        customer.delete()
+        
+        return JsonResponse({
+            'status': 'success',
+            'message': f'Đã xóa khách hàng {username} thành công'
+        })
+    except User.DoesNotExist:
+        return JsonResponse({
+            'status': 'error',
+            'message': 'Không tìm thấy khách hàng'
+        }, status=404)
+    except Exception as e:
+        return JsonResponse({
+            'status': 'error',
+            'message': str(e)
+        }, status=500)
+    
+@require_POST
+@role_required([5, 6])  # Chỉ Manager và Admin có quyền xóa
+def delete_employee(request, user_id):
+    try:
+        # Lấy user với role là 3 (SaleStaff) hoặc 4 (DeliveryStaff)
+        employee = User.objects.get(UserID=user_id, role__in=[3, 4])
+        username = employee.username  # Lưu tên trước khi xóa
+        
+        # Xóa user và các bản ghi liên quan
+        employee.delete()
+        
+        return JsonResponse({
+            'status': 'success',
+            'message': f'Đã xóa nhân viên {username} thành công'
+        })
+    except User.DoesNotExist:
+        return JsonResponse({
+            'status': 'error',
+            'message': 'Không tìm thấy nhân viên'
+        }, status=404)
+    except Exception as e:
+        return JsonResponse({
+            'status': 'error',
+            'message': str(e)
+        }, status=500)
+
+@require_POST
+@role_required([5, 6])  # Chỉ Manager và Admin có quyền xóa
+def delete_product(request, product_id):
+    try:
+        product = Product.objects.get(ProductID=product_id)
+        product_name = product.Pname  # Lưu tên sản phẩm trước khi xóa
+        
+        # Xóa sản phẩm và các bản ghi liên quan
+        product.delete()
+        
+        return JsonResponse({
+            'status': 'success',
+            'message': f'Đã xóa sản phẩm {product_name} thành công'
+        })
+    except Product.DoesNotExist:
+        return JsonResponse({
+            'status': 'error',
+            'message': 'Không tìm thấy sản phẩm'
+        }, status=404)
+    except Exception as e:
+        return JsonResponse({
+            'status': 'error',
+            'message': str(e)
+        }, status=500)
+
 # Quản lý bảo hành
 @role_required([6])  # Chỉ Admin
 def warranty_management(request):
@@ -152,7 +243,7 @@ def add_warranty(request):
     return render(request, 'Admin/form-add-warranty.html')
 
 # Quản lý đơn hàng
-@role_required([6, 5])  # Admin và Manager
+@role_required([6, 5, 4])  # Admin và Manager và delivery staff
 def order_management(request):
     orders = Order.objects.all()
     user_role = request.session.get('user_role')
@@ -161,20 +252,23 @@ def order_management(request):
         template = 'Admin/table-data-oder.html'
     elif user_role == 5:  # Manager 
         template = 'Manager/table-data-oder.html'
+    elif user_role == 4:  # Delivery Staff
+        template = 'DeliveryStaff/table-data-oder.html'
     
     return render(request, template, {'orders': orders})
 
-@role_required([6, 5])
+@role_required([6, 5, 4])
 def add_order(request):
     user_role = request.session.get('user_role')
     
-    # Select template based on user role
     if user_role == 6:  # Admin
         template = 'Admin/form-add-order.html'
     elif user_role == 5:  # Manager
         template = 'Manager/form-add-order.html'
+    elif user_role == 4:  # Delivery Staff
+        template = 'DeliveryStaff/form-add-order.html'
     
-    return render(request, template)
+    return render(request, template) #, {'form': form}
 
 @role_required([6])
 def add_gift(request):
@@ -193,7 +287,6 @@ def add_gift(request):
 #         # Xử lý thêm tin tức
 #         pass
 #     return render(request, 'quanly/admin/form-add-news.html')
-
 
 #MANAGER
 @role_required([5])  # Chỉ Manager
@@ -216,3 +309,46 @@ def block(request):
 @role_required([4])  # Chỉ Delivery Staff
 def delivery_staff_dashboard(request):
     return render(request, 'DeliveryStaff/deliveryStaff.html')
+
+
+@role_required([6, 5, 4])  # Admin và Manager và delivery staff
+def delivery_management(request):
+    #orders = Order.objects.all()
+    user_role = request.session.get('user_role')
+    
+    if user_role == 6:  # Admin
+        template = 'Admin/table-data-transport.html'
+    elif user_role == 5:  # Manager 
+        template = 'Manager/table-data-transport.html'
+    elif user_role == 4:  # Delivery Staff
+        template = 'DeliveryStaff/table-data-transport.html'
+    
+    return render(request, template)
+
+@role_required([6])  # Admin 
+def ban_management(request):
+    return render(request, 'Admin/table-data-banned.html')
+
+@role_required([6])  # Admin 
+def ban(request):
+    return render(request, 'Admin/form-add-bi-cam.html')
+
+@role_required([6, 5])  # Admin va Manager
+def money_management(request):
+    user_role = request.session.get('user_role')
+    if user_role == 6:  # Admin
+        template = 'Admin/table-data-money.html'
+    elif user_role == 5:  # Manager 
+        template = 'Manager/table-data-money.html'
+    return render(request, template)
+
+@role_required([6,5])
+def money(request):
+    user_role = request.session.get('user_role')
+    if user_role == 6:  # Admin
+        template = 'Admin/form-add-tien-luong.html'
+    elif user_role == 5:  # Manager 
+        template = 'Manager/form-add-tien-luong.html'
+    return render(request, template)
+
+

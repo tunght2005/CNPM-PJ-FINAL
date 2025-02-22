@@ -10,28 +10,28 @@
     <link rel="stylesheet" type="text/css" href="{%static '/assets/css/main.css'%}" />
     <link
       rel="stylesheet"
-      href="{%static 'https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css'%}"
+      href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css"
     />
     <!-- or -->
     <link
       rel="stylesheet"
-      href="{%static 'https://unpkg.com/boxicons@latest/css/boxicons.min.css'%}"
+      href="https://unpkg.com/boxicons@latest/css/boxicons.min.css"
     />
 
     <!-- Font-icon css-->
     <link
       rel="stylesheet"
       type="text/css"
-      href="{%static 'https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css'%}"
+      href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
     />
-    <script src="{%static 'https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js'%}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
     <link
       rel="stylesheet"
-      href="{%static 'https://use.fontawesome.com/releases/v5.8.2/css/all.css'%}"
+      href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"
     />
     <link
       rel="stylesheet"
-      href="{%static 'https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.css'%}"
+      href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.css"
     />
     <!-- 6 links và 1 script -->
     <!-- Favicon -->
@@ -57,6 +57,7 @@
   </head>
 
   <body onload="time()" class="app sidebar-mini rtl">
+    {% csrf_token %}
     <!-- Navbar-->
     <header class="app-header">
       <!-- Sidebar toggle button--><a
@@ -93,13 +94,13 @@
       <hr />
       <ul class="app-menu">
         <li>
-          <a class="app-menu__item active" href="{%url 'quanly:admin_dashboard'%}"
+          <a class="app-menu__item" href="{%url 'quanly:admin_dashboard'%}"
             ><i class="app-menu__icon bx bx-tachometer"></i
             ><span class="app-menu__label">Bảng điều khiển</span></a
           >
         </li>
         <li>
-          <a class="app-menu__item" href="{% url 'quanly:employee_management' %}"
+          <a class="app-menu__item active" href="{% url 'quanly:employee_management' %}"
             ><i class="app-menu__icon bx bx-id-card"></i>
             <span class="app-menu__label">Quản lý nhân viên</span></a
           >
@@ -271,7 +272,7 @@
                   <tr>
                     <th width="10"><input type="checkbox" id="all" /></th>
                     <th>ID nhân viên</th>
-                    <th width="150">Họ và tên</th>
+                    <th width="150">Tên người dùng</th>
                     <th width="20">Ảnh thẻ</th>
                     <th width="300">Địa chỉ</th>
                     <th>Ngày sinh</th>
@@ -282,42 +283,56 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
-                    <td width="10"><input type="checkbox" /></td>
-                    <td>#YUI21376</td>
-                    <td>Nguyễn Thị Mai</td>
-                    <td>
-                      <img
-                        class="img-card-person"
-                        src="/img-anhthe/4.jpg"
-                        alt=""
-                      />
-                    </td>
-                    <td>Hồ Chí Minh</td>
-                    <td>09/12/2000</td>
-                    <td>Nữ</td>
-                    <td>0836333037</td>
-                    <td>Sales Staff</td>
-                    <td>
-                      <button
-                        class="btn btn-primary btn-sm trash"
-                        title="Xóa"
-                        onclick="myFunction()"
-                      >
-                        <i class="fas fa-trash-alt"></i>
-                      </button>
-                      <button
-                        class="btn btn-primary btn-sm edit"
-                        title="Sửa"
-                        id="show-emp"
-                        data-toggle="modal"
-                        data-target="#ModalUP"
-                      >
-                        <i class="fas fa-edit"></i>
-                      </button>
-                    </td>
-                  </tr>
-                </tbody>
+  {% for employee in employees %}
+  <tr>
+    <td width="10"><input type="checkbox" /></td>
+    <td>{{ employee.UserID }}</td>
+    <td>{{ employee.username }}</td>
+    <td>
+      {% if employee.avatar %}
+        <img class="img-card-person" src="{{ employee.avatar.url }}" alt="{{ employee.full_name }}" />
+      {% else %}
+        <img class="img-card-person" src="{% static 'img/default-avatar.jpg' %}" alt="Default Avatar" />
+      {% endif %}
+    </td>
+    <td>{{ employee.address }}</td>
+    <td>{{ employee.birth_date|date:"d/m/Y" }}</td>
+    <td>{{ employee.gender }}</td>
+    <td>{{ employee.phone }}</td>
+    <td>
+      {% if employee.role == 3 %}
+      <span class="badge bg-success">SaleStaff</span>
+      {% elif employee.role == 4 %}
+      <span class="badge bg-success">DeliveryStaff</span>
+      {% elif employee.role == 5 %}
+      <span class="badge bg-success">Manager</span>
+      {% endif %}
+    </td>
+    <td>
+      <button
+        class="btn btn-primary btn-sm trash"
+        type="button"
+        title="Xóa"
+        onclick="myFunction(this)"
+        data-id="{{ employee.UserID }}"
+      >
+        <i class="fas fa-trash-alt"></i>
+      </button>
+      <button
+        class="btn btn-primary btn-sm edit"
+        type="button"
+        title="Sửa"
+        id="show-emp"
+        data-toggle="modal"
+        data-target="#ModalUP"
+        data-id="{{ employee.UserID }}"
+      >
+        <i class="fas fa-edit"></i>
+      </button>
+    </td>
+  </tr>
+  {% endfor %}
+</tbody>
               </table>
             </div>
           </div>
@@ -553,5 +568,63 @@
         $("#ModalUP").modal({ backdrop: false, keyboard: false });
       });
     </script>
+    <script>
+// Add getCookie function
+function getCookie(name) {
+    let cookieValue = null;
+    if (document.cookie && document.cookie !== '') {
+        const cookies = document.cookie.split(';');
+        for (let i = 0; i < cookies.length; i++) {
+            const cookie = cookies[i].trim();
+            if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                break;
+            }
+        }
+    }
+    return cookieValue;
+}
+
+// Handle delete employee
+jQuery(function () {
+    jQuery(".trash").click(function () {
+        const userId = $(this).data('id');
+        console.log("UserID to delete:", userId);
+        
+        swal({
+            title: "Cảnh báo",
+            text: "Bạn có chắc chắn muốn xóa nhân viên này?",
+            icon: "warning",
+            buttons: ["Hủy bỏ", "Đồng ý"],
+            dangerMode: true,
+        }).then((willDelete) => {
+            if (willDelete) {
+                $.ajax({
+                    url: `{% url 'quanly:delete_employee' '0' %}`.replace('0', userId),
+                    type: 'POST',
+                    headers: {
+                        'X-CSRFToken': getCookie('csrftoken')
+                    },
+                    success: function(response) {
+                        if (response.status === 'success') {
+                            swal("Thành công!", response.message, "success")
+                            .then(() => {
+                                location.reload();
+                            });
+                        } else {
+                            swal("Lỗi!", response.message, "error");
+                        }
+                    },
+                    error: function(xhr, status, error) {
+                        console.error("Error:", error);
+                        console.error("Response:", xhr.responseText);
+                        swal("Lỗi!", "Không thể xóa nhân viên", "error");
+                    }
+                });
+            }
+        });
+    });
+});
+</script>
   </body>
 </html>

@@ -7,6 +7,7 @@ from django.contrib.auth.password_validation import validate_password
 import re
 from django.utils.timezone import now
 import bcrypt
+from pj_home.models import Order, OrderDetail
 
 class AddProductForm(forms.ModelForm):
     class Meta:
@@ -165,3 +166,58 @@ class AddCustomerForm(forms.ModelForm):
         if commit:
             user.save()
         return user
+    
+# class AddOrderForm(forms.ModelForm):
+#     class Meta:
+#         model = Order
+#         fields = ['customer', 'status', 'total_amount']
+#         widgets = {
+#             'status': forms.Select(choices=Order.STATUS_CHOICES),
+#         }
+
+#     # Thêm các trường cho OrderDetail
+#     product = forms.ModelChoiceField(
+#         queryset=Product.objects.all(),
+#         label='Sản phẩm'
+#     )
+#     quantity = forms.IntegerField(
+#         min_value=1, 
+#         label='Số lượng',
+#         widget=forms.NumberInput(attrs={'class': 'form-control'})
+#     )
+#     price = forms.DecimalField(
+#         max_digits=10,
+#         decimal_places=2,
+#         widget=forms.NumberInput(attrs={'class': 'form-control'})
+#     )
+
+#     def clean(self):
+#         cleaned_data = super().clean()
+#         product = cleaned_data.get('product')
+#         quantity = cleaned_data.get('quantity')
+
+#         if product and quantity:
+#             # Kiểm tra số lượng tồn kho
+#             if quantity > product.stock:
+#                 raise forms.ValidationError(
+#                     f"Số lượng yêu cầu ({quantity}) vượt quá số lượng trong kho ({product.stock})"
+#                 )
+
+#         return cleaned_data
+
+#     def save(self, commit=True):
+#         order = super().save(commit=False)
+        
+#         if commit:
+#             order.save()
+#             # Tạo OrderDetail
+#             OrderDetail.objects.create(
+#                 order=order,
+#                 product=self.cleaned_data['product'],
+#                 quantity=self.cleaned_data['quantity'],
+#                 price=self.cleaned_data['price']
+#             )
+#             # Cập nhật tổng tiền đơn hàng
+#             order.update_total()
+
+#         return order

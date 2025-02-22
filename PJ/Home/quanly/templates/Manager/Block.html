@@ -86,15 +86,15 @@
           alt="User Image"
         />
         <div>
-          <p class="app-sidebar__user-name"><b>Văn Tùng</b></p>
+          <p class="app-sidebar__user-name"><b>Manager</b></p>
           <p class="app-sidebar__user-designation">Chào mừng bạn trở lại</p>
         </div>
       </div>
       <hr />
-      <!-- Menu Sidebar -->
-      <ul class="app-menu">
+       <!-- Menu Sidebar -->
+       <ul class="app-menu">
         <li>
-          <a class="app-menu__item" href="{%url 'quanly:manager_dashboard'%}"
+          <a class="app-menu__item active" href="{%url 'quanly:manager_dashboard'%}"
             ><i class="app-menu__icon bx bx-tachometer"></i
             ><span class="app-menu__label">Bảng điều khiển</span></a
           >
@@ -118,7 +118,7 @@
           >
         </li>
         <li>
-          <a class="app-menu__item" href="table-data-oder.html"
+          <a class="app-menu__item" href="{%url 'quanly:order_management'%}.html"
             ><i class="app-menu__icon bx bx-task"></i
             ><span class="app-menu__label">Quản lý đơn hàng</span></a
           >
@@ -130,7 +130,7 @@
           >
         </li>
         <li>
-          <a class="app-menu__item" href="table-data-money.html"
+          <a class="app-menu__item" href="{%url 'quanly:money_management'%}"
             ><i class="app-menu__icon bx bx-dollar"></i
             ><span class="app-menu__label">Bảng kê lương</span
             ></i
@@ -175,7 +175,7 @@
           >
         </li>
         <li>
-          <a class="app-menu__item bg-secondary active" href="Block.html"
+          <a class="app-menu__item bg-secondary active" href="{%url 'quanly:block'%}"
             ><i class="app-menu__icon bx bx-calendar-check"></i
             ><span class="app-menu__label">Lịch công tác </span><i class='bx bx-lock'></i></a
           >
